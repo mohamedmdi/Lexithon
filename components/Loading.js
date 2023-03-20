@@ -9,26 +9,18 @@ import {
   StatusBar,
 } from "react-native";
 
-const getData = async () => {
-  try {
-    const jsonValue = await AsyncStorage.getItem("user");
-    return jsonValue != null ? JSON.parse(jsonValue) : null;
-  } catch (e) {
-    console.error(e);
-  }
-};
+import getData from "../util/getData";
 
 const Loading = (props) => {
   // const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState(null);
-  const navigation = useNavigation()
+  const navigation = useNavigation();
 
   useEffect(() => {
     (async () => {
       const dataa = await getData();
-      dataa ? navigation.navigate("home") :  navigation.navigate("signup")
+      dataa ? navigation.navigate("home") : navigation.navigate("signup");
       setData(dataa);
-      // setIsLoading(false)
     })();
   }, [data]);
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import DropDownPicker from "react-native-dropdown-picker";
 import { useDispatch } from "react-redux";
 import { addGrade } from "../store/userSlice";
@@ -8,15 +8,15 @@ const DropDown = () => {
   const [value, setValue] = useState(null);
   const [items, setItems] = useState([
     { label: "Grade 1", value: "1" },
-    { label: "Grade 1", value: "2" },
+    { label: "Grade 2", value: "2" },
   ]);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!value) return
+    if (!value) return;
 
-    dispatch(addGrade(value))
-  }, [value])
+    dispatch(addGrade(value));
+  }, [value]);
 
   return (
     <DropDownPicker

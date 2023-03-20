@@ -1,35 +1,25 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 // prettier-ignore
 import { StyleSheet, Text, View, ImageBackground, StatusBar } from "react-native";
 import { TextInput, Button } from "react-native-paper";
 import DropDown from "./DropDown";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useSelector } from "react-redux";
-
-const storeData = async (value) => {
-  try {
-    const jsonv = JSON.stringify(value);
-    await AsyncStorage.setItem("user", jsonv);
-  } catch (e) {
-    // saving error
-    console.error(e);
-  }
-};
+import storeData from "../util/storeData";
 
 const SignUp = (props) => {
-  const [text, setText] = useState("")
-  const {grade, achievements} = useSelector(state => state.user)
+  const [text, setText] = useState("");
+  const { grade, achievements } = useSelector((state) => state.user);
 
   const submitHandler = async () => {
     // await AsyncStorage.clear()
-    await storeData({username: text, grade, achievements});
-    
+    await storeData({ username: text, grade, achievements });
+
     // Go Next Page After Creating an acc!
     props.navigation.navigate("home");
   };
   return (
     <>
-
+      <StatusBar backgroundColor="#f5f3ff" barStyle="dark-content" />
       <View style={styles.imgContainer}>
         <ImageBackground
           source={{
