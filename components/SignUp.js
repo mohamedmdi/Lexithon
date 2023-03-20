@@ -30,7 +30,6 @@ const SignUp = (props) => {
   return (
     <>
 
-      <StatusBar backgroundColor="#f5f3ff" barStyle="dark-content" />
       <View style={styles.imgContainer}>
         <ImageBackground
           source={{
@@ -61,7 +60,6 @@ const SignUp = (props) => {
         >
           Let's Go
         </Button>
-        <Text>{text}</Text>
       </View>
     </>
   );

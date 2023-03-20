@@ -1,15 +1,44 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useNavigation } from "@react-navigation/native";
+import { useEffect, useState } from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  ImageBackground,
+  StatusBar,
+} from "react-native";
 
-import { StyleSheet, Text, View, ImageBackground, StatusBar } from "react-native";
+const getData = async () => {
+  try {
+    const jsonValue = await AsyncStorage.getItem("user");
+    return jsonValue != null ? JSON.parse(jsonValue) : null;
+  } catch (e) {
+    console.error(e);
+  }
+};
 
-const Loading= (props) => {
+const Loading = (props) => {
+  // const [isLoading, setIsLoading] = useState(true);
+  const [data, setData] = useState(null);
+  const navigation = useNavigation()
+
+  useEffect(() => {
+    (async () => {
+      const dataa = await getData();
+      dataa ? navigation.navigate("home") :  navigation.navigate("signup")
+      setData(dataa);
+      // setIsLoading(false)
+    })();
+  }, [data]);
 
   return (
-
-      <View style={styles.imgContainer}>
-        <Text>Loading</Text>
+    <>
+      <StatusBar backgroundColor="#7c3aed" barStyle="dark-content" />
+      <View style={styles.container}>
+        <Text style={styles.h1}>Lexithon</Text>
       </View>
-
-    
+    </>
   );
 };
 
@@ -18,31 +47,15 @@ export default Loading;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 24,
-    paddingVertical: 50,
-    color: "#fff",
+    justifyContent: "center",
+    alignItems: "center",
     fontWeight: "bold",
-    backgroundColor: "#f5f3ff",
-  },
-
-  form: {
-    display: "flex",
-    gap: 14,
-    marginBottom: 32,
+    backgroundColor: "#7c3aed",
   },
 
   h1: {
-    fontWeight: "bold",
-    fontSize: 24,
-    textAlign: "center",
-    color: "#7c3aed",
-    marginBottom: 30,
-  },
-
-  imgContainer: {
-    width: "auto",
-    height: 225,
-    overflow: "hidden",
-    borderBottomLeftRadius: 52,
+    fontSize: 42,
+    fontWeight: "900",
+    color: "#fff",
   },
 });

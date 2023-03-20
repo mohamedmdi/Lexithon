@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { View, Text } from "react-native";
+import { View, Text, BackHandler } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser } from "../store/userSlice";
+import { StatusBar } from "expo-status-bar";
 
 const getData = async () => {
   try {
@@ -19,6 +20,19 @@ const Home = () => {
   // console.log("GG: ", {...user})
   const  dispatch = useDispatch()
 
+  const handleBackPress = () => {
+    BackHandler.exitApp()
+    return true
+  }
+
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', handleBackPress)
+
+    return () => {
+      BackHandler.removeEventListener('hardwareBackPress', handleBackPress)
+    }
+  }, [])
+
   useEffect(() => {
     if (user?.username) return;
     
@@ -31,9 +45,12 @@ const Home = () => {
   
 
   return (
-    <View>
-      <Text>Welcome Back, {user?.username}</Text>
-    </View>
+    <>
+      {/* <StatusBar backgroundColor="#fff" barStyle="dark-content" /> */}
+      <View>
+        <Text>Welcome Back, {user?.username}</Text>
+      </View>
+    </>
   );
 };
 
