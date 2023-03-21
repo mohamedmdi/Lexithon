@@ -1,18 +1,25 @@
-import { Image, Pressable, StatusBar, StyleSheet, Text, View } from "react-native";
-import volume from "../../assets/volume.png"
+import { Image, StyleSheet, Text, View } from "react-native";
+import Body from "../layout/Body";
+import CardPressable from "../layout/CardPressable";
+import volume from "../../assets/volume.png";
 
 const Quiz = (props) => {
-
   return (
     <>
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Pressable style={styles.imgContainer}>
-          <Image source={volume} style={{tintColor: "#f5f3ff", width: 30, height: 30}}></Image>
-        </Pressable>
-        <Text>Hi {props.route.params.id}</Text>
-      </View>
-    </View>
+      <Body statusBarColor="#f5f3ff">
+        <View style={styles.header}>
+          <CardPressable
+            onPress={() => console.log("PRESSED")}
+            style={styles.imgContainer}
+          >
+            <Image
+              source={volume}
+              style={{ tintColor: "#f5f3ff", width: 30, height: 30 }}
+            ></Image>
+          </CardPressable>
+          <Text>Hi {props.route.params.id}</Text>
+        </View>
+      </Body>
     </>
   );
 };
@@ -20,18 +27,10 @@ const Quiz = (props) => {
 export default Quiz;
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 20,
-    paddingTop: 50,
-    backgroundColor: "#f5f3ff",
-    height: "100%",
-  },
-
   header: {
     display: "flex",
     flexDirection: "row",
     gap: 10,
-    
   },
 
   imgContainer: {
@@ -40,6 +39,6 @@ const styles = StyleSheet.create({
     borderColor: "#6d28d9",
 
     borderRadius: 15,
-    padding: 8
-  }
+    padding: 8,
+  },
 });

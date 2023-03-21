@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import DropDownPicker from "react-native-dropdown-picker";
 import { useDispatch } from "react-redux";
-import { addGrade } from "../store/userSlice";
+import { addGrade } from "../../store/userSlice";
 
 const DropDown = () => {
   const [open, setOpen] = useState(false);

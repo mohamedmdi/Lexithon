@@ -1,19 +1,13 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
-import { useEffect, useState } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  ImageBackground,
-  StatusBar,
-} from "react-native";
+import { useEffect } from "react";
+import { StyleSheet, Text } from "react-native";
 import { useSelector } from "react-redux";
 
-import getData from "../util/getData";
+import getData from "../../util/getData";
+import Body from "./Body";
 
 const Loading = (props) => {
-  const user = useSelector(state => state.user)
+  const user = useSelector((state) => state.user);
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -26,12 +20,9 @@ const Loading = (props) => {
   }, []);
 
   return (
-    <>
-      <StatusBar backgroundColor="#7c3aed" barStyle="dark-content" />
-      <View style={styles.container}>
-        <Text style={styles.h1}>Lexithon</Text>
-      </View>
-    </>
+    <Body container={styles.container} statusBarColor="#7c3aed">
+      <Text style={styles.h1}>Lexithon</Text>
+    </Body>
   );
 };
 

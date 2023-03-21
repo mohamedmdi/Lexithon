@@ -1,10 +1,11 @@
 import { useState } from "react";
-// prettier-ignore
-import { StyleSheet, Text, View, ImageBackground, StatusBar } from "react-native";
-import { TextInput, Button } from "react-native-paper";
-import DropDown from "./DropDown";
 import { useSelector } from "react-redux";
-import storeData from "../util/storeData";
+// prettier-ignore
+import { StyleSheet, Text, View, ImageBackground } from "react-native";
+import { TextInput, Button } from "react-native-paper";
+import storeData from "../../util/storeData";
+import Body from "../layout/Body";
+import DropDown from "./DropDown";
 
 const SignUp = (props) => {
   const [text, setText] = useState("");
@@ -19,7 +20,6 @@ const SignUp = (props) => {
   };
   return (
     <>
-      <StatusBar backgroundColor="#f5f3ff" barStyle="dark-content" />
       <View style={styles.imgContainer}>
         <ImageBackground
           source={{
@@ -32,7 +32,7 @@ const SignUp = (props) => {
           }}
         />
       </View>
-      <View style={styles.container}>
+      <Body statusBarColor="#f5f3ff">
         <Text style={styles.h1}>Welcome To The Game</Text>
         <View style={styles.form}>
           <TextInput
@@ -50,7 +50,7 @@ const SignUp = (props) => {
         >
           Let's Go
         </Button>
-      </View>
+      </Body>
     </>
   );
 };
@@ -58,15 +58,6 @@ const SignUp = (props) => {
 export default SignUp;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingHorizontal: 24,
-    paddingVertical: 50,
-    color: "#fff",
-    fontWeight: "bold",
-    backgroundColor: "#f5f3ff",
-  },
-
   form: {
     display: "flex",
     gap: 14,

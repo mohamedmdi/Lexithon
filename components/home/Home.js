@@ -1,19 +1,11 @@
-import { useCallback, useEffect, useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  FlatList,
-  Image,
-  BackHandler,
-} from "react-native";
+import { useEffect, useState } from "react";
+import { View, Text, StyleSheet } from "react-native";
 import { useDispatch } from "react-redux";
-import { addUser } from "../store/userSlice";
-import { StatusBar } from "expo-status-bar";
-import useBackHandler from "../hooks/useBackHandler";
-import getData from "../util/getData";
+import useBackHandler from "../../hooks/useBackHandler";
 import Subject from "./Subject";
-import { useFocusEffect } from "@react-navigation/native";
+import Body from "../layout/Body";
+import { addUser } from "../../store/userSlice";
+import getData from "../../util/getData";
 
 const Home = () => {
   const [user, setUser] = useState(null);
@@ -32,21 +24,18 @@ const Home = () => {
   }, [user?.username]);
 
   return (
-    <>
-      <StatusBar backgroundColor="#f5f3ff" barStyle="dark-content" />
-      <View style={styles.container}>
-        <Text style={styles.h1}>Welcome {user?.username}</Text>
-        <View style={styles.subjects}>
-          <View style={styles.subjectsContainer}>
-            <Subject slug="ar" subject="Arabic"></Subject>
-            <Subject slug="fr" subject="French"></Subject>
-          </View>
-          <View style={styles.subjectsContainer}>
-            <Subject slug="ma" subject="Math"></Subject>
-          </View>
+    <Body statusBarColor="#f5f3ff">
+      <Text style={styles.h1}>Welcome {user?.username}</Text>
+      <View style={styles.subjects}>
+        <View style={styles.subjectsContainer}>
+          <Subject slug="ar" subject="Arabic"></Subject>
+          <Subject slug="fr" subject="French"></Subject>
+        </View>
+        <View style={styles.subjectsContainer}>
+          <Subject slug="ma" subject="Math"></Subject>
         </View>
       </View>
-    </>
+    </Body>
   );
 };
 
