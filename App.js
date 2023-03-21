@@ -20,7 +20,7 @@ import { Provider } from "react-redux";
 import { store } from "./store/store";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Loading from "./components/Loading";
-import Quiz from "./components/Quiz"
+import Quiz from "./components/quiz/Quiz"
 
 
 const Stack = createNativeStackNavigator();
@@ -34,7 +34,6 @@ const App = () => {
             <Stack.Screen name="signup" component={SignUp} />
             <Stack.Screen name="home" component={Home} />
             <Stack.Screen name="quiz" component={Quiz} />
-
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
