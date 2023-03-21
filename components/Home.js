@@ -38,11 +38,11 @@ const Home = () => {
         <Text style={styles.h1}>Welcome {user?.username}</Text>
         <View style={styles.subjects}>
           <View style={styles.subjectsContainer}>
-            <Subject subject="Arabic"></Subject>
-            <Subject subject="French"></Subject>
+            <Subject slug="ar" subject="Arabic"></Subject>
+            <Subject slug="fr" subject="French"></Subject>
           </View>
           <View style={styles.subjectsContainer}>
-            <Subject subject="Math"></Subject>
+            <Subject slug="ma" subject="Math"></Subject>
           </View>
         </View>
       </View>

@@ -5,7 +5,7 @@ const Quiz = (props) => {
 
   return (
     <View style={styles.sub}>
-        <Text>Hi</Text>
+        <Text>Hi {props.route.params.id}</Text>
     </View>
   );
 };

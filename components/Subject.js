@@ -15,7 +15,7 @@ const Subject = (props) => {
     const navigation = useNavigation();
 
   return (
-    <Pressable onPress={() => navigation.navigate("quiz")} style={styles.sub}>
+    <Pressable onPress={() => navigation.navigate("quiz", {id: props.slug})} style={styles.sub}>
       <Text style={styles.subText}>{props.subject}</Text>
       <Text style={styles.numTrophy}>
         <Image style={styles.trophy} source={trophy}></Image> 0
