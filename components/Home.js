@@ -1,11 +1,19 @@
-import { useEffect, useState } from "react";
-import { View, Text, StyleSheet, FlatList, Image } from "react-native";
+import { useCallback, useEffect, useState } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  FlatList,
+  Image,
+  BackHandler,
+} from "react-native";
 import { useDispatch } from "react-redux";
 import { addUser } from "../store/userSlice";
 import { StatusBar } from "expo-status-bar";
 import useBackHandler from "../hooks/useBackHandler";
 import getData from "../util/getData";
 import Subject from "./Subject";
+import { useFocusEffect } from "@react-navigation/native";
 
 const Home = () => {
   const [user, setUser] = useState(null);

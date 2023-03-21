@@ -8,21 +8,22 @@ import {
   ImageBackground,
   StatusBar,
 } from "react-native";
+import { useSelector } from "react-redux";
 
 import getData from "../util/getData";
 
 const Loading = (props) => {
-  // const [isLoading, setIsLoading] = useState(true);
-  const [data, setData] = useState(null);
+  const user = useSelector(state => state.user)
   const navigation = useNavigation();
 
   useEffect(() => {
+    if (user.username) return;
+
     (async () => {
       const dataa = await getData();
       dataa ? navigation.navigate("home") : navigation.navigate("signup");
-      setData(dataa);
     })();
-  }, [data]);
+  }, []);
 
   return (
     <>

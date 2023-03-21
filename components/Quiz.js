@@ -1,30 +1,16 @@
-import { useNavigation } from "@react-navigation/native";
-import { useEffect } from "react";
-import {
-  BackHandler,
-  Image,
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
-import trophy from "../assets/award.png";
+import { Image, StyleSheet, Text, View } from "react-native";
 import useBackHandler from "../hooks/useBackHandler";
 
-const Subject = (props) => {
-    const navigation = useNavigation();
+const Quiz = (props) => {
 
   return (
-    <Pressable onPress={() => navigation.navigate("quiz")} style={styles.sub}>
-      <Text style={styles.subText}>{props.subject}</Text>
-      <Text style={styles.numTrophy}>
-        <Image style={styles.trophy} source={trophy}></Image> 0
-      </Text>
-    </Pressable>
+    <View style={styles.sub}>
+        <Text>Hi</Text>
+    </View>
   );
 };
 
-export default Subject;
+export default Quiz;
 
 const styles = StyleSheet.create({
   sub: {
