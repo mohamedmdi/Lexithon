@@ -1,17 +1,15 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 // prettier-ignore
-import { StyleSheet, Text, View, ImageBackground } from "react-native";
+import { StyleSheet, Text, View, ImageBackground, TouchableWithoutFeedback, Keyboard, TouchableOpacity, Touchable, Pressable } from "react-native";
 import { TextInput, Button } from "react-native-paper";
 import storeData from "../../util/storeData";
 import Body from "../layout/Body";
 import DropDown from "./DropDown";
-import useBackHandler from "../../hooks/useBackHandler";
 
 const SignUp = (props) => {
   const [text, setText] = useState("");
   const { grade, achievements } = useSelector((state) => state.user);
-  useBackHandler();
 
   const submitHandler = async () => {
     // await AsyncStorage.clear()
@@ -37,12 +35,14 @@ const SignUp = (props) => {
       <Body statusBarColor="#f5f3ff">
         <Text style={styles.h1}>Welcome To The Game</Text>
         <View style={styles.form}>
-          <TextInput
-            mode="outlined"
-            label="Name"
-            placeholder="Your Name"
-            onChangeText={setText}
-          />
+          <View>
+            <TextInput
+              mode="outlined"
+              label="Name"
+              placeholder="Your Name"
+              onChangeText={setText}
+            />
+          </View>
           <DropDown />
         </View>
         <Button
