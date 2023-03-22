@@ -3,44 +3,76 @@ import Body from "../layout/Body";
 import CardPressable from "../layout/CardPressable";
 import volume from "../../assets/volume.png";
 import { Button } from "react-native-paper";
-import img from "../../assets/award.png"
+import img from "../../assets/award.png";
 import useSound from "../../hooks/useSound";
+import { useState } from "react";
+import data from "../../store/data";
 
 const Quiz = (props) => {
-  const playsound = useSound();
+  const [clickedAnswer, setClickedAnswer] = useState(null);
+  const playsound = useSound(data[1].data[2].sound);
+
+  const clickedAnswerHandler = (id) => {
+    return () => setClickedAnswer(id);
+  };
 
   return (
     <>
       <Body statusBarColor="#f5f3ff">
         <View style={styles.main}>
           <View style={styles.header}>
-            <TouchableOpacity
-              onPress={playsound}
-              style={styles.imgContainer}
-            >
+            <TouchableOpacity onPress={playsound} style={styles.imgContainer}>
               <Image
                 source={volume}
                 style={{ tintColor: "#f5f3ff", width: 30, height: 30 }}
               />
             </TouchableOpacity>
             {/* <Text>Hi {props.route.params.id}</Text> */}
-            <Text style={styles.word}>L' orange</Text>
+            <Text style={styles.word}>{data[1].data[2].word}</Text>
           </View>
           <View style={styles.body}>
             <View style={styles.quizWrapper}>
-              <CardPressable style={{padding: 0}}>
-                <Image style={styles.img} source={img}></Image>
+              <CardPressable
+                onPress={clickedAnswerHandler(1)}
+                style={
+                  clickedAnswer === 1
+                    ? { padding: 0, ...styles.hover }
+                    : { padding: 0 }
+                }
+              >
+                <Image style={styles.img} source={data[1].data[0].img}></Image>
               </CardPressable>
-              <CardPressable style={{padding: 0}}>
-                <Text>Body</Text>
+              <CardPressable
+                onPress={clickedAnswerHandler(2)}
+                style={
+                  clickedAnswer === 2
+                    ? { padding: 0, ...styles.hover }
+                    : { padding: 0 }
+                }
+              >
+                <Image style={styles.img} source={data[1].data[1].img}></Image>
               </CardPressable>
             </View>
             <View style={styles.quizWrapper}>
-              <CardPressable style={{padding: 0}}>
-                <Text>Body</Text>
+              <CardPressable
+                onPress={clickedAnswerHandler(3)}
+                style={
+                  clickedAnswer === 3
+                    ? { padding: 0, ...styles.hover }
+                    : { padding: 0 }
+                }
+              >
+                <Image style={styles.img} source={data[1].data[2].img}></Image>
               </CardPressable>
-              <CardPressable style={{padding: 0}}>
-                <Text>Body</Text>
+              <CardPressable
+                onPress={clickedAnswerHandler(4)}
+                style={
+                  clickedAnswer === 4
+                    ? { padding: 0, ...styles.hover }
+                    : { padding: 0 }
+                }
+              >
+                <Image style={styles.img} source={data[1].data[3].img}></Image>
               </CardPressable>
             </View>
           </View>
@@ -50,7 +82,6 @@ const Quiz = (props) => {
               backgroundColor: "#7c3aed",
               borderBottomWidth: 4,
               borderColor: "#6d28d9",
-              
             }}
             mode="contained"
             onPress={() => {}}
@@ -66,7 +97,6 @@ const Quiz = (props) => {
 export default Quiz;
 
 const styles = StyleSheet.create({
-
   main: {
     display: "flex",
     height: "100%",
@@ -79,7 +109,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     gap: 15,
     alignItems: "flex-start",
-    
   },
 
   imgContainer: {
@@ -91,21 +120,25 @@ const styles = StyleSheet.create({
   },
 
   img: {
-    width: "50%",
-    height: "50%",
+    resizeMode: "contain",
+    width: "70%",
+    
   },
 
   body: {
     padding: 5,
     flex: 1,
     gap: 20,
-
   },
 
   quizWrapper: {
     flexDirection: "row",
     flex: 1,
     gap: 10,
+  },
+
+  hover: {
+    backgroundColor: "rgba(124,58,237, 0.3)",
   },
 
   word: {

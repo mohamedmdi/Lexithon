@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Audio } from "expo-av";
 
-const useSound = () => {
+const useSound = (audio) => {
   const [sound, setSound] = useState();
 
   useEffect(() => {
@@ -14,7 +14,7 @@ const useSound = () => {
 
   return (playSound = async () => {
     const { sound } = await Audio.Sound.createAsync(
-      require("../assets/test.mp3")
+      audio
     );
     setSound(sound);
     await sound.playAsync();
