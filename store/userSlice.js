@@ -21,10 +21,13 @@ export const userSlice = createSlice({
     addGrade: (state, action) => {
       state.grade = action.payload;
     },
+    clearUser: (state, action) => {
+      state = initialState;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { addUser, addGrade } = userSlice.actions;
+export const { addUser, addGrade, clearUser } = userSlice.actions;
 
 export default userSlice.reducer;

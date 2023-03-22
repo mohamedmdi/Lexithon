@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import useBackHandler from "../../hooks/useBackHandler";
 import Subject from "./Subject";
 import Body from "../layout/Body";
-import { addUser } from "../../store/userSlice";
+import { addUser, clearUser } from "../../store/userSlice";
 import getData from "../../util/getData";
 import { Button } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -16,7 +16,6 @@ const Home = () => {
   // Reusable hook for backhandler feature!
   useBackHandler();
   const navigation = useNavigation();
-
   useEffect(() => {
     if (user?.username) return;
 
@@ -44,7 +43,9 @@ const Home = () => {
         mode="contained"
         onPress={async () => {
           await AsyncStorage.clear();
+          dispatch(clearUser);
           navigation.navigate("signup");
+          
         }}
       >
         Clear Data
