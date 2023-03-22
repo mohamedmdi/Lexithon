@@ -4,15 +4,18 @@ import CardPressable from "../layout/CardPressable";
 import volume from "../../assets/volume.png";
 import { Button } from "react-native-paper";
 import img from "../../assets/award.png"
+import useSound from "../../hooks/useSound";
 
 const Quiz = (props) => {
+  const playsound = useSound();
+
   return (
     <>
       <Body statusBarColor="#f5f3ff">
         <View style={styles.main}>
           <View style={styles.header}>
             <TouchableOpacity
-              onPress={() => console.log("PRESSED")}
+              onPress={playsound}
               style={styles.imgContainer}
             >
               <Image

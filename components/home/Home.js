@@ -6,12 +6,16 @@ import Subject from "./Subject";
 import Body from "../layout/Body";
 import { addUser } from "../../store/userSlice";
 import getData from "../../util/getData";
+import { Button } from "react-native-paper";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useNavigation } from "@react-navigation/native";
 
 const Home = () => {
   const [user, setUser] = useState(null);
   const dispatch = useDispatch();
   // Reusable hook for backhandler feature!
   useBackHandler();
+  const navigation = useNavigation();
 
   useEffect(() => {
     if (user?.username) return;
@@ -35,6 +39,16 @@ const Home = () => {
           <Subject slug="ma" subject="Math"></Subject>
         </View>
       </View>
+      <Button
+        style={{ backgroundColor: "#7c3aed", zIndex: -1 }}
+        mode="contained"
+        onPress={async () => {
+          await AsyncStorage.clear();
+          navigation.navigate("signup");
+        }}
+      >
+        Clear Data
+      </Button>
     </Body>
   );
 };
