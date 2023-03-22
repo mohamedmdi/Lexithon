@@ -2,14 +2,18 @@ import { Image, StyleSheet, Text, View } from "react-native";
 import Body from "../layout/Body";
 import CardPressable from "../layout/CardPressable";
 import volume from "../../assets/volume.png";
+import useSound from "../../hooks/useSound";
 
 const Quiz = (props) => {
+  const playsound = useSound();
+
   return (
     <>
       <Body statusBarColor="#f5f3ff">
         <View style={styles.header}>
           <CardPressable
-            onPress={() => console.log("PRESSED")}
+            onPress={playsound}
+            // onPress={() => console.log("PRESSED")}
             style={styles.imgContainer}
           >
             <Image
