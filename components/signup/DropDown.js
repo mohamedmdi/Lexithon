@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Keyboard, TouchableOpacity } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 import { useDispatch } from "react-redux";
 import { addGrade } from "../../store/userSlice";
@@ -27,6 +28,9 @@ const DropDown = () => {
       setOpen={setOpen}
       setValue={setValue}
       setItems={setItems}
+      onPress={() => {
+        Keyboard.dismiss();
+      }}
     />
   );
 };
