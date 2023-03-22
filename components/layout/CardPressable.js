@@ -3,8 +3,8 @@ import { TouchableOpacity, StyleSheet } from "react-native";
 const CardPressable = (props) => {
   return (
     <TouchableOpacity
-      style={props.style || styles.card}
-      onPress={props.onPress}
+      style={{...styles.card, ...props.style}}
+      onPress={props.onPress || null}
     >
       {props.children}
     </TouchableOpacity>
