@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 // prettier-ignore
 import { StyleSheet, Text, View, ImageBackground } from "react-native";
 import { TextInput, Button } from "react-native-paper";
@@ -11,6 +11,7 @@ import useBackHandler from "../../hooks/useBackHandler";
 const SignUp = (props) => {
   const [text, setText] = useState("");
   const { grade, achievements } = useSelector((state) => state.user);
+
   useBackHandler();
 
   const submitHandler = async () => {
@@ -18,6 +19,7 @@ const SignUp = (props) => {
     await storeData({ username: text, grade, achievements });
 
     // Go Next Page After Creating an acc!
+
     props.navigation.navigate("home");
   };
   return (
