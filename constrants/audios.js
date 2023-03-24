@@ -7,9 +7,10 @@ import table from "../assets/audios/pronunciation_en_table.mp3"
 import man from "../assets/audios/pronunciation_en_man.mp3"
 import coffee from "../assets/audios/pronunciation_en_coffee.mp3"
 import moon from "../assets/audios/pronunciation_en_moon.mp3"
+import car from "../assets/audios/pronunciation_en_car.mp3"
 
 const AUDIOS = {
-    apple, orange, juice, cat, chair, table, man, coffee, moon
+    apple, orange, juice, cat, chair, table, man, coffee, moon, car
 }
 
 export default AUDIOS

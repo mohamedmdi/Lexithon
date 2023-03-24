@@ -20,6 +20,7 @@ export const userSlice = createSlice({
 
     addGrade: (state, action) => {
       state.grade = action.payload;
+    
     },
   },
 });

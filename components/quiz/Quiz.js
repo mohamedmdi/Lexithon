@@ -5,21 +5,30 @@ import volume from "../../assets/volume.png";
 import { Button } from "react-native-paper";
 import img from "../../assets/award.png";
 import useSound from "../../hooks/useSound";
-import { useState } from "react";
-import data from "../../store/data";
+import { useState, useCallback, useEffect } from "react";
+import newa from "../../store/data";
+import { useDispatch, useSelector } from "react-redux";
+import { getQuizHandler, init } from "../../store/quizSlice";
 
 const Quiz = (props) => {
   const [clickedAnswer, setClickedAnswer] = useState(null);
-  const playsound = useSound(data[1].data[2].sound);
-
+  const quiz = useSelector(state => state.quiz)
+  const dispatch = useDispatch()
+  
+  useEffect(() => {
+    dispatch(init({sbj: props.route.params.id}))
+    dispatch(getQuizHandler())
+  }, [dispatch, init, getQuizHandler])
+  // const playsound = useSound(quiz?.answer?.sound);
+  
   const clickedAnswerHandler = (id) => {
-    return () => setClickedAnswer(id);
+    return () => setClickedAnswer(id)
   };
 
   return (
     <>
       <Body statusBarColor="#f5f3ff">
-        <View style={styles.main}>
+        {/* <View style={styles.main}>
           <View style={styles.header}>
             <TouchableOpacity onPress={playsound} style={styles.imgContainer}>
               <Image
@@ -27,8 +36,8 @@ const Quiz = (props) => {
                 style={{ tintColor: "#f5f3ff", width: 30, height: 30 }}
               />
             </TouchableOpacity>
-            {/* <Text>Hi {props.route.params.id}</Text> */}
-            <Text style={styles.word}>{data[1].data[2].word}</Text>
+            <Text>Hi {props.route.params.id}</Text>
+            <Text style={styles.word}>{quiz?.answer?.word}</Text>
           </View>
           <View style={styles.body}>
             <View style={styles.quizWrapper}>
@@ -40,7 +49,7 @@ const Quiz = (props) => {
                     : { padding: 0 }
                 }
               >
-                <Image style={styles.img} source={data[1].data[0].img}></Image>
+                <Image style={styles.img} source={quiz.results.length > 0 ? quiz.results[0] : volume}></Image>
               </CardPressable>
               <CardPressable
                 onPress={clickedAnswerHandler(2)}
@@ -50,7 +59,7 @@ const Quiz = (props) => {
                     : { padding: 0 }
                 }
               >
-                <Image style={styles.img} source={data[1].data[1].img}></Image>
+                <Image style={styles.img} source={quiz.results.length > 0 ? quiz.results[1] : volume}></Image>
               </CardPressable>
             </View>
             <View style={styles.quizWrapper}>
@@ -62,7 +71,7 @@ const Quiz = (props) => {
                     : { padding: 0 }
                 }
               >
-                <Image style={styles.img} source={data[1].data[2].img}></Image>
+                <Image style={styles.img} source={quiz.results.length > 0 ? quiz.results[2] : volume}></Image>
               </CardPressable>
               <CardPressable
                 onPress={clickedAnswerHandler(4)}
@@ -72,7 +81,7 @@ const Quiz = (props) => {
                     : { padding: 0 }
                 }
               >
-                <Image style={styles.img} source={data[1].data[3].img}></Image>
+                <Image style={styles.img} source={quiz.results.length > 0 ? quiz.results[3] : volume}></Image>
               </CardPressable>
             </View>
           </View>
@@ -88,7 +97,7 @@ const Quiz = (props) => {
           >
             Check{" "}
           </Button>
-        </View>
+        </View> */}
       </Body>
     </>
   );
