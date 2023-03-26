@@ -14,18 +14,22 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     addUser: (state, action) => {
-      state = { ...action.payload };
-      console.log("STATE: ", state);
+      state.username = action.payload.username;
+      state.grade = action.payload.grade;
     },
 
     addGrade: (state, action) => {
       state.grade = action.payload;
-    
+    },
+
+    clearUser: (state, action) => {
+      state.username = null;
+      state.grade = null;
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { addUser, addGrade } = userSlice.actions;
+export const { addUser, addGrade, clearUser } = userSlice.actions;
 
 export default userSlice.reducer;

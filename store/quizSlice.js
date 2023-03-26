@@ -1,6 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 import data from "./data";
 
+const shuffleArr = (arr) => {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
+  }
+
+  return arr;
+};
+
 const initialState = {
   answers: [],
   data,
@@ -8,6 +19,7 @@ const initialState = {
   answer: null,
   isWrong: false,
   results: [],
+  currentIteration: 0,
 };
 
 export const quizSlice = createSlice({
@@ -16,48 +28,41 @@ export const quizSlice = createSlice({
   reducers: {
     init: (state, action) => {
       const newArr = [];
-      var arr = [];
+      let arr = [];
       for (let i = 0; i < 3; i++) {
-        console.log("WRITTEN");
         if (i === 0)
-          arr = data.find((el) => el.sbj === action.payload.sbj).data;
-        console.log(arr)
+          arr = [...data.find((el) => el.sbj === action.payload.sbj).data];
         const randomIndex = Math.floor(Math.random() * arr.length);
-        // newArr.push(arr.splice(randomIndex, 1)[0]);
-    }
-    console.log(arr.splice(0, 1))
+        newArr.push(arr.splice(randomIndex, 1)[0]);
+      }
 
-    //   state.choices = [...data.find((el) => el.sbj === action.payload.sbj).data];
-    //   state.answers = newArr;
-    //   console.log(state.answers);
-
-    //   state.answer = null;
-    //   state.isWrong = false;
+      state.choices = [
+        ...data.find((el) => el.sbj === action.payload.sbj).data,
+      ];
+      state.answers = newArr;
+      state.answer = null;
+      state.isWrong = false;
+      state.results = [];
+      state.currentIteration = 0;
     },
 
     getQuizHandler: (state, action) => {
-    //   const shuffleArr = (arr) => {
-    //     for (let i = arr.length - 1; i > 0; i--) {
-    //       const j = Math.floor(Math.random() * (i + 1));
-    //       const temp = arr[i];
-    //       arr[i] = arr[j];
-    //       arr[j] = temp;
-    //     }
-    //     return arr;
-    //   };
-    //   state.answer = state.answers.splice(0, 1);
+      state.results = [];
+      state.answer = null;
+      state.currentIteration = state.currentIteration + 1;
+      if (state.currentIteration > 3) return;
 
-    //   const choices = [
-    //     ...state.choices.filter((el) => el.word !== state.answer.word),
-    //   ];
-
-    //   for (let i = 0; i < 3; i++) {
-    //     const randomIndex = Math.floor(Math.random() * choices.length);
-    //     state.results.push(choices.splice(randomIndex, 1)[0]);
-    //   }
-
-    //   state.results.push(state.answer);
-    //   state.results = shuffleArr(state.results);
+      state.answer = state.answers.splice(0, 1)[0];
+      const choices = [
+        ...state.choices.filter((el) => el.word !== state.answer.word),
+      ];
+      for (let i = 0; i < 3; i++) {
+        const randomIndex = Math.floor(Math.random() * choices.length);
+        state.results.push(choices.splice(randomIndex, 1)[0]);
+      }
+      state.results.push(state.answer);
+      state.results = shuffleArr(state.results);
+      // console.log(state.results, "-------", state.answer);
     },
   },
 });

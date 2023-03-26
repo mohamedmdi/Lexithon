@@ -2,10 +2,10 @@ import IMAGES from "../constrants/images";
 import AUDIOS from "../constrants/audios";
 
 const data = [
-  { sbj: "ar", slug: "Arabic", data: [{ word: "", img: "", sound: "" }] },
+  { sbj: "ar", slug: "العربية", data: [{ word: "", img: "", sound: "" }] },
   {
     sbj: "fr",
-    slug: "French",
+    slug: "Français",
     data: [
       {
         word: "apple",
@@ -43,6 +43,7 @@ const data = [
       { word: "car", img: IMAGES.car, sound: AUDIOS.car },
     ],
   },
+  { sbj: "en", slug: "English", data: [{ word: "", img: "", sound: "" }] },
 ];
 
 // const shuffleArr = (arr) => {
@@ -53,7 +54,7 @@ const data = [
 //     arr[i] = arr[j];
 //     arr[j] = temp;
 //     // const f = arr[2]
-    
+
 //     // arr[2] = arr[1]
 //     // arr[1] = f
 //     // [arr[i], arr[j]] = [arr[j], arr[i]]
@@ -86,7 +87,6 @@ const data = [
 // const newa = shuffleArr([...arr]);
 // console.log(newa)
 // // console.log(newa, "LENGTH2",newa.length)
-
 
 // // console.log(answer, "dsd",  Math.floor(answer))
 

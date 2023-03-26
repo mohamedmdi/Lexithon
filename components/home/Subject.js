@@ -1,26 +1,44 @@
 import { useNavigation } from "@react-navigation/native";
-import { Image, StyleSheet, Text } from "react-native";
-import CardPressable from "../layout/CardPressable";
+import {
+  Image,
+  StyleSheet,
+  Text,
+  Touchable,
+  TouchableOpacity,
+} from "react-native";
 import trophy from "../../assets/award.png";
 
 const Subject = (props) => {
   const navigation = useNavigation();
 
   return (
-    <CardPressable
+    <TouchableOpacity
+      style={styles.container}
       onPress={() => navigation.navigate("quiz", { id: props.slug })}
     >
       <Text style={styles.subText}>{props.subject}</Text>
       <Text style={styles.numTrophy}>
         <Image style={styles.trophy} source={trophy}></Image> 0
       </Text>
-    </CardPressable>
+    </TouchableOpacity>
   );
 };
 
 export default Subject;
 
 const styles = StyleSheet.create({
+  container: {
+    justifyContent: "center",
+    alignItems: "center",
+    gap: 10,
+    padding: 26,
+    width: "46.9%",
+    borderRadius: 8,
+    borderColor: "#7c3aed",
+    borderWidth: 1,
+    borderBottomWidth: 4,
+  },
+
   subText: {
     alignSelf: "center",
     marginTop: 26,
