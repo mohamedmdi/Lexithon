@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 // prettier-ignore
 import { StyleSheet, Text, View, ImageBackground } from "react-native";
@@ -11,8 +11,12 @@ import useBackHandler from "../../hooks/useBackHandler";
 const SignUp = (props) => {
   const [text, setText] = useState("");
   const { grade, achievements } = useSelector((state) => state.user);
+  const user= useSelector((state) => state.user);
   useBackHandler();
 
+  useEffect(()=>{
+    console.log("re-rendered")
+  },[props.navigation])
   const submitHandler = async () => {
     // await AsyncStorage.clear()
     await storeData({ username: text, grade, achievements });

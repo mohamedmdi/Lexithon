@@ -1,13 +1,15 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, NativeModules } from "react-native";
 import Subject from "./Subject";
 import { Button } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import { clearUser } from "../../store/userSlice";
+import getData from "../../util/getData";
 
 const Content = ({ user }) => {
   const { data } = useSelector((state) => state.quiz);
+  const xuser = useSelector(state=> state.user)
   const navigation = useNavigation();
   const dispatch = useDispatch();
 

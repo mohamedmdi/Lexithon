@@ -2,7 +2,7 @@ import IMAGES from "../constrants/images";
 import AUDIOS from "../constrants/audios";
 
 const data = [
-  { sbj: "ar", slug: "العربية", data: [{ word: "", img: "", sound: "" }] },
+  { sbj: "ar", slug: "العربية", data: [{ word: "", img: "", sound: ""  }] },
   {
     sbj: "fr",
     slug: "Français",

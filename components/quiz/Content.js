@@ -3,10 +3,11 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Button, MD3Colors, ProgressBar } from "react-native-paper";
 import useSound from "../../hooks/useSound";
 import volume from "../../assets/volume.png";
-import { getQuizHandler } from "../../store/quizSlice";
+import { getQuizHandler, decreaseHP } from "../../store/quizSlice";
 import { useDispatch } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import AnswerStateModal from "./AnswerStateModal";
+import { increaseTrophy } from "../../store/userSlice";
 
 const Content = ({ quiz }) => {
   const [clickedAnswer, setClickedAnswer] = useState(null);
@@ -14,7 +15,6 @@ const Content = ({ quiz }) => {
   const dispatch = useDispatch();
   const playsound = useSound(quiz.answer.sound);
   const navigate = useNavigation();
-  //   console.log(quiz);
 
   const clickedAnswerHandler = (id) => {
     return () => setClickedAnswer(id);
@@ -22,26 +22,28 @@ const Content = ({ quiz }) => {
 
   const checkAnswerHandler = () => {
     if (!clickedAnswer) return;
-    setClickedAnswer(null);
 
     if (clickedAnswer !== quiz.answer.word) {
       console.log(clickedAnswer);
       console.log("The Answer Is Wrong");
+
       setIsCorrect(false);
+      dispatch(decreaseHP());
       return;
     }
-
     setIsCorrect(true);
   };
 
   const nextAnswerHandler = () => {
+    setClickedAnswer(null);
     setIsCorrect(null);
-    if (isCorrect === false) {
+    if (quiz.HP === 0) {
       navigate.navigate("home");
       return;
     }
 
     if (quiz.currentIteration === 3) {
+      if (!quiz.isWrong) dispatch(increaseTrophy());
       navigate.navigate("home");
       return;
     }
@@ -54,6 +56,7 @@ const Content = ({ quiz }) => {
         progress={quiz.currentIteration / 3}
         color="#7c3aed"
       />
+      <Text>{quiz.HP}</Text>
       <View style={styles.header}>
         <TouchableOpacity onPress={playsound} style={styles.imgContainer}>
           <Image

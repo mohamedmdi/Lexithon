@@ -6,10 +6,12 @@ import {
   Touchable,
   TouchableOpacity,
 } from "react-native";
-import trophy from "../../assets/award.png";
+import { useSelector } from "react-redux";
+import trophyImg from "../../assets/award.png";
 
 const Subject = (props) => {
   const navigation = useNavigation();
+  const {trophy} = useSelector(state => state.user)
 
   return (
     <TouchableOpacity
@@ -18,7 +20,7 @@ const Subject = (props) => {
     >
       <Text style={styles.subText}>{props.subject}</Text>
       <Text style={styles.numTrophy}>
-        <Image style={styles.trophy} source={trophy}></Image> 0
+        <Image style={styles.trophy} source={trophyImg}></Image> {trophy}
       </Text>
     </TouchableOpacity>
   );

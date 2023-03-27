@@ -3,10 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   username: null,
   grade: null,
-  achievements: [
-    { subject: "fr", nbr: 0 },
-    { subject: "ar", nbr: 0 },
-  ],
+  trophy: 0
 };
 
 export const userSlice = createSlice({
@@ -26,10 +23,13 @@ export const userSlice = createSlice({
       state.username = null;
       state.grade = null;
     },
+    increaseTrophy: (state, action)=> {
+      state.trophy +=1
+    }
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { addUser, addGrade, clearUser } = userSlice.actions;
+export const { addUser, addGrade, clearUser, increaseTrophy } = userSlice.actions;
 
 export default userSlice.reducer;
