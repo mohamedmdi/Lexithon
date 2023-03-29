@@ -8,6 +8,7 @@ import { useDispatch } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import AnswerStateModal from "./AnswerStateModal";
 import { increaseTrophy } from "../../store/userSlice";
+import UpperBar from "./UpperBar";
 
 const Content = ({ quiz }) => {
   const [clickedAnswer, setClickedAnswer] = useState(null);
@@ -51,12 +52,7 @@ const Content = ({ quiz }) => {
   };
   return (
     <>
-      <ProgressBar
-        style={{ marginBottom: 10 }}
-        progress={quiz.currentIteration / 3}
-        color="#7c3aed"
-      />
-      <Text>{quiz.HP}</Text>
+      <UpperBar quiz={quiz} />
       <View style={styles.header}>
         <TouchableOpacity onPress={playsound} style={styles.imgContainer}>
           <Image

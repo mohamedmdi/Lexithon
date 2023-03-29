@@ -16,12 +16,12 @@ const Home = () => {
   useBackHandler();
 
   useFocusEffect(() => {
-    console.log("Hello From Home")
-    
+    console.log("Hello From Home");
     if (user.username) return;
+
     (async () => {
       const data = await getData();
-      console.log("Home: ",data)
+      console.log("Home: ", data);
       dispatch(addUser({ ...data }));
     })();
   });
@@ -29,8 +29,8 @@ const Home = () => {
   return (
     <Body statusBarColor="#f5f3ff">
       <View style={styles.main}>
-        {/* {!user.username ? <LoadingContent /> : <Content user={user} />} */}
-        <Content user={user}></Content>
+        {!user.username ? <LoadingContent /> : <Content user={user} />}
+        {/* <Content user={user}></Content> */}
       </View>
     </Body>
   );
