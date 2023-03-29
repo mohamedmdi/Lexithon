@@ -39,13 +39,13 @@ const Content = ({ quiz }) => {
     setClickedAnswer(null);
     setIsCorrect(null);
     if (quiz.HP === 0) {
-      navigate.navigate("home");
+      navigate.navigate("gameover")
       return;
     }
 
     if (quiz.currentIteration === 3) {
       if (!quiz.isWrong) dispatch(increaseTrophy());
-      navigate.navigate("home");
+      navigate.navigate("gameover")
       return;
     }
     dispatch(getQuizHandler());

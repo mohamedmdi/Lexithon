@@ -24,7 +24,7 @@ const AnswerStateModal = (props) => {
         mode="contained"
         onPress={props.nextAnswerHandler}
       >
-        {props.isCorrect ? "Next" : "Back Home"}
+        Continue
       </Button>
     </View>
   );

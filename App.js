@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import { store } from "./store/store";
 import Loading from "./components/layout/Loading";
 import Quiz from "./components/quiz/Quiz";
+import GameOver from "./components/quiz/GameOver";
 
 const Stack = createNativeStackNavigator();
 
@@ -18,6 +19,10 @@ const App = () => {
           <Stack.Screen name="signup" component={SignUp} />
           <Stack.Screen name="home" component={Home} />
           <Stack.Screen name="quiz" component={Quiz} />
+          <Stack.Screen
+            name="gameover"
+            component={GameOver}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

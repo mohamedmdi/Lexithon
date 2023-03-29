@@ -20,7 +20,7 @@ const initialState = {
   isWrong: false,
   results: [],
   currentIteration: 0,
-  HP: 2,
+  initialHP: 2,
 };
 
 export const quizSlice = createSlice({
@@ -45,7 +45,7 @@ export const quizSlice = createSlice({
       state.isWrong = false;
       state.results = [];
       state.currentIteration = 0;
-      state.HP = 2;
+      state.HP = state.initialHP;
     },
 
     getQuizHandler: (state, action) => {
