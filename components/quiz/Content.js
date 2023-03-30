@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Button, MD3Colors, ProgressBar } from "react-native-paper";
 import useSound from "../../hooks/useSound";
-import volume from "../../assets/volume.png";
 import { getQuizHandler, decreaseHP } from "../../store/quizSlice";
 import { useDispatch } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import AnswerStateModal from "./AnswerStateModal";
 import { increaseTrophy } from "../../store/userSlice";
 import UpperBar from "./UpperBar";
+import { Ionicons } from "@expo/vector-icons";
 
 const Content = ({ quiz }) => {
   const [clickedAnswer, setClickedAnswer] = useState(null);
@@ -39,13 +39,13 @@ const Content = ({ quiz }) => {
     setClickedAnswer(null);
     setIsCorrect(null);
     if (quiz.HP === 0) {
-      navigate.navigate("gameover")
+      navigate.navigate("gameover");
       return;
     }
 
     if (quiz.currentIteration === 3) {
       if (!quiz.isWrong) dispatch(increaseTrophy());
-      navigate.navigate("gameover")
+      navigate.navigate("gameover");
       return;
     }
     dispatch(getQuizHandler());
@@ -55,10 +55,11 @@ const Content = ({ quiz }) => {
       <UpperBar quiz={quiz} />
       <View style={styles.header}>
         <TouchableOpacity onPress={playsound} style={styles.imgContainer}>
-          <Image
+          {/* <Image
             source={volume}
             style={{ tintColor: "#f5f3ff", width: 30, height: 30 }}
-          />
+          /> */}
+          <Ionicons name="volume-medium" size={30} color="#f5f3ff" />
         </TouchableOpacity>
         <Text onPress={playsound} style={styles.word}>
           {quiz.answer.word}
@@ -117,7 +118,8 @@ const styles = StyleSheet.create({
     borderBottomWidth: 4,
     borderColor: "#6d28d9",
     borderRadius: 15,
-    padding: 8,
+    paddingHorizontal: 8,
+    paddingVertical: 7,
   },
 
   body: {

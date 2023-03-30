@@ -1,19 +1,23 @@
-import { View, Text, StyleSheet, NativeModules, Image, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  NativeModules,
+  Image,
+  TouchableOpacity,
+} from "react-native";
 import Subject from "./Subject";
 import { Button } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import { clearUser } from "../../store/userSlice";
-import getData from "../../util/getData";
 import boy from "../../assets/boy.png";
 import girl from "../../assets/girl.png";
 import { Ionicons } from "@expo/vector-icons";
 
-
 const Content = ({ user }) => {
   const { data } = useSelector((state) => state.quiz);
-  // const user = useSelector( state => state.user )
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
@@ -28,28 +32,29 @@ const Content = ({ user }) => {
           padding: 5,
         }}
       >
-        <View
+        <TouchableOpacity
+          onPress={() => navigation.navigate("setting")}
           style={{
             borderColor: "black",
-            borderWidth: 0.5,
+            borderWidth: 1,
             borderRadius: 10,
             alignItems: "center",
             justifyContent: "center",
-            padding: 10,
+            padding: 8,
+            backgroundColor: "rgba(124, 58, 237, 0.8)",
           }}
         >
           <Image
             source={user.gender === "male" ? boy : girl}
             style={{
-              width: 40,
-              height: 40,
+              width: 45,
+              height: 45,
             }}
           ></Image>
-        </View>
+        </TouchableOpacity>
         <Text style={styles.h1}>{user.username}</Text>
-        <TouchableOpacity>
-
-        <Ionicons name="settings" size={32} color="#7c3aed" />
+        <TouchableOpacity onPress={() => navigation.navigate("setting")}>
+          <Ionicons name="settings-outline" size={32} color="#7c3aed" />
         </TouchableOpacity>
       </View>
       <View style={styles.subjects}>

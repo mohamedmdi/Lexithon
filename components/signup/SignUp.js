@@ -1,98 +1,44 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
-// prettier-ignore
-import { StyleSheet, Text, View, ImageBackground, Image, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { TextInput, Button } from "react-native-paper";
-import storeData from "../../util/storeData";
-import Body from "../layout/Body";
 import DropDown from "./DropDown";
-import useBackHandler from "../../hooks/useBackHandler";
-import boy from "../../assets/boy.png";
-import girl from "../../assets/girl.png";
+import Gender from "./Gender";
+import storeData from "../../util/storeData";
+import { useNavigation } from "@react-navigation/native";
 
 const SignUp = (props) => {
   const [text, setText] = useState("");
-  const [gender, setGender] = useState(null);
-  const [highlighted, setHighlighted] = useState(null);
-  const { grade, achievements } = useSelector((state) => state.user);
-  useBackHandler();
-
-  console.log(gender);
+  const navigation = useNavigation();
+  const { grade, achievements, gender } = useSelector((state) => state.user);
 
   const submitHandler = async () => {
     // await AsyncStorage.clear()
     await storeData({ username: text, grade, achievements, gender });
 
     // Go Next Page After Creating an acc!
-    props.navigation.navigate("home");
+    navigation.navigate("home");
   };
   return (
     <>
-      <View style={styles.imgContainer}>
-        <ImageBackground
-          source={{
-            uri: "https://images.unsplash.com/photo-1634128221889-82ed6efebfc3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8ODN8fHNjaG9vbHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60",
-          }}
-          style={{
-            resizeMode: "cover",
-            width: "100%",
-            height: "100%",
-          }}
+      <Text style={styles.h1}>Welcome To The Game</Text>
+      <View style={styles.form}>
+        <Gender />
+        <TextInput
+          mode="outlined"
+          label="Name"
+          placeholder="Your Name"
+          onChangeText={setText}
         />
+        <DropDown />
       </View>
-      <Body statusBarColor="#f5f3ff">
-        <Text style={styles.h1}>Welcome To The Game</Text>
-        <View style={styles.form}>
-          
-          
-          <View style={styles.genderContainer}>
-            <TouchableOpacity
-              onPress={() => {
-                setGender("male");
-                setHighlighted("male");
-              }}
-              style={highlighted === "male" ? styles.bg : { padding: 15 ,borderColor: "black", borderWidth: 0.5,borderRadius:10,}}
-            >
-              <Image
-                source={boy}
-                style={{
-                  width: 50,
-                  height: 50,
-                }}
-              ></Image>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                setGender("female");
-                setHighlighted("female");
-              }}
-              style={highlighted === "female" ? styles.bg : { padding: 15,borderColor: "black", borderWidth: 0.5,borderRadius:10, }}
-            >
-              <Image
-                source={girl}
-                style={{
-                  width: 50,
-                  height: 50,
-                }}
-              ></Image>
-            </TouchableOpacity>
-          </View>
-          <TextInput
-            mode="outlined"
-            label="Name"
-            placeholder="Your Name"
-            onChangeText={setText}
-          />
-          <DropDown />
-        </View>
-        <Button
-          style={{ backgroundColor: "#7c3aed", zIndex: -1 }}
-          mode="contained"
-          onPress={submitHandler}
-        >
-          Let's Go
-        </Button>
-      </Body>
+      <Button
+        style={{ backgroundColor: "#7c3aed", zIndex: -1 }}
+        mode="contained"
+        onPress={submitHandler}
+      >
+        Let's Go
+      </Button>
     </>
   );
 };
@@ -112,27 +58,5 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "#7c3aed",
     marginBottom: 30,
-  },
-
-  imgContainer: {
-    width: "auto",
-    height: 225,
-    overflow: "hidden",
-    borderBottomLeftRadius: 30,
-    borderBottomRightRadius: 30,
-  },
-
-  genderContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
-
-    gap: 30,
-  },
-
-  bg: {
-    backgroundColor: "rgba(124, 58, 237, 0.7)",
-    borderRadius:10,
-    padding: 15,
-    borderColor: "black", borderWidth:0.5
   },
 });

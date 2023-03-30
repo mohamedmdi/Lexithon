@@ -14,25 +14,30 @@ export const userSlice = createSlice({
     addUser: (state, action) => {
       state.username = action.payload.username;
       state.grade = action.payload.grade;
-      state.gender = action.payload.gender
+      state.gender = action.payload.gender;
     },
 
     addGrade: (state, action) => {
       state.grade = action.payload;
     },
 
+    addGender: (state, action) => {
+      state.gender = action.payload;
+    },
+
     clearUser: (state, action) => {
       state.username = null;
       state.grade = null;
-      state.gender = null
+      state.gender = null;
     },
-    increaseTrophy: (state, action)=> {
-      state.trophy +=1
-    }
+    increaseTrophy: (state, action) => {
+      state.trophy += 1;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { addUser, addGrade, clearUser, increaseTrophy } = userSlice.actions;
+export const { addUser, addGrade, clearUser, increaseTrophy, addGender } =
+  userSlice.actions;
 
 export default userSlice.reducer;

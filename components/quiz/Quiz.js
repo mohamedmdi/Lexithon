@@ -18,9 +18,7 @@ const Quiz = (props) => {
   return (
     <>
       <Body statusBarColor="#f5f3ff">
-        <View style={styles.main}>
-          {!quiz.answer ? <LoadingContent /> : <Content quiz={quiz} />}
-        </View>
+        {!quiz.answer ? <LoadingContent /> : <Content quiz={quiz} />}
       </Body>
     </>
   );
@@ -28,11 +26,4 @@ const Quiz = (props) => {
 
 export default Quiz;
 
-const styles = StyleSheet.create({
-  main: {
-    display: "flex",
-    height: "100%",
-    gap: 20,
-    paddingVertical: 25,
-  },
-});
+const styles = StyleSheet.create({});

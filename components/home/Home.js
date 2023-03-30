@@ -28,21 +28,11 @@ const Home = () => {
 
   return (
     <Body statusBarColor="#f5f3ff">
-      <View style={styles.main}>
-        {!user.username ? <LoadingContent /> : <Content user={user} />}
-        {/* <Content user={user}></Content> */}
-      </View>
+      {!user.username ? <LoadingContent /> : <Content user={user} />}
     </Body>
   );
 };
 
 export default Home;
 
-const styles = StyleSheet.create({
-  main: {
-    display: "flex",
-    height: "100%",
-    gap: 20,
-    paddingVertical: 25,
-  },
-});
+const styles = StyleSheet.create({});

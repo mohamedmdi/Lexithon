@@ -36,12 +36,12 @@ const styles = StyleSheet.create({
   container: {
     position: "absolute",
     backgroundColor: "#ddd6fe",
-    width: "100%",
     bottom: 0,
+    left: 0,
+    right: 0,
     paddingVertical: 30,
     paddingHorizontal: 20,
     borderRadius: 10,
-    flex: 1,
     gap: 20,
   },
 

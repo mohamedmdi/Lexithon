@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   BackHandler,
 } from "react-native";
-import Body from "../layout/Body";
+import Body from "../components/layout/Body";
 
 const GameOver = ({ navigation }) => {
   useFocusEffect(
@@ -29,24 +29,15 @@ const GameOver = ({ navigation }) => {
   );
 
   return (
-    <Body>
-      <View style={styles.main}>
+    <Body statusBarColor="#f5f3ff">
+      <Text>Game Over</Text>
+      <TouchableOpacity onPress={() => navigation.navigate("home")}>
         <Text>Game Over</Text>
-        <TouchableOpacity onPress={() => navigation.navigate("home")}>
-          <Text>Game Over</Text>
-        </TouchableOpacity>
-      </View>
+      </TouchableOpacity>
     </Body>
   );
 };
 
 export default GameOver;
 
-const styles = StyleSheet.create({
-  main: {
-    display: "flex",
-    height: "100%",
-    gap: 20,
-    paddingVertical: 25,
-  },
-});
+const styles = StyleSheet.create({});
