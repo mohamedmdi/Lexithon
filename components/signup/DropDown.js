@@ -9,6 +9,13 @@ const DropDown = () => {
   const [items, setItems] = useState([
     { label: "Grade 1", value: "1" },
     { label: "Grade 2", value: "2" },
+    { label: "Grade 2", value: "3" },
+
+    { label: "Grade 2", value: "4" },
+
+    { label: "Grade 2", value: "5" },
+
+    { label: "Grade 2", value: "6" },
   ]);
   const dispatch = useDispatch();
 

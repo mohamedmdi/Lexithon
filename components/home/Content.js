@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, NativeModules } from "react-native";
+import { View, Text, StyleSheet, NativeModules, Image, TouchableOpacity } from "react-native";
 import Subject from "./Subject";
 import { Button } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -6,16 +6,52 @@ import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
 import { clearUser } from "../../store/userSlice";
 import getData from "../../util/getData";
+import boy from "../../assets/boy.png";
+import girl from "../../assets/girl.png";
+import { Ionicons } from "@expo/vector-icons";
+
 
 const Content = ({ user }) => {
   const { data } = useSelector((state) => state.quiz);
-  const xuser = useSelector(state=> state.user)
+  // const user = useSelector( state => state.user )
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
   return (
     <>
-      <Text style={styles.h1}>Welcome {user.username}</Text>
+      <View
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          gap: 15,
+          alignItems: "center",
+          padding: 5,
+        }}
+      >
+        <View
+          style={{
+            borderColor: "black",
+            borderWidth: 0.5,
+            borderRadius: 10,
+            alignItems: "center",
+            justifyContent: "center",
+            padding: 10,
+          }}
+        >
+          <Image
+            source={user.gender === "male" ? boy : girl}
+            style={{
+              width: 40,
+              height: 40,
+            }}
+          ></Image>
+        </View>
+        <Text style={styles.h1}>{user.username}</Text>
+        <TouchableOpacity>
+
+        <Ionicons name="settings" size={32} color="#7c3aed" />
+        </TouchableOpacity>
+      </View>
       <View style={styles.subjects}>
         {data.map((sbj, i) => (
           <Subject key={i} slug={sbj.sbj} subject={sbj.slug} />
@@ -50,8 +86,7 @@ const styles = StyleSheet.create({
   h1: {
     fontWeight: "bold",
     fontSize: 24,
-    textAlign: "center",
     color: "#7c3aed",
-    marginBottom: 30,
+    marginRight: "auto",
   },
 });

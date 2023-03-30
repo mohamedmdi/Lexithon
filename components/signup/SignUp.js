@@ -1,25 +1,27 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 // prettier-ignore
-import { StyleSheet, Text, View, ImageBackground } from "react-native";
+import { StyleSheet, Text, View, ImageBackground, Image, TouchableOpacity } from "react-native";
 import { TextInput, Button } from "react-native-paper";
 import storeData from "../../util/storeData";
 import Body from "../layout/Body";
 import DropDown from "./DropDown";
 import useBackHandler from "../../hooks/useBackHandler";
+import boy from "../../assets/boy.png";
+import girl from "../../assets/girl.png";
 
 const SignUp = (props) => {
   const [text, setText] = useState("");
+  const [gender, setGender] = useState(null);
+  const [highlighted, setHighlighted] = useState(null);
   const { grade, achievements } = useSelector((state) => state.user);
-  const user= useSelector((state) => state.user);
   useBackHandler();
 
-  useEffect(()=>{
-    console.log("re-rendered")
-  },[props.navigation])
+  console.log(gender);
+
   const submitHandler = async () => {
     // await AsyncStorage.clear()
-    await storeData({ username: text, grade, achievements });
+    await storeData({ username: text, grade, achievements, gender });
 
     // Go Next Page After Creating an acc!
     props.navigation.navigate("home");
@@ -41,6 +43,40 @@ const SignUp = (props) => {
       <Body statusBarColor="#f5f3ff">
         <Text style={styles.h1}>Welcome To The Game</Text>
         <View style={styles.form}>
+          
+          
+          <View style={styles.genderContainer}>
+            <TouchableOpacity
+              onPress={() => {
+                setGender("male");
+                setHighlighted("male");
+              }}
+              style={highlighted === "male" ? styles.bg : { padding: 15 ,borderColor: "black", borderWidth: 0.5,borderRadius:10,}}
+            >
+              <Image
+                source={boy}
+                style={{
+                  width: 50,
+                  height: 50,
+                }}
+              ></Image>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                setGender("female");
+                setHighlighted("female");
+              }}
+              style={highlighted === "female" ? styles.bg : { padding: 15,borderColor: "black", borderWidth: 0.5,borderRadius:10, }}
+            >
+              <Image
+                source={girl}
+                style={{
+                  width: 50,
+                  height: 50,
+                }}
+              ></Image>
+            </TouchableOpacity>
+          </View>
           <TextInput
             mode="outlined"
             label="Name"
@@ -82,6 +118,21 @@ const styles = StyleSheet.create({
     width: "auto",
     height: 225,
     overflow: "hidden",
-    borderBottomLeftRadius: 52,
+    borderBottomLeftRadius: 30,
+    borderBottomRightRadius: 30,
+  },
+
+  genderContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+
+    gap: 30,
+  },
+
+  bg: {
+    backgroundColor: "rgba(124, 58, 237, 0.7)",
+    borderRadius:10,
+    padding: 15,
+    borderColor: "black", borderWidth:0.5
   },
 });
