@@ -6,8 +6,12 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
 import Subject from "./Subject";
-import { Button } from "react-native-paper";
+import { Button } from "@rneui/base";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 import { useDispatch, useSelector } from "react-redux";
@@ -62,17 +66,24 @@ const Content = ({ user }) => {
           <Subject key={i} slug={sbj.sbj} subject={sbj.slug} />
         ))}
       </View>
-      <Button
-        style={{ backgroundColor: "#7c3aed", zIndex: -1 }}
-        mode="contained"
-        onPress={async () => {
-          await AsyncStorage.clear();
-          dispatch(clearUser());
-          navigation.navigate("signup");
-        }}
-      >
-        Clear Data
-      </Button>
+      <View style={{ alignItems: "center", justifyContent: "center" }}>
+        <Button
+          title="Clear Data"
+          loading={false}
+          loadingProps={{ size: "large", color: "white" }}
+          buttonStyle={{
+            backgroundColor: "rgba(111, 202, 186, 1)",
+            borderRadius: 5,
+            width: wp("88%"),
+          }}
+          titleStyle={{ fontWeight: "bold", fontSize: hp("3%") }}
+          onPress={async () => {
+            await AsyncStorage.clear();
+            dispatch(clearUser());
+            navigation.navigate("signup");
+          }}
+        />
+      </View>
     </>
   );
 };

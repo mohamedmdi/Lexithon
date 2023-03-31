@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import data from "./data";
+import data from "../data/data";
 
 const shuffleArr = (arr) => {
   for (let i = arr.length - 1; i > 0; i--) {

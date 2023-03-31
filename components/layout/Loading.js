@@ -1,4 +1,4 @@
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { useEffect } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { useSelector } from "react-redux";
@@ -10,14 +10,14 @@ const Loading = (props) => {
   const user = useSelector((state) => state.user);
   const navigation = useNavigation();
 
-  useEffect(() => {
+  useFocusEffect(() => {
     if (user.username) return;
 
     (async () => {
       const dataa = await getData();
       dataa ? navigation.navigate("home") : navigation.navigate("signup");
     })();
-  }, []);
+  });
 
   return (
     <View style={styles.container}>

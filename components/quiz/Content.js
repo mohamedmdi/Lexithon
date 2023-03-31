@@ -12,6 +12,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 const Content = ({ quiz }) => {
   const [clickedAnswer, setClickedAnswer] = useState(null);
+  const [isClicked, setIsClicked] = useState(null);
   const [isCorrect, setIsCorrect] = useState(null);
   const dispatch = useDispatch();
   const playsound = useSound(quiz.answer.sound);
@@ -29,15 +30,18 @@ const Content = ({ quiz }) => {
       console.log("The Answer Is Wrong");
 
       setIsCorrect(false);
+      setIsClicked(true);
       dispatch(decreaseHP());
       return;
     }
     setIsCorrect(true);
+    setIsClicked(true);
   };
 
   const nextAnswerHandler = () => {
     setClickedAnswer(null);
     setIsCorrect(null);
+    setIsClicked(null);
     if (quiz.HP === 0) {
       navigate.navigate("gameover");
       return;
@@ -69,6 +73,7 @@ const Content = ({ quiz }) => {
         {quiz.results.map((result, i) => (
           <TouchableOpacity
             key={i}
+            disabled={isClicked && true}
             onPress={clickedAnswerHandler(result.word)}
             style={
               clickedAnswer === result.word

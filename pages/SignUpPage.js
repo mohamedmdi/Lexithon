@@ -10,7 +10,7 @@ const SignUpPage = (props) => {
     <>
       <Header />
       <Body statusBarColor="#f5f3ff">
-        <SignUp />
+        <SignUp navigation={props.navigation}/>
       </Body>
     </>
   );

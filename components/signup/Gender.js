@@ -4,6 +4,8 @@ import { useDispatch } from "react-redux";
 import { addGender } from "../../store/userSlice";
 import boy from "../../assets/boy.png";
 import girl from "../../assets/girl.png";
+import { useFocusEffect } from "@react-navigation/native";
+import { useCallback } from "react";
 
 const genders = ["male", "female"];
 
@@ -40,11 +42,13 @@ const Gender = () => {
     };
   };
 
-  useEffect(() => {
-    if (!gender) return;
+  useFocusEffect(
+    useCallback(() => {
+      if (!gender) return;
 
-    dispatch(addGender(gender));
-  }, [dispatch, gender]);
+      dispatch(addGender(gender));
+    }, [dispatch, gender])
+  );
 
   return (
     <View style={styles.genderContainer}>

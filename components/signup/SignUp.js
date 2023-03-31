@@ -5,19 +5,30 @@ import { TextInput, Button } from "react-native-paper";
 import DropDown from "./DropDown";
 import Gender from "./Gender";
 import storeData from "../../util/storeData";
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import { useEffect } from "react";
+import { useCallback } from "react";
 
 const SignUp = (props) => {
   const [text, setText] = useState("");
   const navigation = useNavigation();
   const { grade, achievements, gender } = useSelector((state) => state.user);
 
-  const submitHandler = async () => {
-    // await AsyncStorage.clear()
-    await storeData({ username: text, grade, achievements, gender });
+  useFocusEffect(
+    useCallback(() => {
+      console.log("re-rendered");
+    }, [props.navigation])
+  );
 
-    // Go Next Page After Creating an acc!
-    navigation.navigate("home");
+  const submitHandler = async () => {
+    if (text && grade && gender) {
+      // await AsyncStorage.clear()
+      await storeData({ username: text, grade, achievements, gender });
+
+      // Go Next Page After Creating an acc!
+      navigation.navigate("home");
+    }
+    return true;
   };
   return (
     <>
