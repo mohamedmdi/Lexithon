@@ -19,6 +19,7 @@ import { clearUser } from "../../store/userSlice";
 import boy from "../../assets/boy.png";
 import girl from "../../assets/girl.png";
 import { Ionicons } from "@expo/vector-icons";
+import Header from "./Header";
 
 const Content = ({ user }) => {
   const { data } = useSelector((state) => state.quiz);
@@ -27,62 +28,11 @@ const Content = ({ user }) => {
 
   return (
     <>
-      <View
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          gap: 15,
-          alignItems: "center",
-          padding: 5,
-        }}
-      >
-        <TouchableOpacity
-          onPress={() => navigation.navigate("setting")}
-          style={{
-            borderColor: "black",
-            borderWidth: 1,
-            borderRadius: 10,
-            alignItems: "center",
-            justifyContent: "center",
-            padding: 8,
-            backgroundColor: "rgba(124, 58, 237, 0.8)",
-          }}
-        >
-          <Image
-            source={user.gender === "male" ? boy : girl}
-            style={{
-              width: 45,
-              height: 45,
-            }}
-          ></Image>
-        </TouchableOpacity>
-        <Text style={styles.h1}>{user.username}</Text>
-        <TouchableOpacity onPress={() => navigation.navigate("setting")}>
-          <Ionicons name="settings-outline" size={32} color="#7c3aed" />
-        </TouchableOpacity>
-      </View>
+      <Header user={user}></Header>
       <View style={styles.subjects}>
         {data.map((sbj, i) => (
           <Subject key={i} slug={sbj.sbj} subject={sbj.slug} />
         ))}
-      </View>
-      <View style={{ alignItems: "center", justifyContent: "center" }}>
-        <Button
-          title="Clear Data"
-          loading={false}
-          loadingProps={{ size: "large", color: "white" }}
-          buttonStyle={{
-            backgroundColor: "rgba(111, 202, 186, 1)",
-            borderRadius: 5,
-            width: wp("88%"),
-          }}
-          titleStyle={{ fontWeight: "bold", fontSize: hp("3%") }}
-          onPress={async () => {
-            await AsyncStorage.clear();
-            dispatch(clearUser());
-            navigation.navigate("signup");
-          }}
-        />
       </View>
     </>
   );

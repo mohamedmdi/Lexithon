@@ -6,7 +6,7 @@ export const Body = (props) => {
     <>
       <StatusBar
         backgroundColor={props.statusBarColor}
-        barStyle="dark-content"
+        barStyle={props.barStyle || "dark-content"}
       />
       <View style={props.container}>
         <View style={{ ...styles.main, ...props.style }}>{props.children}</View>
