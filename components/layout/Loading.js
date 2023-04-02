@@ -1,6 +1,6 @@
-import { useNavigation } from "@react-navigation/native";
+import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { useEffect } from "react";
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { useSelector } from "react-redux";
 
 import getData from "../../util/getData";
@@ -10,19 +10,19 @@ const Loading = (props) => {
   const user = useSelector((state) => state.user);
   const navigation = useNavigation();
 
-  useEffect(() => {
+  useFocusEffect(() => {
     if (user.username) return;
 
     (async () => {
       const dataa = await getData();
       dataa ? navigation.navigate("home") : navigation.navigate("signup");
     })();
-  }, []);
+  });
 
   return (
-    <Body container={styles.container} statusBarColor="#7c3aed">
+    <View style={styles.container}>
       <Text style={styles.h1}>Lexithon</Text>
-    </Body>
+    </View>
   );
 };
 

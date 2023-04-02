@@ -1,42 +1,88 @@
 import { useNavigation } from "@react-navigation/native";
-import { Image, StyleSheet, Text } from "react-native";
-import CardPressable from "../layout/CardPressable";
-import trophy from "../../assets/award.png";
+import {
+  Image,
+  StyleSheet,
+  Text,
+  Touchable,
+  TouchableOpacity,
+  View,
+} from "react-native";
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from "react-native-responsive-screen";
+import { useSelector } from "react-redux";
+import trophyImg from "../../assets/award.png";
 
 const Subject = (props) => {
   const navigation = useNavigation();
+  const { trophy } = useSelector((state) => state.user);
 
   return (
-    <CardPressable
-      onPress={() => navigation.navigate("quiz", { id: props.slug })}
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() =>
+        // console.log(props.slug)
+        navigation.navigate("quiz", { id: props.slug })
+      }
     >
-      <Text style={styles.subText}>{props.subject}</Text>
-      <Text style={styles.numTrophy}>
-        <Image style={styles.trophy} source={trophy}></Image> 0
-      </Text>
-    </CardPressable>
+      <View
+        style={{
+          width: "55%",
+          justifyContent: "space-evenly",
+          alignItems: "center",
+        }}
+      >
+        <Text style={styles.subText}>{props.subject}</Text>
+      </View>
+      <View
+        style={{
+          flexDirection: "row",
+          gap: 8,
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Image style={styles.trophy} source={trophyImg}></Image>
+        <Text style={styles.numTrophy}>{trophy}</Text>
+      </View>
+    </TouchableOpacity>
   );
 };
 
 export default Subject;
 
 const styles = StyleSheet.create({
+  container: {
+    justifyContent: "space-evenly",
+    alignItems: "center",
+    gap: 10,
+    padding: hp("1%"),
+    width: "100%",
+    height: hp("15%"),
+    borderRadius: 8,
+    borderColor: "#7c3aed",
+    borderWidth: 1,
+    borderBottomWidth: 4,
+    flexDirection: "row",
+  },
+
   subText: {
     alignSelf: "center",
-    marginTop: 26,
     fontSize: 24,
     fontWeight: "900",
     textAlign: "center",
+    fontSize: hp("3.6%"),
   },
 
   trophy: {
-    width: 30,
-    height: 30,
+    width: hp("5%"),
+    height: hp("5%"),
   },
 
   numTrophy: {
-    fontSize: 20,
-    fontWeight: "700",
+    fontSize: hp("3%"),
+    fontWeight: "500",
     color: "#7c3aed",
   },
 });

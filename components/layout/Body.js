@@ -8,7 +8,9 @@ export const Body = (props) => {
         backgroundColor={props.statusBarColor}
         barStyle="dark-content"
       />
-      <View style={props.container || styles.container}>{props.children}</View>
+      <View style={props.container}>
+        <View style={{ ...styles.main, ...props.style }}>{props.children}</View>
+      </View>
     </>
   );
 };
@@ -18,9 +20,15 @@ export default Body;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 12,
-    paddingVertical: 50,
     color: "#fff",
+  },
+
+  main: {
+    display: "flex",
+    height: "100%",
+    gap: 20,
+    paddingVertical: 25,
+    paddingHorizontal: 12,
     backgroundColor: "#f5f3ff",
   },
 });
