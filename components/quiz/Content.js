@@ -9,6 +9,8 @@ import AnswerStateModal from "./AnswerStateModal";
 import { increaseTrophy } from "../../store/userSlice";
 import UpperBar from "./UpperBar";
 import { Ionicons } from "@expo/vector-icons";
+import failure from "../../assets/audios/failure.mp3";
+import success from "../../assets/audios/success.mp3";
 
 const Content = ({ quiz }) => {
   const [clickedAnswer, setClickedAnswer] = useState(null);
@@ -17,6 +19,8 @@ const Content = ({ quiz }) => {
   const dispatch = useDispatch();
   const playsound = useSound(quiz.answer.sound);
   const navigate = useNavigation();
+  const playFailureSound = useSound(failure);
+  const playSuccessSound = useSound(success);
 
   const clickedAnswerHandler = (id) => {
     return () => setClickedAnswer(id);
@@ -29,11 +33,14 @@ const Content = ({ quiz }) => {
       console.log(clickedAnswer);
       console.log("The Answer Is Wrong");
 
+      playFailureSound();
       setIsCorrect(false);
       setIsClicked(true);
       dispatch(decreaseHP());
       return;
     }
+
+    playSuccessSound();
     setIsCorrect(true);
     setIsClicked(true);
   };

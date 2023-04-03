@@ -5,6 +5,11 @@ const initialState = {
   grade: null,
   trophy: 0,
   gender: null,
+  updatedUser: {
+    username: null,
+    grade: null,
+    gender: null,
+  },
 };
 
 export const userSlice = createSlice({
@@ -15,14 +20,7 @@ export const userSlice = createSlice({
       state.username = action.payload.username;
       state.grade = action.payload.grade;
       state.gender = action.payload.gender;
-    },
-
-    addGrade: (state, action) => {
-      state.grade = action.payload;
-    },
-
-    addGender: (state, action) => {
-      state.gender = action.payload;
+      state.trophy = 0;
     },
 
     clearUser: (state, action) => {
@@ -33,11 +31,40 @@ export const userSlice = createSlice({
     increaseTrophy: (state, action) => {
       state.trophy += 1;
     },
+
+    editUsername: (state, action) => {
+      state.updatedUser.username = action.payload;
+    },
+
+    editGender: (state, action) => {
+      state.updatedUser.gender = action.payload;
+    },
+
+    editGrade: (state, action) => {
+      state.updatedUser.grade = action.payload;
+    },
+
+    updateUserInfo: (state, action) => {
+      Object.keys(action.payload).forEach((key) => {
+        if (!action.payload[key] || state[key] === action.payload[key]) return;
+        state[key] = action.payload[key];
+        console.log(state[key]);
+      });
+
+      state.updatedUser = { username: null, grade: null, gender: null };
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { addUser, addGrade, clearUser, increaseTrophy, addGender } =
-  userSlice.actions;
+export const {
+  addUser,
+  clearUser,
+  increaseTrophyr,
+  updateUserInfo,
+  editUsername,
+  editGrade,
+  editGender,
+} = userSlice.actions;
 
 export default userSlice.reducer;

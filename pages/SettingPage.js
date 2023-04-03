@@ -4,11 +4,7 @@ import Setting from "../components/setting/Setting";
 
 const SettingPage = () => {
   return (
-    <Body
-      style={{ backgroundColor: "#2e1065" }}
-      statusBarColor="#2e1065"
-      barStyle={"light-content"}
-    >
+    <Body>
       <ScrollView>
         <Setting></Setting>
       </ScrollView>

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import { useDispatch } from "react-redux";
-import { addGender } from "../../store/userSlice";
 import boy from "../../assets/boy.png";
 import girl from "../../assets/girl.png";
 import { useFocusEffect } from "@react-navigation/native";
@@ -30,10 +29,9 @@ const OneGender = (props) => {
   );
 };
 
-const Gender = () => {
+const Gender = (props) => {
   const [gender, setGender] = useState(null);
-  const [highlighted, setHighlighted] = useState(null);
-  const dispatch = useDispatch();
+  const [highlighted, setHighlighted] = useState(props.gender || null);
 
   const changeGenderHandler = (val) => {
     return () => {
@@ -46,8 +44,8 @@ const Gender = () => {
     useCallback(() => {
       if (!gender) return;
 
-      dispatch(addGender(gender));
-    }, [dispatch, gender])
+      props.addGender(gender);
+    }, [gender])
   );
 
   return (

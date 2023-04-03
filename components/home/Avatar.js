@@ -1,8 +1,11 @@
 import { Image, TouchableOpacity, View } from "react-native";
 import boy from "../../assets/boy.png";
 import girl from "../../assets/girl.png";
+import { useNavigation } from "@react-navigation/native";
 
 const Avatar = ({ gender, clickable = true }) => {
+  const navigation = useNavigation();
+
   if (!clickable)
     return (
       <View

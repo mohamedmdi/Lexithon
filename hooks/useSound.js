@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Audio } from "expo-av";
 
 const useSound = (audio) => {
@@ -13,9 +13,7 @@ const useSound = (audio) => {
   }, [sound]);
 
   return (playSound = async () => {
-    const { sound } = await Audio.Sound.createAsync(
-      audio
-    );
+    const { sound } = await Audio.Sound.createAsync(audio);
     setSound(sound);
     await sound.playAsync();
   });
