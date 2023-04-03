@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { updateUserInfo } from "../../store/userSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { updateUserInfoStorage } from "../../store/async-thunks";
 
 const NavBar = (props) => {
   const navigation = useNavigation();
@@ -15,6 +16,7 @@ const NavBar = (props) => {
   const editInfoHandler = () => {
     if (updatedUser.username && updatedUser.username !== username) {
       dispatch(updateUserInfo(updatedUser));
+      dispatch(updateUserInfoStorage());
       navigation.navigate("home");
 
       return;
@@ -22,6 +24,7 @@ const NavBar = (props) => {
 
     if (updatedUser.gender && updatedUser.gender !== gender) {
       dispatch(updateUserInfo(updatedUser));
+      dispatch(updateUserInfoStorage());
       navigation.navigate("home");
 
       return;
@@ -29,6 +32,7 @@ const NavBar = (props) => {
 
     if (updatedUser.grade && updatedUser.grade !== grade) {
       dispatch(updateUserInfo(updatedUser));
+      dispatch(updateUserInfoStorage());
       navigation.navigate("home");
 
       return;
