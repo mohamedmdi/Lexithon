@@ -22,7 +22,6 @@ import girl from "../../assets/girl.png";
 import { Ionicons } from "@expo/vector-icons";
 import data from '../../data/data'; 
 const Content = ({ user }) => {
-  // const { data } = useSelector((state) => state.quiz);
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
@@ -65,7 +64,7 @@ const Content = ({ user }) => {
       <ScrollView>
         <View style={styles.subjects}>
           {data.map((sbj, i) => (
-            <Subject key={i} slug={sbj.category} subject={sbj.slug} />
+            <Subject key={i} slug={sbj.category} subject={sbj.slug}/>
           ))}
         </View>
       </ScrollView>

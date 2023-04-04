@@ -1,6 +1,15 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { StyleSheet, Text, View, TouchableWithoutFeedback, Keyboard, TouchableOpacity, Touchable, Pressable } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableWithoutFeedback,
+  Keyboard,
+  TouchableOpacity,
+  Touchable,
+  Pressable,
+} from "react-native";
 import { TextInput, Button } from "react-native-paper";
 import DropDown from "./DropDown";
 import Gender from "./Gender";
@@ -12,8 +21,7 @@ import { useCallback } from "react";
 const SignUp = (props) => {
   const [text, setText] = useState("");
   const navigation = useNavigation();
-  const { grade, achievements, gender } = useSelector((state) => state.user);
-
+  const { grade, trophy, gender } = useSelector((state) => state.user);
 
   useFocusEffect(
     useCallback(() => {
@@ -24,27 +32,28 @@ const SignUp = (props) => {
   const submitHandler = async () => {
     if (text && grade && gender) {
       // await AsyncStorage.clear()
-      await storeData({ username: text, grade, achievements, gender });
+      await storeData({ username: text, grade, trophy, gender });
 
       // Go Next Page After Creating an acc!
-  
-    navigation.navigate("home");
+
+      navigation.navigate("home");
     }
     return true;
   };
   return (
     <>
-      <Text style={styles.h1}>Welcome To The Game</Text>
+      <Text style={styles.h1}>Bienvenue au Lexithon</Text>
       <View style={styles.form}>
-          <View>
+        <View>
           <Gender />
-        <TextInput
+          <TextInput
             mode="outlined"
             label="Name"
             placeholder="Your Name"
             onChangeText={setText}
+            style={{ backgroundColor: "white" }}
           />
-          </View>
+        </View>
         <DropDown />
       </View>
       <Button
@@ -72,6 +81,5 @@ const styles = StyleSheet.create({
     fontSize: 24,
     textAlign: "center",
     color: "#7c3aed",
-    marginBottom: 30,
   },
 });

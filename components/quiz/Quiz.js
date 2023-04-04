@@ -18,7 +18,7 @@ const Quiz = (props) => {
   return (
     <>
       <Body statusBarColor="#f5f3ff">
-        {!quiz.answer ? <LoadingContent /> : <Content quiz={quiz} />}
+        {!quiz.answer ? <LoadingContent /> : <Content quiz={quiz} sbj= {props.route.params.id}/>}
       </Body>
     </>
   );

@@ -17,12 +17,11 @@ import trophyImg from "../../assets/award.png";
 const Subject = (props) => {
   const navigation = useNavigation();
   const { trophy } = useSelector((state) => state.user);
-
   return (
     <TouchableOpacity
       style={styles.container}
       onPress={() =>
-        // console.log(props.slug)
+        // console.log(trophy[props.slug])
         navigation.navigate("quiz", { id: props.slug })
       }
     >
@@ -44,7 +43,7 @@ const Subject = (props) => {
         }}
       >
         <Image style={styles.trophy} source={trophyImg}></Image>
-        <Text style={styles.numTrophy}>{trophy}</Text>
+        <Text style={styles.numTrophy}>{trophy[props.slug]}</Text>
       </View>
     </TouchableOpacity>
   );

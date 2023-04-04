@@ -3,20 +3,21 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Button, MD3Colors, ProgressBar } from "react-native-paper";
 import useSound from "../../hooks/useSound";
 import { getQuizHandler, decreaseHP } from "../../store/quizSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import AnswerStateModal from "./AnswerStateModal";
-import { increaseTrophy } from "../../store/userSlice";
+import { increaseTrophy, updateTrophies } from "../../store/userSlice";
 import UpperBar from "./UpperBar";
 import { Ionicons } from "@expo/vector-icons";
 
-const Content = ({ quiz }) => {
+const Content = ({ quiz,sbj }) => {
   const [clickedAnswer, setClickedAnswer] = useState(null);
   const [isClicked, setIsClicked] = useState(null);
   const [isCorrect, setIsCorrect] = useState(null);
   const dispatch = useDispatch();
   const playsound = useSound(quiz.answer.sound);
   const navigate = useNavigation();
+  const user = useSelector(s=> s.user)
 
   const clickedAnswerHandler = (id) => {
     return () => setClickedAnswer(id);
@@ -48,7 +49,10 @@ const Content = ({ quiz }) => {
     }
 
     if (quiz.currentIteration === 3) {
-      if (!quiz.isWrong) dispatch(increaseTrophy());
+      if (!quiz.isWrong){
+        dispatch(increaseTrophy(sbj));
+        updateTrophies(user)
+      }
       navigate.navigate("gameover");
       return;
     }
