@@ -3,7 +3,14 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   username: null,
   grade: null,
-  trophy: 0,
+  trophy: {
+    school: 0,
+    home: 0,
+    kitchen: 0,
+    animals: 0,
+    body: 0,
+    sport: 0,
+  },
   gender: null,
   updatedUser: {
     username: null,
@@ -20,16 +27,24 @@ export const userSlice = createSlice({
       state.username = action.payload.username;
       state.grade = action.payload.grade;
       state.gender = action.payload.gender;
-      state.trophy = 0;
+      state.trophy = action.payload.trophy;
     },
 
     clearUser: (state, action) => {
       state.username = null;
       state.grade = null;
       state.gender = null;
+      state.trophy = {
+        school: 0,
+        home: 0,
+        kitchen: 0,
+        animals: 0,
+        body: 0,
+        sport: 0,
+      };
     },
     increaseTrophy: (state, action) => {
-      state.trophy += 1;
+      state.trophy[action.payload] += 1;
     },
 
     editUsername: (state, action) => {
@@ -60,7 +75,7 @@ export const userSlice = createSlice({
 export const {
   addUser,
   clearUser,
-  increaseTrophyr,
+  increaseTrophy,
   updateUserInfo,
   editUsername,
   editGrade,

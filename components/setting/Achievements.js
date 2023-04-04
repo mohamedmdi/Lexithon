@@ -18,7 +18,7 @@ const Achievements = () => {
           gap: 50,
         }}
       >
-        <Text style={styles.num}>x{trophy}</Text>
+        <Text style={styles.num}>x{trophy.school}</Text>
         <Image style={styles.img} source={trophyImg}></Image>
       </View>
     </View>

@@ -11,11 +11,14 @@ import UpperBar from "./UpperBar";
 import { Ionicons } from "@expo/vector-icons";
 import failure from "../../assets/audios/failure.mp3";
 import success from "../../assets/audios/success.mp3";
+import { updateTrophy } from "../../store/async-thunks";
 
-const Content = ({ quiz }) => {
+const Content = ({ quiz, sbj }) => {
   const [clickedAnswer, setClickedAnswer] = useState(null);
   const [isClicked, setIsClicked] = useState(null);
   const [isCorrect, setIsCorrect] = useState(null);
+  const [totalAnswers, setTotalAnswers] = useState(0);
+  const [timerr, setTimerr] = useState(Date.now());
   const dispatch = useDispatch();
   const playsound = useSound(quiz.answer.sound);
   const navigate = useNavigation();
@@ -41,6 +44,7 @@ const Content = ({ quiz }) => {
     }
 
     playSuccessSound();
+    setTotalAnswers((prev) => (prev += 1));
     setIsCorrect(true);
     setIsClicked(true);
   };
@@ -50,13 +54,16 @@ const Content = ({ quiz }) => {
     setIsCorrect(null);
     setIsClicked(null);
     if (quiz.HP === 0) {
-      navigate.navigate("gameover");
+      navigate.navigate("gameover", { sbj, timer: timerr, totalAnswers });
       return;
     }
 
     if (quiz.currentIteration === 3) {
-      if (!quiz.isWrong) dispatch(increaseTrophy());
-      navigate.navigate("gameover");
+      if (!quiz.isWrong) {
+        dispatch(increaseTrophy(sbj));
+        dispatch(updateTrophy());
+      }
+      navigate.navigate("gameover", { sbj, timer: timerr, totalAnswers });
       return;
     }
     dispatch(getQuizHandler());
@@ -66,10 +73,6 @@ const Content = ({ quiz }) => {
       <UpperBar quiz={quiz} />
       <View style={styles.header}>
         <TouchableOpacity onPress={playsound} style={styles.imgContainer}>
-          {/* <Image
-            source={volume}
-            style={{ tintColor: "#f5f3ff", width: 30, height: 30 }}
-          /> */}
           <Ionicons name="volume-medium" size={30} color="#f5f3ff" />
         </TouchableOpacity>
         <Text onPress={playsound} style={styles.word}>

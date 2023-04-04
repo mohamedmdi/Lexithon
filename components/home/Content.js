@@ -20,20 +20,29 @@ import boy from "../../assets/boy.png";
 import girl from "../../assets/girl.png";
 import { Ionicons } from "@expo/vector-icons";
 import Header from "./Header";
+import data from "../../data/data";
+import { ScrollView } from "react-native";
 
 const Content = ({ user }) => {
-  const { data } = useSelector((state) => state.quiz);
+  // const { data } = useSelector((state) => state.quiz);
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
   return (
     <>
       <Header user={user}></Header>
-      <View style={styles.subjects}>
+      <ScrollView>
+        <View style={styles.subjects}>
+          {data.map((sbj, i) => (
+            <Subject key={i} slug={sbj.category} subject={sbj.slug} />
+          ))}
+        </View>
+      </ScrollView>
+      {/* <View style={styles.subjects}>
         {data.map((sbj, i) => (
           <Subject key={i} slug={sbj.sbj} subject={sbj.slug} />
         ))}
-      </View>
+      </View> */}
     </>
   );
 };

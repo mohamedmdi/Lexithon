@@ -32,13 +32,13 @@ export const quizSlice = createSlice({
       let arr = [];
       for (let i = 0; i < 3; i++) {
         if (i === 0)
-          arr = [...data.find((el) => el.sbj === action.payload.sbj).data];
+          arr = [...data.find((el) => el.category === action.payload.sbj).data];
         const randomIndex = Math.floor(Math.random() * arr.length);
         newArr.push(arr.splice(randomIndex, 1)[0]);
       }
 
       state.choices = [
-        ...data.find((el) => el.sbj === action.payload.sbj).data,
+        ...data.find((el) => el.category === action.payload.sbj).data,
       ];
       state.answers = newArr;
       state.answer = null;
@@ -67,14 +67,14 @@ export const quizSlice = createSlice({
     },
 
     decreaseHP: (state, action) => {
-      if (state.HP === 0) return
-      state.HP -= 1
-      state.isWrong = true
-    }
+      if (state.HP === 0) return;
+      state.HP -= 1;
+      state.isWrong = true;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { init, getQuizHandler, decreaseHP} = quizSlice.actions;
+export const { init, getQuizHandler, decreaseHP } = quizSlice.actions;
 
 export default quizSlice.reducer;

@@ -5,6 +5,7 @@ import DropDown from "./DropDown";
 import Gender from "./Gender";
 import storeData from "../../util/storeData";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
+import { SelectList } from "react-native-dropdown-select-list";
 
 const SignUp = (props) => {
   const [text, setText] = useState("");
@@ -25,7 +26,19 @@ const SignUp = (props) => {
     if (!text || !grade || !gender) return;
 
     // await AsyncStorage.clear()
-    await storeData({ username: text, grade, gender });
+    await storeData({
+      username: text,
+      grade,
+      gender,
+      trophy: {
+        school: 0,
+        home: 0,
+        kitchen: 0,
+        animals: 0,
+        body: 0,
+        sport: 0,
+      },
+    });
 
     // Go Next Page After Creating an acc!
     navigation.navigate("home");

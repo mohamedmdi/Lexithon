@@ -41,7 +41,7 @@ const Subject = (props) => {
         }}
       >
         <Image style={styles.trophy} source={trophyImg}></Image>
-        <Text style={styles.numTrophy}>{trophy}</Text>
+        <Text style={styles.numTrophy}>{trophy[props.slug]}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -56,6 +56,8 @@ const styles = StyleSheet.create({
     gap: 10,
     padding: hp("1%"),
     width: "100%",
+    height: hp("15%"),
+
     borderRadius: 8,
     borderColor: "#7c3aed",
     borderWidth: 1,

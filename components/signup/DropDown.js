@@ -1,18 +1,16 @@
 import { useEffect, useState } from "react";
-import DropDownPicker from "react-native-dropdown-picker";
-import { useDispatch } from "react-redux";
+import { SelectList } from "react-native-dropdown-select-list";
 
 const DropDown = (props) => {
-  const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
-  const [items, setItems] = useState([
-    { label: "Grade 1", value: 1 },
-    { label: "Grade 2", value: 2 },
-    { label: "Grade 3", value: 3 },
-    { label: "Grade 4", value: 4 },
-    { label: "Grade 5", value: 5 },
-    { label: "Grade 6", value: 6 },
-  ]);
+  const items = [
+    { key: 1, value: "Grade 1" },
+    { key: 2, value: "Grade 2" },
+    { key: 3, value: "Grade 3" },
+    { key: 4, value: "Grade 4" },
+    { key: 5, value: "Grade 5" },
+    { key: 6, value: "Grade 6" },
+  ];
 
   useEffect(() => {
     if (!value) return;
@@ -21,15 +19,22 @@ const DropDown = (props) => {
   }, [value]);
 
   return (
-    <DropDownPicker
-      placeholder="Select Your Grade"
-      open={open}
-      value={value || props.val}
-      items={items}
-      setOpen={setOpen}
-      setValue={setValue}
-      setItems={setItems}
+    <SelectList
+      setSelected={(val) => setValue(val)}
+      data={items}
+      search={false}
+      placeholder="Selec Your Grade"
+      defaultOption={items.find((el) => el.key === props.val) || null}
     />
+    // <DropDownPicker
+    //   placeholder="Select Your Grade"
+    //   open={open}
+    //   value={value || props.val}
+    //   items={items}
+    //   setOpen={setOpen}
+    //   setValue={setValue}
+    //   setItems={setItems}
+    // />
   );
 };
 

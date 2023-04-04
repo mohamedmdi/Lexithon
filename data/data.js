@@ -2,92 +2,340 @@ import IMAGES from "../constrants/images";
 import AUDIOS from "../constrants/audios";
 
 const data = [
-  { sbj: "ar", slug: "العربية", data: [{ word: "", img: "", sound: ""  }] },
   {
-    sbj: "fr",
-    slug: "Français",
+    category: "school",
+    slug: "L'école",
     data: [
+      { word: "Ecole ", img: IMAGES.ecole, sound: AUDIOS.ecole },
+      { word: "Classe ", img: IMAGES.classe, sound: AUDIOS.classe },
+      { word: "Porte ", img: IMAGES.porte, sound: AUDIOS.porte },
+      { word: "Fenêtre ", img: IMAGES.fenetre, sound: AUDIOS.fenetre },
+      { word: "Tableau ", img: IMAGES.tableau, sound: AUDIOS.tableau },
+      { word: "Trousse ", img: IMAGES.trousse, sound: AUDIOS.trousse },
+      { word: "Gomme ", img: IMAGES.gomme, sound: AUDIOS.gomme },
+      { word: "Toilettes ", img: IMAGES.toilettes, sound: AUDIOS.toilettes },
+      { word: "Jardin ", img: IMAGES.jardin, sound: AUDIOS.jardin },
+      { word: "Bureau", img: IMAGES.bureau, sound: AUDIOS.bureau },
+      { word: "Banc ", img: IMAGES.banc, sound: AUDIOS.banc },
+      { word: "Affiche ", img: IMAGES.affiche, sound: AUDIOS.affiche },
+      { word: "Ardoise ", img: IMAGES.ardoise, sound: AUDIOS.ardoise },
+      { word: "Portail ", img: IMAGES.portail, sound: AUDIOS.portail },
+      { word: "Livre ", img: IMAGES.livre, sound: AUDIOS.livre },
+      { word: "Colle ", img: IMAGES.colle, sound: AUDIOS.colle },
+      { word: "Élève ", img: IMAGES.eleve, sound: AUDIOS.eleve },
+      { word: "Cour ", img: IMAGES.cour, sound: AUDIOS.cour },
+      { word: "Table ", img: IMAGES.table, sound: AUDIOS.table },
+      { word: "Ciseaux", img: IMAGES.ciseaux, sound: AUDIOS.ciseaux },
+      { word: "Chaise ", img: IMAGES.chaise, sound: AUDIOS.chaise },
+      { word: "Garçon ", img: IMAGES.garcon, sound: AUDIOS.garcon },
+      { word: "Cartable ", img: IMAGES.cartable, sound: AUDIOS.cartable },
+      { word: "Maîtresse ", img: IMAGES.maitresse, sound: AUDIOS.maitresse },
+      { word: "Fille ", img: IMAGES.fille, sound: AUDIOS.fille },
+      { word: "Arbre ", img: IMAGES.arbre, sound: AUDIOS.arbre },
+      { word: "Ami ", img: IMAGES.ami, sound: AUDIOS.ami },
+      { word: "Horloge ", img: IMAGES.horloge, sound: AUDIOS.horloge },
       {
-        word: "apple",
-        img: IMAGES.apple,
-        sound: AUDIOS.apple,
+        word: "Calendrier",
+        img: IMAGES.calendrier,
+        sound: AUDIOS.calendrier,
+      },
+      { word: "Drapeau", img: IMAGES.drapeau, sound: AUDIOS.drapeau },
+      {
+        word: "Projecteur ",
+        img: IMAGES.projecteur,
+        sound: AUDIOS.projecteur,
       },
       {
-        word: "orange",
-        img: IMAGES.orange,
-        sound: AUDIOS.orange,
+        word: "Imprimante ",
+        img: IMAGES.imprimante,
+        sound: AUDIOS.imprimante,
       },
-      { word: "moon", img: IMAGES.moon, sound: AUDIOS.moon },
+      { word: "Brosse ", img: IMAGES.brosse, sound: AUDIOS.brosse },
+      { word: "Stylo ", img: IMAGES.stylo, sound: AUDIOS.stylo },
       {
-        word: "table",
-        img: IMAGES.table,
-        sound: AUDIOS.table,
+        word: "Ordinateur ",
+        img: IMAGES.ordinateur,
+        sound: AUDIOS.ordinateur,
       },
-      { word: "man", img: IMAGES.man, sound: AUDIOS.man },
-      {
-        word: "juice",
-        img: IMAGES.juice,
-        sound: AUDIOS.juice,
-      },
-      {
-        word: "coffee",
-        img: IMAGES.coffee,
-        sound: AUDIOS.coffee,
-      },
-      {
-        word: "chair",
-        img: IMAGES.chair,
-        sound: AUDIOS.chair,
-      },
-      { word: "cat", img: IMAGES.cat, sound: AUDIOS.cat },
-      { word: "car", img: IMAGES.car, sound: AUDIOS.car },
+      { word: "Feuilles ", img: IMAGES.feuilles, sound: AUDIOS.feuilles },
+      { word: "Règle", img: IMAGES.regle, sound: AUDIOS.regle },
     ],
   },
-  { sbj: "en", slug: "English", data: [{ word: "", img: "", sound: "" }] },
+  {
+    category: "home",
+    slug: "Maison et famille",
+    data: [
+      { word: "Maison", img: IMAGES.maison, sound: AUDIOS.maison },
+      { word: "Famille", img: IMAGES.famille, sound: AUDIOS.famille },
+      { word: "Maman", img: IMAGES.maman, sound: AUDIOS.maman },
+      { word: "Papa", img: IMAGES.papa, sound: AUDIOS.papa },
+      { word: "Sœur", img: IMAGES.soeur, sound: AUDIOS.soeur },
+      { word: "Frère", img: IMAGES.frere, sound: AUDIOS.frere },
+      { word: "Grandpère", img: IMAGES.grandpere, sound: AUDIOS.grandpere },
+      { word: "Grand-mère", img: IMAGES.grand, sound: AUDIOS.grand },
+      { word: "Enfant", img: IMAGES.enfant, sound: AUDIOS.enfant },
+      { word: "Homme", img: IMAGES.homme, sound: AUDIOS.homme },
+      { word: "Bébé", img: IMAGES.bebe, sound: AUDIOS.bebe },
+      { word: "Femme", img: IMAGES.femme, sound: AUDIOS.femme },
+      { word: "Chambre", img: IMAGES.chambre, sound: AUDIOS.chambre },
+      { word: "Salon", img: IMAGES.salon, sound: AUDIOS.salon },
+      { word: "Salle de bain", img: IMAGES.salle, sound: AUDIOS.salle },
+      { word: "Garage", img: IMAGES.garage, sound: AUDIOS.garage },
+      { word: "Lavabo", img: IMAGES.lavabo, sound: AUDIOS.lavabo },
+      { word: "Escaliers ", img: IMAGES.escaliers, sound: AUDIOS.escaliers },
+      { word: "Toit", img: IMAGES.toit, sound: AUDIOS.toit },
+      { word: "Lit", img: IMAGES.lit, sound: AUDIOS.lit },
+      { word: "Drap", img: IMAGES.drap, sound: AUDIOS.drap },
+      { word: "Oreiller", img: IMAGES.oreiller, sound: AUDIOS.oreiller },
+      { word: "Fauteuil", img: IMAGES.fauteuil, sound: AUDIOS.fauteuil },
+      { word: "Tapis", img: IMAGES.tapis, sound: AUDIOS.tapis },
+      { word: "Armoire", img: IMAGES.armoire, sound: AUDIOS.armoire },
+      { word: "Armoire", img: IMAGES.armoire, sound: AUDIOS.armoire },
+      { word: "Miroir", img: IMAGES.miroir, sound: AUDIOS.miroir },
+      {
+        word: "Télévision",
+        img: IMAGES.television,
+        sound: AUDIOS.television,
+      },
+      { word: "Vase", img: IMAGES.vase, sound: AUDIOS.vase },
+      { word: "Balai", img: IMAGES.balai, sound: AUDIOS.balai },
+      { word: "Matelas", img: IMAGES.matelas, sound: AUDIOS.matelas },
+      { word: "Étagère", img: IMAGES.etagere, sound: AUDIOS.etagere },
+      { word: "Plante", img: IMAGES.plante, sound: AUDIOS.plante },
+      { word: "Cheminée", img: IMAGES.cheminee, sound: AUDIOS.cheminee },
+      { word: "Gazon", img: IMAGES.gazon, sound: AUDIOS.gazon },
+      { word: "Pelle", img: IMAGES.pelle, sound: AUDIOS.pelle },
+      { word: "Râteau", img: IMAGES.rateau, sound: AUDIOS.rateau },
+      { word: "Brouette", img: IMAGES.brouette, sound: AUDIOS.brouette },
+      { word: "Échelle", img: IMAGES.echelle, sound: AUDIOS.echelle },
+      { word: "Balcon", img: IMAGES.balcon, sound: AUDIOS.balcon },
+    ],
+  },
+  {
+    category: "kitchen",
+    slug: "Cuisine et aliments",
+    data: [
+      { word: "Cuisine", img: IMAGES.cuisine, sound: AUDIOS.cuisine },
+      { word: "Robinet", img: IMAGES.robinet, sound: AUDIOS.robinet },
+      { word: "Four", img: IMAGES.four, sound: AUDIOS.four },
+      { word: "Casserole", img: IMAGES.casserole, sound: AUDIOS.casserole },
+      { word: "Recette", img: IMAGES.recette, sound: AUDIOS.recette },
+      { word: "Couteau", img: IMAGES.couteau, sound: AUDIOS.couteau },
+      { word: "Verre", img: IMAGES.verre, sound: AUDIOS.verre },
+      { word: "Assiette", img: IMAGES.assiette, sound: AUDIOS.assiette },
+      {
+        word: "Fourchette",
+        img: IMAGES.fourchette,
+        sound: AUDIOS.fourchette,
+      },
+      { word: "Cuillère", img: IMAGES.cuillere, sound: AUDIOS.cuillere },
+      { word: "Poêle", img: IMAGES.poele, sound: AUDIOS.poele },
+      { word: "Plateau", img: IMAGES.plateau, sound: AUDIOS.plateau },
+      {
+        word: "Cuisinière",
+        img: IMAGES.cuisiniere,
+        sound: AUDIOS.cuisiniere,
+      },
+      { word: "Repas", img: IMAGES.repas, sound: AUDIOS.repas },
+      { word: "Riz", img: IMAGES.riz, sound: AUDIOS.riz },
+      { word: "Poisson", img: IMAGES.poisson, sound: AUDIOS.poisson },
+      { word: "Boisson", img: IMAGES.boisson, sound: AUDIOS.boisson },
+      { word: "Chocolat", img: IMAGES.chocolat, sound: AUDIOS.chocolat },
+      { word: "Bonbon", img: IMAGES.bonbon, sound: AUDIOS.bonbon },
+      { word: "Fromage", img: IMAGES.fromage, sound: AUDIOS.fromage },
+      { word: "Lait", img: IMAGES.lait, sound: AUDIOS.lait },
+      { word: "Viande", img: IMAGES.viande, sound: AUDIOS.viande },
+      { word: "Œuf", img: IMAGES.oeuf, sound: AUDIOS.oeuf },
+      { word: "Biscuit", img: IMAGES.biscuit, sound: AUDIOS.biscuit },
+      { word: "Gâteau", img: IMAGES.gateau, sound: AUDIOS.gateau },
+      { word: "Jus", img: IMAGES.jus, sound: AUDIOS.jus },
+      { word: "Farine", img: IMAGES.farine, sound: AUDIOS.farine },
+      { word: "Carotte", img: IMAGES.carotte, sound: AUDIOS.carotte },
+      { word: "Tomate", img: IMAGES.tomate, sound: AUDIOS.tomate },
+      { word: "Orange", img: IMAGES.orange, sound: AUDIOS.orange },
+      { word: "Salade", img: IMAGES.salade, sound: AUDIOS.salade },
+      { word: "Banane", img: IMAGES.banane, sound: AUDIOS.banane },
+      { word: "Melon", img: IMAGES.melon, sound: AUDIOS.melon },
+      { word: "Dattes", img: IMAGES.dattes, sound: AUDIOS.dattes },
+      { word: "Pastèque", img: IMAGES.pasteque, sound: AUDIOS.pasteque },
+      { word: "Pain", img: IMAGES.pain, sound: AUDIOS.pain },
+      { word: "Tajine", img: IMAGES.tajine, sound: AUDIOS.tajine },
+      { word: "Raisin", img: IMAGES.raisin, sound: AUDIOS.raisin },
+      { word: "Poire", img: IMAGES.poire, sound: AUDIOS.poire },
+      { word: "Tarte", img: IMAGES.tarte, sound: AUDIOS.tarte },
+    ],
+  },
+  {
+    category: "animals",
+    slug: "Animaux",
+    data: [
+      { word: "Oiseau", img: IMAGES.oiseau, sound: AUDIOS.oiseau },
+      { word: "Chat Mouche", img: IMAGES.chat, sound: AUDIOS.chat },
+      { word: "Souris", img: IMAGES.souris, sound: AUDIOS.souris },
+      { word: "Escargot", img: IMAGES.escargot, sound: AUDIOS.escargot },
+      { word: "Chien", img: IMAGES.chien, sound: AUDIOS.chien },
+      {
+        word: "Poulailler",
+        img: IMAGES.poulailler,
+        sound: AUDIOS.poulailler,
+      },
+      { word: "Cheval", img: IMAGES.cheval, sound: AUDIOS.cheval },
+      { word: "Vache", img: IMAGES.vache, sound: AUDIOS.vache },
+      { word: "Canard", img: IMAGES.canard, sound: AUDIOS.canard },
+      { word: "Moustique", img: IMAGES.moustique, sound: AUDIOS.moustique },
+      { word: "Coq", img: IMAGES.coq, sound: AUDIOS.coq },
+      { word: "Mouton", img: IMAGES.mouton, sound: AUDIOS.mouton },
+      { word: "Laine", img: IMAGES.laine, sound: AUDIOS.laine },
+      { word: "Chèvre", img: IMAGES.chevre, sound: AUDIOS.chevre },
+      { word: "Poule", img: IMAGES.poule, sound: AUDIOS.poule },
+      { word: "Dindon", img: IMAGES.dindon, sound: AUDIOS.dindon },
+      { word: "Poussin", img: IMAGES.poussin, sound: AUDIOS.poussin },
+      { word: "Brebis", img: IMAGES.brebis, sound: AUDIOS.brebis },
+      { word: "Oie", img: IMAGES.oie, sound: AUDIOS.oie },
+      { word: "Lapin", img: IMAGES.lapin, sound: AUDIOS.lapin },
+      { word: "Fourmi", img: IMAGES.fourmi, sound: AUDIOS.fourmi },
+      { word: "Bec", img: IMAGES.bec, sound: AUDIOS.bec },
+      { word: "Ailes", img: IMAGES.ailes, sound: AUDIOS.ailes },
+      { word: "Corne", img: IMAGES.corne, sound: AUDIOS.corne },
+      { word: "Patte", img: IMAGES.patte, sound: AUDIOS.patte },
+      { word: "Bouc", img: IMAGES.bouc, sound: AUDIOS.bouc },
+      { word: "Niche", img: IMAGES.niche, sound: AUDIOS.niche },
+      { word: "Écurie", img: IMAGES.ecurie, sound: AUDIOS.ecurie },
+      { word: "Âne", img: IMAGES.ane, sound: AUDIOS.ane },
+      { word: "Poisson", img: IMAGES.Anipoisson, sound: AUDIOS.Anipoisson },
+      { word: "Tortue", img: IMAGES.tortue, sound: AUDIOS.tortue },
+      { word: "Abeille", img: IMAGES.abeille, sound: AUDIOS.abeille },
+      {
+        word: "Hirondelle",
+        img: IMAGES.hirondelle,
+        sound: AUDIOS.hirondelle,
+      },
+      { word: "Cigogne", img: IMAGES.cigogne, sound: AUDIOS.cigogne },
+      { word: "Lion", img: IMAGES.lion, sound: AUDIOS.lion },
+      { word: "Éléphant", img: IMAGES.elephant, sound: AUDIOS.elephant },
+      { word: "Girafe", img: IMAGES.girafe, sound: AUDIOS.girafe },
+      { word: "Zèbre", img: IMAGES.zebre, sound: AUDIOS.zebre },
+      { word: "Gazelle", img: IMAGES.gazelle, sound: AUDIOS.gazelle },
+    ],
+  },
+  {
+    category: "body",
+
+    slug: "Mon corps et mes habits",
+    data: [
+      { word: "Tête", img: IMAGES.tete, sound: AUDIOS.tete },
+      { word: "Chemise", img: IMAGES.chemise, sound: AUDIOS.chemise },
+      { word: "Serviette", img: IMAGES.serviette, sound: AUDIOS.serviette },
+      { word: "Chapeau", img: IMAGES.chapeau, sound: AUDIOS.chapeau },
+      { word: "Lunettes", img: IMAGES.lunettes, sound: AUDIOS.lunettes },
+      { word: "Serviette", img: IMAGES.serviette, sound: AUDIOS.serviette },
+      { word: "Savon", img: IMAGES.savon, sound: AUDIOS.savon },
+      { word: "Manteau", img: IMAGES.manteau, sound: AUDIOS.manteau },
+      {
+        word: "Chaussettes",
+        img: IMAGES.chaussettes,
+        sound: AUDIOS.chaussettes,
+      },
+      { word: "Douche", img: IMAGES.douche, sound: AUDIOS.douche },
+      {
+        word: "Chaussures",
+        img: IMAGES.chaussures,
+        sound: AUDIOS.chaussures,
+      },
+      { word: "Pantalon", img: IMAGES.pantalon, sound: AUDIOS.pantalon },
+      { word: "Sandales", img: IMAGES.sandales, sound: AUDIOS.sandales },
+      { word: "Oreilles", img: IMAGES.oreilles, sound: AUDIOS.oreilles },
+      { word: "Langue", img: IMAGES.langue, sound: AUDIOS.langue },
+      { word: "Dents", img: IMAGES.dents, sound: AUDIOS.dents },
+      { word: "Doigt", img: IMAGES.doigt, sound: AUDIOS.doigt },
+      { word: "Cheveux", img: IMAGES.cheveux, sound: AUDIOS.cheveux },
+      { word: "Main", img: IMAGES.main, sound: AUDIOS.main },
+      { word: "Ventre", img: IMAGES.ventre, sound: AUDIOS.ventre },
+      { word: "Dos", img: IMAGES.dos, sound: AUDIOS.dos },
+      { word: "Œil", img: IMAGES.oeil, sound: AUDIOS.oeil },
+      { word: "Bouche", img: IMAGES.bouche, sound: AUDIOS.bouche },
+      { word: "Lèvres", img: IMAGES.levres, sound: AUDIOS.levres },
+      { word: "Tricot", img: IMAGES.tricot, sound: AUDIOS.tricot },
+      { word: "Robe", img: IMAGES.robe, sound: AUDIOS.robe },
+      { word: "Pied", img: IMAGES.pied, sound: AUDIOS.pied },
+      { word: "Jupe ", img: IMAGES.jupe, sound: AUDIOS.jupe },
+      { word: "Nez ", img: IMAGES.nez, sound: AUDIOS.nez },
+      { word: "Genou", img: IMAGES.genou, sound: AUDIOS.genou },
+      { word: "Casquette ", img: IMAGES.casquette, sound: AUDIOS.casquette },
+      { word: "Ceinture ", img: IMAGES.ceinture, sound: AUDIOS.ceinture },
+      { word: "Cravate ", img: IMAGES.cravate, sound: AUDIOS.cravate },
+      { word: "Robe ", img: IMAGES.robe, sound: AUDIOS.robe },
+      { word: "Bottes ", img: IMAGES.bottes, sound: AUDIOS.bottes },
+      { word: "Pyjama ", img: IMAGES.pyjama, sound: AUDIOS.pyjama },
+      { word: "Foulard ", img: IMAGES.foulard, sound: AUDIOS.foulard },
+      { word: "Veste ", img: IMAGES.veste, sound: AUDIOS.veste },
+      { word: "Bonnet ", img: IMAGES.bonnet, sound: AUDIOS.bonnet },
+      {
+        word: "Espadrilles",
+        img: IMAGES.espadrilles,
+        sound: AUDIOS.espadrilles,
+      },
+    ],
+  },
+  {
+    category: "sport",
+
+    slug: "Sports et loisirs",
+    data: [
+      { word: "Ballon", img: IMAGES.ballon, sound: AUDIOS.ballon },
+      { word: "Course", img: IMAGES.course, sound: AUDIOS.course },
+      { word: "Toupie", img: IMAGES.toupie, sound: AUDIOS.toupie },
+      { word: "Vélo", img: IMAGES.velo, sound: AUDIOS.velo },
+      { word: "Poupée", img: IMAGES.poupee, sound: AUDIOS.poupee },
+      { word: "Bille", img: IMAGES.bille, sound: AUDIOS.bille },
+      { word: "Cache-cache", img: IMAGES.cache, sound: AUDIOS.cache },
+      { word: "Toboggan", img: IMAGES.toboggan, sound: AUDIOS.toboggan },
+      { word: "Marelle", img: IMAGES.marelle, sound: AUDIOS.marelle },
+      {
+        word: "Patins à roulettes",
+        img: IMAGES.patins,
+        sound: AUDIOS.patins,
+      },
+      { word: "Musique", img: IMAGES.musique, sound: AUDIOS.musique },
+      { word: "Tennis", img: IMAGES.tennis, sound: AUDIOS.tennis },
+      { word: "Coloriage", img: IMAGES.coloriage, sound: AUDIOS.coloriage },
+      { word: "Théâtre", img: IMAGES.theatre, sound: AUDIOS.theatre },
+      { word: "Échecs", img: IMAGES.echecs, sound: AUDIOS.echecs },
+      { word: "Karaté", img: IMAGES.karate, sound: AUDIOS.karate },
+      { word: "Golf", img: IMAGES.golf, sound: AUDIOS.golf },
+      { word: "Cirque", img: IMAGES.cirque, sound: AUDIOS.cirque },
+      { word: "Gant", img: IMAGES.gant, sound: AUDIOS.gant },
+      { word: "Ballon", img: IMAGES.ballon, sound: AUDIOS.ballon },
+      { word: "Piscine", img: IMAGES.piscine, sound: AUDIOS.piscine },
+      { word: "Domino", img: IMAGES.domino, sound: AUDIOS.domino },
+      {
+        word: "Trottinette",
+        img: IMAGES.trottinette,
+        sound: AUDIOS.trottinette,
+      },
+      { word: "Peinture", img: IMAGES.peinture, sound: AUDIOS.peinture },
+      { word: "Lego", img: IMAGES.lego, sound: AUDIOS.lego },
+      { word: "Raquette", img: IMAGES.raquette, sound: AUDIOS.raquette },
+      { word: "Piano", img: IMAGES.piano, sound: AUDIOS.piano },
+      {
+        word: "Balançoire",
+        img: IMAGES.balancoire,
+        sound: AUDIOS.balancoire,
+      },
+      { word: "Masque", img: IMAGES.masque, sound: AUDIOS.masque },
+      { word: "Jumelles", img: IMAGES.jumelles, sound: AUDIOS.jumelles },
+      { word: "Magicien", img: IMAGES.magicien, sound: AUDIOS.magicien },
+      { word: "Gymnase", img: IMAGES.gymnase, sound: AUDIOS.gymnase },
+      { word: "Boxeur", img: IMAGES.boxeur, sound: AUDIOS.boxeur },
+      { word: "Football", img: IMAGES.football, sound: AUDIOS.football },
+      { word: "Tangram", img: IMAGES.tangram, sound: AUDIOS.tangram },
+      { word: "Rubix", img: IMAGES.rubix, sound: AUDIOS.rubix },
+      { word: "Ping-pong", img: IMAGES.ping, sound: AUDIOS.ping },
+      { word: "Ski", img: IMAGES.ski, sound: AUDIOS.ski },
+      { word: "Corde", img: IMAGES.corde, sound: AUDIOS.corde },
+      { word: "Cinéma", img: IMAGES.cinema, sound: AUDIOS.cinema },
+    ],
+  },
 ];
-
-// const shuffleArr = (arr) => {
-
-//   for (let i = arr.length - 1; i > 0; i--) {
-//     const j = Math.floor(Math.random() * (i + 1))
-//     const temp = arr[i];
-//     arr[i] = arr[j];
-//     arr[j] = temp;
-//     // const f = arr[2]
-
-//     // arr[2] = arr[1]
-//     // arr[1] = f
-//     // [arr[i], arr[j]] = [arr[j], arr[i]]
-//     // console.log("J:  ", f);
-//   }
-//   // console.log(arr)
-//   return arr
-// }
-
-// const choices = [...data[1].data]
-// const answers = [...data[1].data]
-
-// const i =  Math.floor(Math.random() * answers.length)
-// const answer = answers.splice(i, 1)[0]
-
-// const arr = []
-
-// let jh
-// for (let i = 0; i < 3; i++) {
-//   if (i === 0) jh = [...choices.filter(el => el.word !== answer.word)]
-//   const j =  Math.floor(Math.random() * jh.length)
-
-//   arr.push(jh.splice(j, 1)[0])
-// }
-
-// // arr.push(answer)
-// arr.push(answer)
-// // console.log(answer, "ANWSER")
-// // console.log(arr, "LENGTH1")
-// const newa = shuffleArr([...arr]);
-// console.log(newa)
-// // console.log(newa, "LENGTH2",newa.length)
-
-// // console.log(answer, "dsd",  Math.floor(answer))
 
 export default data;
