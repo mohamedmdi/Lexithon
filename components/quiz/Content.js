@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { Button, MD3Colors, ProgressBar } from "react-native-paper";
+import { Button } from "react-native-paper";
 import useSound from "../../hooks/useSound";
 import { getQuizHandler, decreaseHP } from "../../store/quizSlice";
 import { useDispatch } from "react-redux";
@@ -13,12 +13,10 @@ import failure from "../../assets/audios/failure.mp3";
 import success from "../../assets/audios/success.mp3";
 import { updateTrophy } from "../../store/async-thunks";
 
-const Content = ({ quiz, sbj }) => {
+const Content = ({ quiz, sbj, timer, setTotalAnswers, totalAnswers }) => {
   const [clickedAnswer, setClickedAnswer] = useState(null);
   const [isClicked, setIsClicked] = useState(null);
   const [isCorrect, setIsCorrect] = useState(null);
-  const [totalAnswers, setTotalAnswers] = useState(0);
-  const [timerr, setTimerr] = useState(Date.now());
   const dispatch = useDispatch();
   const playsound = useSound(quiz.answer.sound);
   const navigate = useNavigation();
@@ -54,7 +52,7 @@ const Content = ({ quiz, sbj }) => {
     setIsCorrect(null);
     setIsClicked(null);
     if (quiz.HP === 0) {
-      navigate.navigate("gameover", { sbj, timer: timerr, totalAnswers });
+      navigate.navigate("gameover", { sbj, timer: timer, totalAnswers });
       return;
     }
 
@@ -63,7 +61,7 @@ const Content = ({ quiz, sbj }) => {
         dispatch(increaseTrophy(sbj));
         dispatch(updateTrophy());
       }
-      navigate.navigate("gameover", { sbj, timer: timerr, totalAnswers });
+      navigate.navigate("gameover", { sbj, timer: timer, totalAnswers });
       return;
     }
     dispatch(getQuizHandler());

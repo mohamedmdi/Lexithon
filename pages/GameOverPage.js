@@ -1,5 +1,5 @@
 import { useFocusEffect } from "@react-navigation/native";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import {
   StyleSheet,
   View,
@@ -15,8 +15,11 @@ import f from "../assets/107653-trophy.json";
 import { Image } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Button } from "react-native-paper";
+import trophy from "../assets/trophy.png"
+import panda from "../assets/panda.png"
 
 const GameOver = (props) => {
+  const timer = (Date.now() - props.route.params.timer) / 1000
   useFocusEffect(
     useCallback(() => {
       const handleBackPress = () => {
@@ -35,35 +38,34 @@ const GameOver = (props) => {
     }, [])
   );
 
+
+
   return (
     <Body statusBarColor="#f5f3ff">
-      <Text style={styles.h1}>Congratulations ;)</Text>
-      <Text style={styles.h1}>Lesson Complete</Text>
+      <Text style={styles.h1}>{props.route.params.totalAnswers === 3 ? "Congratulations ;)" : "HardLuck ;("} </Text>
+      <Text style={styles.h1}>{props.route.params.totalAnswers === 3 ? "Lesson Complete" : "Lesson InComplete"}</Text>
       <View
         style={{
-          backgroundColor: "green",
-          flex: 1,
           alignItems: "center",
           justifyContent: "center",
+          marginTop: 26,
+          marginBottom: 26,
         }}
       >
-        {/* <AnimatedLottieView
-          source={require("../assets/38169-losing-ballon.json")}
-          autoPlay
-        /> */}
+       <Image style={{resizeMode: "contain", width: 280, height: 280}} source={props.route.params.totalAnswers === 3 ? trophy : panda}></Image>
       </View>
       <View style={styles.stats}>
         <View style={styles.containerStat}>
           <View style={styles.con}>
-            <Ionicons name="infinite" size={24} color="white" />
+            <Ionicons name="hourglass" size={24} color="white" />
           </View>
           <Text style={styles.stat}>
-            {(Date.now() - props.route.params.timer) / 1000} sec
+          {`${Math.trunc(timer / 60)}`.padStart(2, 0)}:{`${Math.trunc(timer % 60)}`.padStart(2, 0)} {Math.trunc(timer / 60) === 0 ? "sec" : "min"}
           </Text>
         </View>
         <View style={styles.containerStat}>
           <View style={styles.con}>
-            <Ionicons name="hourglass" size={24} color="white" />
+            <Ionicons name="infinite" size={24} color="white" />
           </View>
           <Text style={styles.stat}>{props.route.params.totalAnswers}/10</Text>
         </View>
@@ -78,14 +80,12 @@ const GameOver = (props) => {
       >
         <Button
           style={{
-            backgroundColor: "#7c3aed",
-            backgroundColor: "#7c3aed",
             borderBottomWidth: 4,
             borderColor: "#6d28d9",
             color: "#6d28d9",
             flex: 1,
           }}
-          mode="contained"
+          mode="outlined"
           onPress={() => props.navigation.navigate("home")}
         >
           Return Home{" "}
@@ -130,7 +130,8 @@ const styles = StyleSheet.create({
   },
 
   stats: {
-    gap: 10,
+    gap: 20,
+    marginBottom: 20,
   },
 
   containerStat: {

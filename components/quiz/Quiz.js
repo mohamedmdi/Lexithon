@@ -11,14 +11,17 @@ import { useState } from "react";
 
 const Quiz = (props) => {
   const quiz = useSelector((state) => state.quiz);
+  const [timer, setTimerr] = useState(Date.now());
+  const [totalAnswers, setTotalAnswers] = useState(0);
 
   const dispatch = useDispatch();
-  console.log(props.route.params.id);
 
   useFocusEffect(
     useCallback(() => {
       dispatch(init({ sbj: props.route.params.id }));
       dispatch(getQuizHandler());
+      setTimerr(Date.now());
+      setTotalAnswers(0);
     }, [init, getQuizHandler])
   );
 
@@ -28,7 +31,13 @@ const Quiz = (props) => {
         {!quiz.answer ? (
           <LoadingContent />
         ) : (
-          <Content quiz={quiz} sbj={props.route.params.id} />
+          <Content
+            quiz={quiz}
+            sbj={props.route.params.id}
+            timer={timer}
+            setTotalAnswers={setTotalAnswers}
+            totalAnswers={totalAnswers}
+          />
         )}
       </Body>
     </>

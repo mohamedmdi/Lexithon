@@ -16,8 +16,8 @@ import trophyImg from "../../assets/award.png";
 
 const Subject = (props) => {
   const navigation = useNavigation();
-  const { trophy } = useSelector((state) => state.user);
-
+  const {trophy} = useSelector((state) => state.user);
+  console.log(trophy)
   return (
     <TouchableOpacity
       style={styles.container}
