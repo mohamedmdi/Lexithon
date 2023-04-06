@@ -43,8 +43,7 @@ const Gender = (props) => {
   useFocusEffect(
     useCallback(() => {
       if (!gender) return;
-
-      props.setGender(gender);
+      if (props.setGender) props.setGender(gender);
     }, [gender])
   );
 

@@ -13,7 +13,7 @@ import {
 import { TextInput, Button } from "react-native-paper";
 import DropDown from "./DropDown";
 import Gender from "./Gender";
-import storeData from "../../util/storeData";
+import storeData from "../../utils/storeData";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { useEffect } from "react";
 import { useCallback } from "react";
@@ -21,7 +21,9 @@ import { useCallback } from "react";
 const SignUp = (props) => {
   const [text, setText] = useState("");
   const navigation = useNavigation();
-  const { grade, trophy, gender } = useSelector((state) => state.user);
+  const { trophy } = useSelector((state) => state.user);
+  const [gender, setGender] = useState();
+  const [grade, setGrade] = useState();
 
   useFocusEffect(
     useCallback(() => {
@@ -45,7 +47,7 @@ const SignUp = (props) => {
       <Text style={styles.h1}>Bienvenue au Lexithon</Text>
       <View style={styles.form}>
         <View>
-          <Gender />
+          <Gender setGender={setGender}/>
           <TextInput
             mode="outlined"
             label="Name"
@@ -54,7 +56,7 @@ const SignUp = (props) => {
             style={{ backgroundColor: "white" }}
           />
         </View>
-        <DropDown />
+        <DropDown setGrade={setGrade}/>
       </View>
       <Button
         style={{ backgroundColor: "#7c3aed", zIndex: -1 }}

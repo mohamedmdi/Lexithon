@@ -31,7 +31,7 @@ const Avatar = ({ gender, clickable = true }) => {
 
   return (
     <TouchableOpacity
-      onPress={() => navigation.navigate("setting")}
+      onPress={() => navigation.navigate("profile")}
       style={{
         borderColor: "black",
         borderWidth: 1,

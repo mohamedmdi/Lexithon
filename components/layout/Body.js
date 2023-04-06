@@ -25,7 +25,6 @@ const styles = StyleSheet.create({
 
   main: {
     display: "flex",
-    height: "100%",
     gap: 20,
     paddingVertical: 25,
     paddingHorizontal: 12,

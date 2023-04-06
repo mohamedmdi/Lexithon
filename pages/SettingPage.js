@@ -1,72 +1,53 @@
-import { ScrollView, StyleSheet, Text, View } from "react-native";
-import Body from "../components/layout/Body";
+import { ListItem, Switch, Text } from "@react-native-material/core";
 import Setting from "../components/setting/Setting";
+import { useEffect, useState } from "react";
+import * as Device from "expo-device";
+import * as Notifications from "expo-notifications";
 import { useDispatch, useSelector } from "react-redux";
-import NavBar from "../components/setting/NavBar";
-import { Divider } from "@rneui/base";
-import { useFocusEffect } from "@react-navigation/native";
-import { useCallback, useEffect, useState } from "react";
-import Avatar from "../components/home/Avatar";
-import DropDown from "../components/signup/DropDown";
-import { TextInput } from "@react-native-material/core";
-import Icon from "@expo/vector-icons/MaterialCommunityIcons";
+import { setIsActive } from "../store/notifSlice";
+import usePushNotifications from "../hooks/usePushNotifications";
+import { ScrollView } from "react-native";
 import Profile from "../components/setting/Profile";
-import { addUser } from "../store/userSlice";
-import Gender from "../components/signup/Gender";
-import Achievements from "../components/setting/Achievements";
+import Body from "../components/layout/Body";
+import { Divider } from "@rneui/base";
 import DangerZone from "../components/setting/DangerZone";
 
 const SettingPage = () => {
-  const user = useSelector((state) => state.user);
-  const [name, setName] = useState("");
-  const [gender, setGender] = useState(null);
-  const [grade, setGrade] = useState(null);
-
   const dispatch = useDispatch();
-  useEffect(() => {
-    setName(user.username);
-    setGender(user.gender);
-    setGrade(user.grade);
-  }, [user]);
+  const notif = useSelector((state) => state.notif);
 
-  const handleSave = () => {
-    if (!name) return;
-    dispatch(addUser({ username: name, grade: grade, gender: gender }));
+  const handelPress = () => {
+    dispatch(setIsActive());
   };
   return (
-    <Body>
-      <NavBar handleSave={handleSave} />
-      <ScrollView>
-        {/* <Setting></Setting> */}
-        <Divider style={{ marginBottom: 30 }} />
-        <Profile></Profile>
-        <View style={styles.form}>
-          <TextInput
-            label="User Name"
-            variant="outlined"
-            leading={(props) => (
-              <Icon name="account" {...props} onChangeText={setName} />
-            )}
-            value={name}
-            onChangeText={setName}
-          />
-          <DropDown val={grade} setGrade={setGrade} />
-          <Gender gender={gender} setGender={setGender} />
-        </View>
-        <Divider style={{ marginBottom: 30 }} />
-        <Achievements />
-        <Divider style={{ marginBottom: 30 }} />
-        <DangerZone />
-      </ScrollView>
-    </Body>
+    <>
+      {/* <Setting></Setting> */}
+      <>
+        <Body>
+          <Profile></Profile>
+          <ScrollView>
+            <Text variant="h6" style={{ marginBottom: 18 }}>
+              General Settings
+            </Text>
+            {/* <Divider style={{ marginBottom: 30 }} /> */}
+            <ListItem
+              onPress={() => handelPress()}
+              title="Notification"
+              secondaryText="Daily Exercice Reminder"
+              trailing={
+                <Switch
+                  value={notif.isActive}
+                  onValueChange={() => handelPress()}
+                />
+              }
+            ></ListItem>
+            <Divider style={{ marginBottom: 30 }} />
+            <DangerZone />
+          </ScrollView>
+        </Body>
+      </>
+    </>
   );
 };
-
-const styles = StyleSheet.create({
-  form: {
-    marginBottom: 20,
-    gap: 15,
-  },
-});
 
 export default SettingPage;

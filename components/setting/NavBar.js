@@ -7,40 +7,14 @@ import { useDispatch, useSelector } from "react-redux";
 
 const NavBar = (props) => {
   const navigation = useNavigation();
-  const dispatch = useDispatch();
-  const { updatedUser, username, grade, gender } = useSelector(
-    (state) => state.user
-  );
 
   const editInfoHandler = () => {
-    // if (updatedUser.username && updatedUser.username !== username) {
-    //   dispatch(updateUserInfo(updatedUser));
-    //   navigation.navigate("home");
-
-    //   return;
-    // }
-
-    // if (updatedUser.gender && updatedUser.gender !== gender) {
-    //   dispatch(updateUserInfo(updatedUser));
-    //   navigation.navigate("home");
-
-    //   return;
-    // }
-
-    // if (updatedUser.grade && updatedUser.grade !== grade) {
-    //   dispatch(updateUserInfo(updatedUser));
-    //   navigation.navigate("home");
-
-    //   return;
-    // }
-    // return;
-
     props.handleSave();
   };
 
   return (
     <View style={styles.nav}>
-      <TouchableOpacity onPress={() => navigation.navigate("home")}>
+      <TouchableOpacity onPress={() => navigation.pop()}>
         <Ionicons name="close" size={35} color="#495057" />
       </TouchableOpacity>
       <Text style={styles.p}>Profile</Text>
