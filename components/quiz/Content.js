@@ -1,5 +1,13 @@
-import React, { useState } from "react";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import {
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  Modal,
+  BackHandler,
+} from "react-native";
 import { Button } from "react-native-paper";
 import useSound from "../../hooks/useSound";
 import { getQuizHandler, decreaseHP } from "../../store/quizSlice";
@@ -12,6 +20,7 @@ import { Ionicons } from "@expo/vector-icons";
 import failure from "../../assets/audios/failure.mp3";
 import success from "../../assets/audios/success.mp3";
 import { updateTrophy } from "../../store/async-thunks";
+import { useBlockButtonHandler } from "../../hooks/useBlockBackHandler";
 
 const Content = ({ quiz, sbj, timer, setTotalAnswers, totalAnswers }) => {
   const [clickedAnswer, setClickedAnswer] = useState(null);
@@ -22,6 +31,32 @@ const Content = ({ quiz, sbj, timer, setTotalAnswers, totalAnswers }) => {
   const navigate = useNavigation();
   const playFailureSound = useSound(failure);
   const playSuccessSound = useSound(success);
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const handleExitPress = () => {
+    setModalVisible(true);
+    return true;
+  };
+
+  const handleCancelPress = () => {
+    setModalVisible(false);
+  };
+
+  const handleConfirmPress = () => {
+    console.log("L'utilisateur a confirmé la sortie");
+    setModalVisible(false);
+    navigate.pop();
+  };
+
+  useEffect(() => {
+    BackHandler.addEventListener("hardwareBackPress", handleExitPress);
+
+    return () => {
+      BackHandler.removeEventListener("hardwareBackPress", handleExitPress);
+    };
+  }, []);
+  useBlockButtonHandler(true);
+
 
   const clickedAnswerHandler = (id) => {
     return () => setClickedAnswer(id);
@@ -68,6 +103,37 @@ const Content = ({ quiz, sbj, timer, setTotalAnswers, totalAnswers }) => {
   };
   return (
     <>
+      <Modal
+        animationType="fade"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          console.log("Modal fermée par la fonction onRequestClose");
+          setModalVisible(false);
+        }}
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            <Text style={styles.modalText}>Are you sure you want to exit?</Text>
+            <View
+              style={{ flexDirection: "row", justifyContent: "space-evenly" }}
+            >
+              <TouchableOpacity
+                style={styles.modalButton}
+                onPress={handleCancelPress}
+              >
+                <Text style={styles.modalButtonText}>Cancel</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.modalButton}
+                onPress={handleConfirmPress}
+              >
+                <Text style={styles.modalButtonText}>Confirm</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
       <UpperBar quiz={quiz} />
       <View style={styles.header}>
         <TouchableOpacity onPress={playsound} style={styles.imgContainer}>
@@ -76,6 +142,9 @@ const Content = ({ quiz, sbj, timer, setTotalAnswers, totalAnswers }) => {
         <Text onPress={playsound} style={styles.word}>
           {quiz.answer.word}
         </Text>
+        <TouchableOpacity style={styles.exit} onPress={handleExitPress}>
+          <Ionicons name="close" size={30} color="#f5f3ff" />
+        </TouchableOpacity>
       </View>
       <View style={styles.body}>
         {quiz.results.map((result, i) => (
@@ -134,6 +203,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     paddingVertical: 7,
   },
+  exit: {
+    backgroundColor: "#7c3aed",
+    borderBottomWidth: 4,
+    borderColor: "#6d28d9",
+    borderRadius: 15,
+    paddingHorizontal: 8,
+    paddingVertical: 7,
+  },
 
   body: {
     flex: 1,
@@ -165,6 +242,7 @@ const styles = StyleSheet.create({
 
   word: {
     paddingBottom: 2,
+    marginRight: 170,
     borderBottomWidth: 2,
     borderColor: "#7c3aed",
     borderStyle: "dotted",
@@ -172,5 +250,37 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     color: "#7c3aed",
     alignSelf: "center",
+  },
+  //-------------------------------------
+  modalContainer: {
+    flex: 1,
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "column",
+  },
+  modalContent: {
+    backgroundColor: "#fff",
+    padding: 20,
+    borderRadius: 10,
+  },
+  modalText: {
+    fontSize: 16,
+    marginBottom: 10,
+    textAlign: "center",
+  },
+  modalButton: {
+    padding: 5,
+    borderRadius: 5,
+    backgroundColor: "#7c3aed",
+    backgroundColor: "#7c3aed",
+    borderBottomWidth: 4,
+    borderColor: "#6d28d9",
+  },
+  modalButtonText: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold",
+    textAlign: "center",
   },
 });

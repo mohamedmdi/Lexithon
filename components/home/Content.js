@@ -28,7 +28,6 @@ const Content = ({ user }) => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
-
   return (
     <>
       <Header user={user}></Header>
