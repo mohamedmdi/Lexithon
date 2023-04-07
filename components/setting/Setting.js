@@ -48,7 +48,9 @@ const Setting = () => {
       <ScrollView>
         {/* <Setting></Setting> */}
         <Divider style={{ marginBottom: 30 }} />
-        <Profile></Profile>
+        <View style={{ marginBottom: 30 }}>
+          <Profile></Profile>
+        </View>
         <View style={styles.form}>
           <TextInput
             label="User Name"

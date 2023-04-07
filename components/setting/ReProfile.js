@@ -5,45 +5,53 @@ import { useSelector } from "react-redux";
 import { Ionicons } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
+import { Button } from "react-native-paper";
 
-const Profile = ({ edit }) => {
+const ReProfile = ({ edit }) => {
   const { gender, grade, username } = useSelector((state) => state.user);
   const navigation = useNavigation();
 
   return (
     <View
       style={{
-        flexDirection: "row",
-        gap: 15,
+        flexDirection: "column",
         alignItems: "center",
-        justifyContent: "space-between",
+        justifyContent: "space-evenly",
         // backgroundColor: "red",
         flex: 1,
-        marginHorizontal: 10,
+        gap : 20,
+        padding: 15
       }}
     >
       <View
         style={{
-          flexDirection: "row",
-          gap: 15,
+          flexDirection: "column",
+          gap: 5,
+          // alignItems: "center"
         }}
       >
-        <Avatar gender={gender} clickable={true} imgSize={50}></Avatar>
-        <View style={{ justifyContent: "space-around" }}>
+        <Avatar gender={gender} clickable={true} imgSize={100}></Avatar>
+        <View style={{ justifyContent: "space-around", alignItems: "center"}}>
           <Text style={styles.name}>{username}</Text>
           <Text style={styles.grade}>{`${grade}`}</Text>
         </View>
       </View>
       {edit && (
-        <TouchableOpacity onPress={() => navigation.navigate("profile")}>
-          <FontAwesome5 name="user-edit" size={24} color="#7c3aed" />
-        </TouchableOpacity>
+        <Button
+          mode="outlined"
+          onPress={() => navigation.navigate("profile")}
+        >
+          Edit Profile
+        </Button>
+        // <TouchableOpacity onPress={() => navigation.navigate("profile")}>
+        //   <FontAwesome5 name="user-edit" size={24} color="#7c3aed" />
+        // </TouchableOpacity>
       )}
     </View>
   );
 };
 
-export default Profile;
+export default ReProfile;
 
 const styles = StyleSheet.create({
   name: {

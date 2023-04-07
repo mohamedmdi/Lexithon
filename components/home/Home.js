@@ -11,19 +11,10 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-import * as Device from "expo-device";
-import * as Notifications from "expo-notifications";
 import { useRef } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { Button } from "@rneui/base";
-import {
-  loadDataFromStorage,
-  setNotificationListener,
-  setResponseListener,
-} from "../../store/notifSlice";
-import useXd from "../../hooks/useXd";
-import usePushNotifications from "../../hooks/usePushNotifications";
+
 
 const Home = () => {
   const user = useSelector((state) => state.user);
@@ -36,7 +27,6 @@ const Home = () => {
     dispatch(loadDataFromStorage());
   }, []);
 
-  usePushNotifications();
 
   useFocusEffect(() => {
     if (user.username) return;

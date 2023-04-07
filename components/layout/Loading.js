@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 
 import getData from "../../utils/getData";
 import Body from "./Body";
-import { loadDataFromStorage } from "../../store/notifSlice";
 
 const Loading = (props) => {
   const user = useSelector((state) => state.user);
@@ -15,7 +14,6 @@ const Loading = (props) => {
   useFocusEffect(() => {
     if (user.username) return;
     (async () => {
-      dispatch(loadDataFromStorage());
       const dataa = await getData();
       dataa ? navigation.navigate("home") : navigation.navigate("signup");
     })();

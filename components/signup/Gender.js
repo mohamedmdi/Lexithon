@@ -30,22 +30,20 @@ const OneGender = (props) => {
 };
 
 const Gender = (props) => {
-  const [gender, setGender] = useState(null);
+  // const [gender, setGender] = useState(null);
   const [highlighted, setHighlighted] = useState(props.gender || null);
 
   const changeGenderHandler = (val) => {
     return () => {
-      setGender(val);
+      // setGender(val);
+      props.setGender(val);
       setHighlighted(val);
     };
   };
+  useEffect(() => {
+    setHighlighted(props.gender);
+  }, [props.gender]);
 
-  useFocusEffect(
-    useCallback(() => {
-      if (!gender) return;
-      if (props.setGender) props.setGender(gender);
-    }, [gender])
-  );
 
   return (
     <View style={styles.genderContainer}>
