@@ -18,9 +18,12 @@ import { increaseTrophy } from "../../store/userSlice";
 import UpperBar from "./UpperBar";
 import { Ionicons } from "@expo/vector-icons";
 import failure from "../../assets/audios/failure.mp3";
-import success from "../../assets/audios/success.mp3";
+import success from "../../assets/audios/success_cut.mp3";
 import { updateTrophy } from "../../store/async-thunks";
 import { useBlockButtonHandler } from "../../hooks/useBlockBackHandler";
+import heart from "../../assets/imgs/filledHeart.png";
+import brokenHeart from "../../assets/imgs/brokenHeart.png";
+import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 
 const Content = ({ quiz, sbj, timer, setTotalAnswers, totalAnswers }) => {
   const [clickedAnswer, setClickedAnswer] = useState(null);
@@ -55,27 +58,23 @@ const Content = ({ quiz, sbj, timer, setTotalAnswers, totalAnswers }) => {
       BackHandler.removeEventListener("hardwareBackPress", handleExitPress);
     };
   }, []);
-  useBlockButtonHandler(true);
-
+  // useBlockButtonHandler(true);
 
   const clickedAnswerHandler = (id) => {
     return () => setClickedAnswer(id);
   };
 
   const checkAnswerHandler = () => {
+    if (isClicked) return;
     if (!clickedAnswer) return;
 
     if (clickedAnswer !== quiz.answer.word) {
-      console.log(clickedAnswer);
-      console.log("The Answer Is Wrong");
-
       playFailureSound();
       setIsCorrect(false);
       setIsClicked(true);
       dispatch(decreaseHP());
       return;
     }
-
     playSuccessSound();
     setTotalAnswers((prev) => (prev += 1));
     setIsCorrect(true);
@@ -119,8 +118,8 @@ const Content = ({ quiz, sbj, timer, setTotalAnswers, totalAnswers }) => {
               style={{ flexDirection: "row", justifyContent: "space-evenly" }}
             >
               <TouchableOpacity
-                style={styles.modalButton}
                 onPress={handleCancelPress}
+                style={styles.modalButton}
               >
                 <Text style={styles.modalButtonText}>Cancel</Text>
               </TouchableOpacity>
@@ -134,7 +133,23 @@ const Content = ({ quiz, sbj, timer, setTotalAnswers, totalAnswers }) => {
           </View>
         </View>
       </Modal>
-      <UpperBar quiz={quiz} />
+
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: 5,
+        }}
+      >
+        <View style={{ flex: 1 }}>
+          <UpperBar quiz={quiz} />
+        </View>
+        <TouchableOpacity style={styles.exit} onPress={handleExitPress}>
+          <Ionicons name="close" size={35} color="#666" />
+        </TouchableOpacity>
+      </View>
+
       <View style={styles.header}>
         <TouchableOpacity onPress={playsound} style={styles.imgContainer}>
           <Ionicons name="volume-medium" size={30} color="#f5f3ff" />
@@ -142,9 +157,15 @@ const Content = ({ quiz, sbj, timer, setTotalAnswers, totalAnswers }) => {
         <Text onPress={playsound} style={styles.word}>
           {quiz.answer.word}
         </Text>
-        <TouchableOpacity style={styles.exit} onPress={handleExitPress}>
-          <Ionicons name="close" size={30} color="#f5f3ff" />
-        </TouchableOpacity>
+        <View style={{ display: "flex", flexDirection: "row", gap: 2 }}>
+          {[...Array(quiz.initialHP).keys()].map((el, i) => (
+            <Image
+              style={{ width: 30, height: 30, resizeMode: "contain" }}
+              key={i}
+              source={i + 1 <= quiz.HP ? heart : brokenHeart}
+            ></Image>
+          ))}
+        </View>
       </View>
       <View style={styles.body}>
         {quiz.results.map((result, i) => (
@@ -162,9 +183,9 @@ const Content = ({ quiz, sbj, timer, setTotalAnswers, totalAnswers }) => {
           </TouchableOpacity>
         ))}
       </View>
+
       <Button
         style={{
-          backgroundColor: "#7c3aed",
           backgroundColor: "#7c3aed",
           borderBottomWidth: 4,
           borderColor: "#6d28d9",
@@ -188,11 +209,12 @@ export default Content;
 
 const styles = StyleSheet.create({
   header: {
+    width: "100%",
     alignSelf: "flex-start",
     display: "flex",
     flexDirection: "row",
     gap: 15,
-    alignItems: "flex-start",
+    alignItems: "center",
   },
 
   imgContainer: {
@@ -204,12 +226,8 @@ const styles = StyleSheet.create({
     paddingVertical: 7,
   },
   exit: {
-    backgroundColor: "#7c3aed",
-    borderBottomWidth: 4,
-    borderColor: "#6d28d9",
-    borderRadius: 15,
-    paddingHorizontal: 8,
-    paddingVertical: 7,
+    paddingHorizontal: 5,
+    paddingVertical: 5,
   },
 
   body: {
@@ -242,7 +260,6 @@ const styles = StyleSheet.create({
 
   word: {
     paddingBottom: 2,
-    marginRight: 170,
     borderBottomWidth: 2,
     borderColor: "#7c3aed",
     borderStyle: "dotted",
@@ -250,8 +267,9 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     color: "#7c3aed",
     alignSelf: "center",
+    marginRight: "auto",
   },
-  //-------------------------------------
+  //------------------Modal Style-------------------
   modalContainer: {
     flex: 1,
     backgroundColor: "rgba(0, 0, 0, 0.5)",

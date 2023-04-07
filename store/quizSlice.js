@@ -20,7 +20,7 @@ const initialState = {
   isWrong: false,
   results: [],
   currentIteration: 0,
-  initialHP: 2,
+  initialHP: 3,
 };
 
 export const quizSlice = createSlice({
