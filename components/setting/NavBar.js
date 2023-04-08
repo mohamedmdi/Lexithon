@@ -4,45 +4,17 @@ import React, { useEffect } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { updateUserInfo } from "../../store/userSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { updateUserInfoStorage } from "../../store/async-thunks";
 
 const NavBar = (props) => {
   const navigation = useNavigation();
-  const dispatch = useDispatch();
-  const { updatedUser, username, grade, gender } = useSelector(
-    (state) => state.user
-  );
 
   const editInfoHandler = () => {
-    if (updatedUser.username && updatedUser.username !== username) {
-      dispatch(updateUserInfo(updatedUser));
-      dispatch(updateUserInfoStorage());
-      navigation.navigate("home");
-
-      return;
-    }
-
-    if (updatedUser.gender && updatedUser.gender !== gender) {
-      dispatch(updateUserInfo(updatedUser));
-      dispatch(updateUserInfoStorage());
-      navigation.navigate("home");
-
-      return;
-    }
-
-    if (updatedUser.grade && updatedUser.grade !== grade) {
-      dispatch(updateUserInfo(updatedUser));
-      dispatch(updateUserInfoStorage());
-      navigation.navigate("home");
-
-      return;
-    }
-    return;
+    props.handleSave();
   };
 
   return (
     <View style={styles.nav}>
-      <TouchableOpacity onPress={() => navigation.navigate("home")}>
+      <TouchableOpacity onPress={() => navigation.pop()}>
         <Ionicons name="close" size={35} color="#495057" />
       </TouchableOpacity>
       <Text style={styles.p}>Profile</Text>

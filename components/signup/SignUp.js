@@ -1,17 +1,30 @@
-import { useState, useCallback } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableWithoutFeedback,
+  Keyboard,
+  TouchableOpacity,
+  Touchable,
+  Pressable,
+} from "react-native";
+
 import { TextInput, Button } from "react-native-paper";
 import DropDown from "./DropDown";
 import Gender from "./Gender";
-import storeData from "../../util/storeData";
+
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { SelectList } from "react-native-dropdown-select-list";
+import storeData from "../../util/storeData";
 
 const SignUp = (props) => {
   const [text, setText] = useState("");
   const [gender, setGender] = useState(null);
   const [grade, setGrade] = useState(null);
   const navigation = useNavigation();
+  const { trophy } = useSelector((state) => state.user);
 
   const addGender = (val) => setGender(val);
   const addGrade = (val) => setGrade(val);
@@ -23,37 +36,30 @@ const SignUp = (props) => {
   );
 
   const submitHandler = async () => {
-    if (!text || !grade || !gender) return;
+    if (text && grade && gender) {
+      // await AsyncStorage.clear()
+      await storeData({ username: text, grade, trophy, gender });
 
-    // await AsyncStorage.clear()
-    await storeData({
-      username: text,
-      grade,
-      gender,
-      trophy: {
-        school: 0,
-        home: 0,
-        kitchen: 0,
-        animals: 0,
-        body: 0,
-        sport: 0,
-      },
-    });
+      // Go Next Page After Creating an acc!
 
-    // Go Next Page After Creating an acc!
-    navigation.navigate("home");
+      navigation.navigate("home");
+    }
+    return true;
   };
   return (
     <>
-      <Text style={styles.h1}>Welcome To The Game</Text>
+      <Text style={styles.h1}>Bienvenue au Lexithon</Text>
       <View style={styles.form}>
-        <Gender addGender={addGender} />
-        <TextInput
-          mode="outlined"
-          label="Name"
-          placeholder="Your Name"
-          onChangeText={setText}
-        />
+        <View>
+          <Gender setGender={setGender} />
+          <TextInput
+            mode="outlined"
+            label="Name"
+            placeholder="Your Name"
+            onChangeText={setText}
+            style={{ backgroundColor: "white" }}
+          />
+        </View>
         <DropDown addGrade={addGrade} />
       </View>
       <Button
@@ -81,6 +87,5 @@ const styles = StyleSheet.create({
     fontSize: 24,
     textAlign: "center",
     color: "#7c3aed",
-    marginBottom: 30,
   },
 });

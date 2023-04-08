@@ -8,6 +8,7 @@ import Loading from "./components/layout/Loading";
 import Quiz from "./components/quiz/Quiz";
 import GameOverPage from "./pages/GameOverPage";
 import SettingPage from "./pages/SettingPage";
+import Setting from "./components/setting/Setting";
 
 const Stack = createNativeStackNavigator();
 
@@ -20,6 +21,7 @@ const App = () => {
           <Stack.Screen name="signup" component={SignUpPage} />
           <Stack.Screen name="home" component={Home} />
           <Stack.Screen name="setting" component={SettingPage} />
+          <Stack.Screen name="profile" component={Setting} />
           <Stack.Screen name="quiz" component={Quiz} />
           <Stack.Screen name="gameover" component={GameOverPage} />
         </Stack.Navigator>

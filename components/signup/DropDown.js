@@ -23,18 +23,11 @@ const DropDown = (props) => {
       setSelected={(val) => setValue(val)}
       data={items}
       search={false}
-      placeholder="Selec Your Grade"
-      defaultOption={items.find((el) => el.key === props.val) || null}
+      save="value"
+      placeholder={props.val || "Select Grade"}
+      boxStyles={{ backgroundColor: "white" }}
+      dropdownStyles={{ backgroundColor: "white" }}
     />
-    // <DropDownPicker
-    //   placeholder="Select Your Grade"
-    //   open={open}
-    //   value={value || props.val}
-    //   items={items}
-    //   setOpen={setOpen}
-    //   setValue={setValue}
-    //   setItems={setItems}
-    // />
   );
 };
 

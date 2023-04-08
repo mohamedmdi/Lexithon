@@ -170,7 +170,7 @@ const data = [
     slug: "Animaux",
     data: [
       { word: "Oiseau", img: IMAGES.oiseau, sound: AUDIOS.oiseau },
-      { word: "Chat Mouche", img: IMAGES.chat, sound: AUDIOS.chat },
+      { word: "Chat", img: IMAGES.chat, sound: AUDIOS.chat },
       { word: "Souris", img: IMAGES.souris, sound: AUDIOS.souris },
       { word: "Escargot", img: IMAGES.escargot, sound: AUDIOS.escargot },
       { word: "Chien", img: IMAGES.chien, sound: AUDIOS.chien },

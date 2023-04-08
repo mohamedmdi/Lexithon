@@ -16,14 +16,15 @@ import trophyImg from "../../assets/award.png";
 
 const Subject = (props) => {
   const navigation = useNavigation();
-  
+
   const { trophy } = useSelector((state) => state.user);
-  console.log("sbj", trophy);
-  
   return (
     <TouchableOpacity
       style={styles.container}
-      onPress={() => navigation.navigate("quiz", { id: props.slug })}
+      onPress={() =>
+        // console.log(trophy[props.slug])
+        navigation.navigate("quiz", { id: props.slug })
+      }
     >
       <View
         style={{
@@ -59,7 +60,6 @@ const styles = StyleSheet.create({
     padding: hp("1%"),
     width: "100%",
     height: hp("15%"),
-
     borderRadius: 8,
     borderColor: "#7c3aed",
     borderWidth: 1,

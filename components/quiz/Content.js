@@ -11,10 +11,10 @@ import {
 import { Button } from "react-native-paper";
 import useSound from "../../hooks/useSound";
 import { getQuizHandler, decreaseHP } from "../../store/quizSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 import AnswerStateModal from "./AnswerStateModal";
-import { increaseTrophy } from "../../store/userSlice";
+import { increaseTrophy, updateTrophies } from "../../store/userSlice";
 import UpperBar from "./UpperBar";
 import { Ionicons } from "@expo/vector-icons";
 import failure from "../../assets/audios/failure.mp3";

@@ -3,7 +3,7 @@ import boy from "../../assets/boy.png";
 import girl from "../../assets/girl.png";
 import { useNavigation } from "@react-navigation/native";
 
-const Avatar = ({ gender, clickable = true }) => {
+const Avatar = ({ gender, clickable = true, imgSize }) => {
   const navigation = useNavigation();
 
   if (!clickable)
@@ -31,7 +31,7 @@ const Avatar = ({ gender, clickable = true }) => {
 
   return (
     <TouchableOpacity
-      onPress={() => navigation.navigate("setting")}
+      onPress={() => navigation.navigate("profile")}
       style={{
         borderColor: "black",
         borderWidth: 1,
@@ -40,13 +40,14 @@ const Avatar = ({ gender, clickable = true }) => {
         justifyContent: "center",
         padding: 8,
         backgroundColor: "rgba(124, 58, 237, 0.8)",
+        aspectRatio: 1 / 1,
       }}
     >
       <Image
         source={gender === "male" ? boy : girl}
         style={{
-          width: 45,
-          height: 45,
+          width: imgSize,
+          height: imgSize,
         }}
       ></Image>
     </TouchableOpacity>

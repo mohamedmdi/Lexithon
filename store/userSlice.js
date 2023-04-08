@@ -1,5 +1,14 @@
-import { createSlice } from "@reduxjs/toolkit";
-
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import data from "../data/data";
+export const updateTrophies = createAsyncThunk("user/update", async (state) => {
+  const response = await storeData({
+    username: state.username,
+    grade: state.grade,
+    trophy: state.trophy,
+    gender: state.gender,
+  });
+  return response;
+});
 const initialState = {
   username: null,
   grade: null,
@@ -24,10 +33,10 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     addUser: (state, action) => {
+      console.log();
       state.username = action.payload.username;
       state.grade = action.payload.grade;
       state.gender = action.payload.gender;
-      state.trophy = action.payload.trophy;
     },
 
     clearUser: (state, action) => {
