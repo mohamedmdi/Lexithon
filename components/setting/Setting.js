@@ -48,7 +48,6 @@ const Setting = () => {
       trophy: trophy,
       gender: gender,
     });
-    console.log("READ");
   };
   return (
     <Body>

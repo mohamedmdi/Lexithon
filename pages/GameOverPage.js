@@ -15,11 +15,12 @@ import f from "../assets/107653-trophy.json";
 import { Image } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Button } from "react-native-paper";
-import trophy from "../assets/trophy.png"
-import panda from "../assets/panda.png"
+import trophy from "../assets/trophy.png";
+import panda from "../assets/panda.png";
+import NUMBER_OF_QUIZEZ from "../util/numberOfQuiz";
 
 const GameOver = (props) => {
-  const timer = (Date.now() - props.route.params.timer) / 1000
+  const timer = (Date.now() - props.route.params.timer) / 1000;
   useFocusEffect(
     useCallback(() => {
       const handleBackPress = () => {
@@ -38,12 +39,18 @@ const GameOver = (props) => {
     }, [])
   );
 
-
-
   return (
     <Body statusBarColor="#f5f3ff">
-      <Text style={styles.h1}>{props.route.params.totalAnswers === 3 ? "Congratulations ;)" : "HardLuck ;("} </Text>
-      <Text style={styles.h1}>{props.route.params.totalAnswers === 3 ? "Lesson Complete" : "Lesson InComplete"}</Text>
+      <Text style={styles.h1}>
+        {props.route.params.totalAnswers === NUMBER_OF_QUIZEZ
+          ? "Congratulations ;)"
+          : "HardLuck ;("}{" "}
+      </Text>
+      <Text style={styles.h1}>
+        {props.route.params.totalAnswers === NUMBER_OF_QUIZEZ
+          ? "Lesson Complete"
+          : "Lesson InComplete"}
+      </Text>
       <View
         style={{
           alignItems: "center",
@@ -52,22 +59,33 @@ const GameOver = (props) => {
           marginBottom: 26,
         }}
       >
-       <Image style={{resizeMode: "contain", width: 280, height: 280}} source={props.route.params.totalAnswers === 3 ? trophy : panda}></Image>
+        <Image
+          style={{ resizeMode: "contain", width: 280, height: 280 }}
+          source={
+            props.route.params.totalAnswers === NUMBER_OF_QUIZEZ
+              ? trophy
+              : panda
+          }
+        ></Image>
       </View>
       <View style={styles.stats}>
         <View style={styles.containerStat}>
           <View style={styles.con}>
             <Ionicons name="hourglass" size={24} color="white" />
           </View>
-          <Text style={styles.stat}>
-          {`${Math.trunc(timer / 60)}`.padStart(2, 0)}:{`${Math.trunc(timer % 60)}`.padStart(2, 0)} {Math.trunc(timer / 60) === 0 ? "sec" : "min"}
+          <Text style={{ ...styles.stat, color: "#3b82f6" }}>
+            {`${Math.trunc(timer / 60)}`.padStart(2, 0)}:
+            {`${Math.trunc(timer % 60)}`.padStart(2, 0)}{" "}
+            {Math.trunc(timer / 60) === 0 ? "sec" : "min"}
           </Text>
         </View>
         <View style={styles.containerStat}>
-          <View style={styles.con}>
+          <View style={{ ...styles.con, backgroundColor: "#65a30d" }}>
             <Ionicons name="infinite" size={24} color="white" />
           </View>
-          <Text style={styles.stat}>{props.route.params.totalAnswers}/10</Text>
+          <Text style={{ ...styles.stat, color: "#65a30d" }}>
+            {props.route.params.totalAnswers}/10
+          </Text>
         </View>
       </View>
 

@@ -24,6 +24,7 @@ import { useBlockButtonHandler } from "../../hooks/useBlockBackHandler";
 import heart from "../../assets/imgs/filledHeart.png";
 import brokenHeart from "../../assets/imgs/brokenHeart.png";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
+import NUMBER_OF_QUIZEZ from "../../util/numberOfQuiz";
 
 const Content = ({ quiz, sbj, timer, setTotalAnswers, totalAnswers }) => {
   const [clickedAnswer, setClickedAnswer] = useState(null);
@@ -90,7 +91,7 @@ const Content = ({ quiz, sbj, timer, setTotalAnswers, totalAnswers }) => {
       return;
     }
 
-    if (quiz.currentIteration === 3) {
+    if (quiz.currentIteration === NUMBER_OF_QUIZEZ) {
       if (!quiz.isWrong) {
         dispatch(increaseTrophy(sbj));
         dispatch(updateTrophy());

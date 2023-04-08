@@ -3,6 +3,7 @@ import { Image, StyleSheet, View } from "react-native";
 import { ProgressBar } from "react-native-paper";
 import heart from "../../assets/imgs/filledHeart.png";
 import brokenHeart from "../../assets/imgs/brokenHeart.png";
+import NUMBER_OF_QUIZEZ from "../../util/numberOfQuiz";
 
 const UpperBar = ({ quiz }) => {
   return (
@@ -10,7 +11,7 @@ const UpperBar = ({ quiz }) => {
       <View style={{ gap: 6 }}>
         <ProgressBar
           style={styles.bar}
-          progress={quiz.currentIteration / 3}
+          progress={quiz.currentIteration / NUMBER_OF_QUIZEZ}
           color="#7c3aed"
         />
       </View>

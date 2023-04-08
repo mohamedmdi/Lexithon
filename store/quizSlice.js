@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import data from "../data/data";
+import NUMBER_OF_QUIZEZ from "../util/numberOfQuiz";
 
 const shuffleArr = (arr) => {
   for (let i = arr.length - 1; i > 0; i--) {
@@ -30,7 +31,7 @@ export const quizSlice = createSlice({
     init: (state, action) => {
       const newArr = [];
       let arr = [];
-      for (let i = 0; i < 3; i++) {
+      for (let i = 0; i < NUMBER_OF_QUIZEZ; i++) {
         if (i === 0)
           arr = [...data.find((el) => el.category === action.payload.sbj).data];
         const randomIndex = Math.floor(Math.random() * arr.length);
@@ -52,7 +53,7 @@ export const quizSlice = createSlice({
       state.results = [];
       state.answer = null;
       state.currentIteration = state.currentIteration + 1;
-      if (state.currentIteration > 3) return;
+      if (state.currentIteration > NUMBER_OF_QUIZEZ) return;
 
       state.answer = state.answers.splice(0, 1)[0];
       const choices = [

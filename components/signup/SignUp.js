@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   StyleSheet,
@@ -48,7 +48,7 @@ const SignUp = (props) => {
   };
   return (
     <>
-      <Text style={styles.h1}>Bienvenue au Lexithon</Text>
+      <Text style={styles.h1}>Welcome to Lexithon</Text>
       <View style={styles.form}>
         <View>
           <Gender setGender={setGender} />
