@@ -33,10 +33,10 @@ export const userSlice = createSlice({
   initialState,
   reducers: {
     addUser: (state, action) => {
-      console.log();
       state.username = action.payload.username;
       state.grade = action.payload.grade;
       state.gender = action.payload.gender;
+      state.trophy = action.payload.trophy
     },
 
     clearUser: (state, action) => {
