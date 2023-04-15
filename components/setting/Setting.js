@@ -39,7 +39,7 @@ const Setting = () => {
     )
       return;
 
-    dispatch(addUser({ username: name, grade: grade, gender: gender }));
+    dispatch(addUser({ username: name, grade, gender, trophy }));
     navigation.navigate("setting");
 
     await storeData({

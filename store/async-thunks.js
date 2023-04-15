@@ -22,6 +22,7 @@ export const updateTrophy = () => {
       gender: user.gender,
       trophy: user.trophy,
     });
+    console.log('updateTrophy')
 
     console.log(await getData());
   };

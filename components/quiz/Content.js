@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   Image,
   StyleSheet,
@@ -12,7 +12,11 @@ import { Button } from "react-native-paper";
 import useSound from "../../hooks/useSound";
 import { getQuizHandler, decreaseHP } from "../../store/quizSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigation } from "@react-navigation/native";
+import {
+  useFocusEffect,
+  useIsFocused,
+  useNavigation,
+} from "@react-navigation/native";
 import AnswerStateModal from "./AnswerStateModal";
 import { increaseTrophy, updateTrophies } from "../../store/userSlice";
 import UpperBar from "./UpperBar";
@@ -25,6 +29,7 @@ import heart from "../../assets/imgs/filledHeart.png";
 import brokenHeart from "../../assets/imgs/brokenHeart.png";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import NUMBER_OF_QUIZEZ from "../../util/numberOfQuiz";
+import { AnimatedCircularProgress } from "react-native-circular-progress";
 
 const Content = ({ quiz, sbj, timer, setTotalAnswers, totalAnswers }) => {
   const [clickedAnswer, setClickedAnswer] = useState(null);
@@ -47,10 +52,47 @@ const Content = ({ quiz, sbj, timer, setTotalAnswers, totalAnswers }) => {
   };
 
   const handleConfirmPress = () => {
-    console.log("L'utilisateur a confirmé la sortie");
+    console.log("User confirmed exit");
     setModalVisible(false);
     navigate.pop();
   };
+  //-----------------------------------COUNT--------------------------
+  const COUNT = 10;
+  const isFocused = useIsFocused();
+
+  const [count, setCount] = useState(COUNT);
+
+  const [running, setRunning] = useState(true);
+
+  useEffect(() => {
+    if (isFocused) {
+      setCount(COUNT);
+      setRunning(true);
+    }
+  }, [isFocused]);
+
+  useEffect(() => {
+    if (running) {
+      const interval = setInterval(() => {
+        if (count > 0) {
+          setCount(count - 1);
+        } else {
+          clearInterval(interval);
+          setRunning(false);
+          // navigate.pop();
+          navigate.navigate("gameover", { sbj, timer: timer, totalAnswers });
+        }
+      }, 1000);
+      return () => clearInterval(interval);
+    }
+  }, [count, running, navigate]);
+
+  const resetCount = () => {
+    setCount(COUNT);
+    setRunning(true);
+  };
+
+  //------------------------------------------------------------------
 
   useEffect(() => {
     BackHandler.addEventListener("hardwareBackPress", handleExitPress);
@@ -66,6 +108,7 @@ const Content = ({ quiz, sbj, timer, setTotalAnswers, totalAnswers }) => {
   };
 
   const checkAnswerHandler = () => {
+    setRunning(false);
     if (isClicked) return;
     if (!clickedAnswer) return;
 
@@ -87,6 +130,7 @@ const Content = ({ quiz, sbj, timer, setTotalAnswers, totalAnswers }) => {
     setIsCorrect(null);
     setIsClicked(null);
     if (quiz.HP === 0) {
+      setRunning(false);
       navigate.navigate("gameover", { sbj, timer: timer, totalAnswers });
       return;
     }
@@ -94,11 +138,14 @@ const Content = ({ quiz, sbj, timer, setTotalAnswers, totalAnswers }) => {
     if (quiz.currentIteration === NUMBER_OF_QUIZEZ) {
       if (!quiz.isWrong) {
         dispatch(increaseTrophy(sbj));
+
         dispatch(updateTrophy());
       }
+      setRunning(false);
       navigate.navigate("gameover", { sbj, timer: timer, totalAnswers });
       return;
     }
+    resetCount();
     dispatch(getQuizHandler());
   };
   return (
@@ -108,7 +155,7 @@ const Content = ({ quiz, sbj, timer, setTotalAnswers, totalAnswers }) => {
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => {
-          console.log("Modal fermée par la fonction onRequestClose");
+          console.log("Modal closed by onRequestClose function");
           setModalVisible(false);
         }}
       >
@@ -143,6 +190,17 @@ const Content = ({ quiz, sbj, timer, setTotalAnswers, totalAnswers }) => {
           gap: 5,
         }}
       >
+        <AnimatedCircularProgress
+          size={40}
+          width={8}
+          fill={(count * 100) / COUNT}
+          tintColor="red"
+          backgroundColor="#ccc"
+          tintColorSecondary="#22c55e"
+        >
+          {() => <Text>{count}</Text>}
+        </AnimatedCircularProgress>
+
         <View style={{ flex: 1 }}>
           <UpperBar quiz={quiz} />
         </View>
@@ -226,10 +284,10 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     paddingVertical: 7,
   },
-  exit: {
-    paddingHorizontal: 5,
-    paddingVertical: 5,
-  },
+  // exit: {
+  //   paddingHorizontal: 5,
+  //   paddingVertical: 5,
+  // },
 
   body: {
     flex: 1,
