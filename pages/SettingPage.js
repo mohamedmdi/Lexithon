@@ -49,7 +49,9 @@ const FirstRoute = () => {
 };
 
 const SecondRoute = () => (
-  <View style={{ flex: 1, backgroundColor: "#673ab7" }} />
+  <View style={{ flex: 1, backgroundColor: "#673ab7" }}>
+    <Text>test</Text>
+  </View>
 );
 
 const renderScene = SceneMap({

@@ -71,7 +71,7 @@ const Content = ({ user }) => {
       <ScrollView>
         <View style={styles.subjects}>
           {data.map((sbj, i) => (
-            <Subject key={i} slug={sbj.category} subject={sbj.slug} />
+            <Subject key={i} slug={sbj.category} subject={sbj.slug} trophy={user.trophy}/>
           ))}
         </View>
       </ScrollView>
