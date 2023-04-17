@@ -36,7 +36,7 @@ export const userSlice = createSlice({
       state.username = action.payload.username;
       state.grade = action.payload.grade;
       state.gender = action.payload.gender;
-      state.trophy = action.payload.trophy
+      state.trophy = action.payload.trophy;
     },
 
     clearUser: (state, action) => {

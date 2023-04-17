@@ -18,6 +18,8 @@ const Subject = (props) => {
   const navigation = useNavigation();
 
   const { trophy } = useSelector((state) => state.user);
+  
+  console.log("Sub: ", props.trophy);
   return (
     <TouchableOpacity
       style={styles.container}
@@ -44,7 +46,7 @@ const Subject = (props) => {
         }}
       >
         <Image style={styles.trophy} source={trophyImg}></Image>
-        <Text style={styles.numTrophy}>{trophy[props.slug]}</Text>
+        <Text style={styles.numTrophy}>{props.trophy[props.slug]}</Text>
       </View>
     </TouchableOpacity>
   );
