@@ -5,7 +5,8 @@ const data = [
   {
     category: "school",
     slug: "L'école",
-    iconImg: IMAGES.iconSchool, 
+    iconImg: IMAGES.iconSchool,
+    bgcolor: "#f3cf26",
     data: [
       { word: "Ecole ", img: IMAGES.ecole, sound: AUDIOS.ecole },
       { word: "Classe ", img: IMAGES.classe, sound: AUDIOS.classe },
@@ -65,7 +66,8 @@ const data = [
   {
     category: "home",
     slug: "Maison et famille",
-    iconImg: IMAGES.iconHome, 
+    iconImg: IMAGES.iconHome,
+    bgcolor: "#2f7dd3",
     data: [
       { word: "Maison", img: IMAGES.maison, sound: AUDIOS.maison },
       { word: "Famille", img: IMAGES.famille, sound: AUDIOS.famille },
@@ -116,7 +118,8 @@ const data = [
   {
     category: "kitchen",
     slug: "Cuisine et aliments",
-    iconImg: IMAGES.iconKitchen, 
+    iconImg: IMAGES.iconKitchen,
+    bgcolor: "#21c47b",
     data: [
       { word: "Cuisine", img: IMAGES.cuisine, sound: AUDIOS.cuisine },
       { word: "Robinet", img: IMAGES.robinet, sound: AUDIOS.robinet },
@@ -171,7 +174,8 @@ const data = [
   {
     category: "animals",
     slug: "Animaux",
-    iconImg: IMAGES.iconAnimal, 
+    iconImg: IMAGES.iconAnimal,
+    bgcolor: "#ff7621",
     data: [
       { word: "Oiseau", img: IMAGES.oiseau, sound: AUDIOS.oiseau },
       { word: "Chat", img: IMAGES.chat, sound: AUDIOS.chat },
@@ -225,7 +229,8 @@ const data = [
   {
     category: "body",
     slug: "Corps et habits",
-    iconImg: IMAGES.iconBody, 
+    iconImg: IMAGES.iconBody,
+    bgcolor: "#761cd4",
     data: [
       { word: "Tête", img: IMAGES.tete, sound: AUDIOS.tete },
       { word: "Chemise", img: IMAGES.chemise, sound: AUDIOS.chemise },
@@ -284,7 +289,8 @@ const data = [
   {
     category: "sport",
     slug: "Sports et loisirs",
-    iconImg: IMAGES.iconSport, 
+    iconImg: IMAGES.iconSport,
+    bgcolor: "#d5297f",
     data: [
       { word: "Ballon", img: IMAGES.ballon, sound: AUDIOS.ballon },
       { word: "Course", img: IMAGES.course, sound: AUDIOS.course },

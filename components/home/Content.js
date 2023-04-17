@@ -65,13 +65,20 @@ const Content = ({ user }) => {
           </View>
         </View>
         <TouchableOpacity onPress={() => navigation.navigate("setting")}>
-          <Ionicons name="settings-outline" size={32} color="#7c3aed" />
+          {/* <Ionicons name="settings-outline" size={32} color="#7c3aed" /> */}
+          <Ionicons name="menu" size={40} color="#7c3aed" />
         </TouchableOpacity>
       </View>
       <ScrollView>
         <View style={styles.subjects}>
           {data.map((sbj, i) => (
-            <Subject key={i} slug={sbj.category} subject={sbj.slug} trophy={user.trophy}/>
+            <Subject
+              key={i}
+              slug={sbj.category}
+              subject={sbj.slug}
+              iconImg={sbj.iconImg}
+              bgcolor={sbj.bgcolor}
+            />
           ))}
         </View>
       </ScrollView>
@@ -84,7 +91,7 @@ export default Content;
 const styles = StyleSheet.create({
   subjects: {
     padding: hp("0.5%"),
-    gap: hp("1.5%"),
+    gap: hp("3%"),
     flex: 1,
     flexDirection: "row",
     flexWrap: "wrap",

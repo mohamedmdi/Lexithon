@@ -18,37 +18,58 @@ const Subject = (props) => {
   const navigation = useNavigation();
 
   const { trophy } = useSelector((state) => state.user);
-  
+  const hexColor = props.bgcolor.slice(1);
+  let r = Math.max(0, parseInt(hexColor.slice(0, 2), 16) - 10);
+  let g = Math.max(0, parseInt(hexColor.slice(2, 4), 16) - 10);
+  let b = Math.max(0, parseInt(hexColor.slice(4, 6), 16) - 10);
+  let dark = "#" + r.toString(16) + g.toString(16) + b.toString(16);
   console.log("Sub: ", props.trophy);
   return (
-    <TouchableOpacity
-      style={styles.container}
-      onPress={() =>
-        // console.log(trophy[props.slug])
-        navigation.navigate("quiz", { id: props.slug })
-      }
+    <View
+      style={{
+        borderColor: dark,
+        backgroundColor: props.bgcolor,
+        ...styles.container,
+      }}
     >
       <View
         style={{
-          width: "55%",
-          justifyContent: "space-evenly",
-          alignItems: "center",
-        }}
-      >
-        <Text style={styles.subText}>{props.subject}</Text>
-      </View>
-      <View
-        style={{
-          flexDirection: "row",
-          gap: 8,
           justifyContent: "center",
           alignItems: "center",
         }}
       >
-        <Image style={styles.trophy} source={trophyImg}></Image>
-        <Text style={styles.numTrophy}>{props.trophy[props.slug]}</Text>
+        <Image
+          style={{ height: 100, width: 100 }}
+          source={props.iconImg}
+        ></Image>
       </View>
-    </TouchableOpacity>
+      <View
+        style={{
+          width: "60%",
+        }}
+      >
+        <Text style={styles.subText}>{props.subject}</Text>
+      </View>
+      <TouchableOpacity
+        style={{
+          height: 45,
+          width: 100,
+          position: "absolute",
+          bottom: 20,
+          right: 20,
+          backgroundColor: "white",
+          alignItems: "center",
+          justifyContent: "center",
+          borderRadius: 50,
+        }}
+        onPress={() =>
+          // console.log(trophy[props.slug])
+          navigation.navigate("quiz", { id: props.slug })
+        }
+      >
+        <Text style={{ fontSize: 20, fontWeight: "900" }}>Start</Text>
+      </TouchableOpacity>
+    </View>
   );
 };
 
@@ -61,11 +82,9 @@ const styles = StyleSheet.create({
     gap: 10,
     padding: hp("1%"),
     width: "100%",
-    height: hp("15%"),
+    height: hp("30%"),
     borderRadius: 8,
-    borderColor: "#7c3aed",
-    borderWidth: 1,
-    borderBottomWidth: 4,
+    borderBottomWidth: 5,
     flexDirection: "row",
   },
 
@@ -75,6 +94,7 @@ const styles = StyleSheet.create({
     fontWeight: "900",
     textAlign: "center",
     fontSize: hp("3.6%"),
+    color: "white",
   },
 
   trophy: {
