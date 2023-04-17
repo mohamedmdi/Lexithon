@@ -44,11 +44,15 @@ const GameOver = (props) => {
       <Text style={styles.h1}>
         {props.route.params.totalAnswers === NUMBER_OF_QUIZEZ
           ? "Congratulations ;)"
+          : props.route.params.totalAnswers > 7
+          ? "Congratulations ;)"
           : "HardLuck ;("}{" "}
       </Text>
       <Text style={styles.h1}>
         {props.route.params.totalAnswers === NUMBER_OF_QUIZEZ
           ? "Lesson Complete"
+          : props.route.params.totalAnswers > 7
+          ? "Lesson InComplete"
           : "Lesson InComplete"}
       </Text>
       <View
@@ -63,6 +67,8 @@ const GameOver = (props) => {
           style={{ resizeMode: "contain", width: 280, height: 280 }}
           source={
             props.route.params.totalAnswers === NUMBER_OF_QUIZEZ
+              ? trophy
+              : props.route.params.totalAnswers > 7
               ? trophy
               : panda
           }
