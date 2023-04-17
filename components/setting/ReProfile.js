@@ -6,6 +6,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import { Button } from "react-native-paper";
+import NavBar from "./NavBar";
 
 const ReProfile = ({ edit }) => {
   const { gender, grade, username } = useSelector((state) => state.user);
@@ -20,9 +21,10 @@ const ReProfile = ({ edit }) => {
         // backgroundColor: "red",
         flex: 1,
         gap: 20,
-        padding: 15,
+        padding: 25,
       }}
     >
+      
       <View
         style={{
           flexDirection: "column",
@@ -30,7 +32,7 @@ const ReProfile = ({ edit }) => {
           // alignItems: "center"
         }}
       >
-        <Avatar gender={gender} clickable={true} imgSize={100}></Avatar>
+        <Avatar gender={gender} clickable={true} imgSize={80}></Avatar>
         <View style={{ justifyContent: "space-around", alignItems: "center" }}>
           <Text style={styles.name}>{username}</Text>
           <Text style={styles.grade}>{`${grade}`}</Text>

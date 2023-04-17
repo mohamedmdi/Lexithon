@@ -236,6 +236,14 @@ import ski from "../assets/imgs/spo_loi/ski.png";
 import corde from "../assets/imgs/spo_loi/corde.png";
 import cinema from "../assets/imgs/spo_loi/cinema.png";
 
+// Icons
+import iconSchool from "../assets/imgs/classroom.png";
+import iconHome from "../assets/imgs/home.png";
+import iconKitchen from "../assets/imgs/kitchen.png";
+import iconAnimal from "../assets/imgs/veterinary.png";
+import iconBody from "../assets/imgs/physiology.png";
+import iconSport from "../assets/imgs/sports.png";
+
 const IMAGES = {
   ecole,
   classe,
@@ -474,6 +482,12 @@ const IMAGES = {
   ski,
   corde,
   cinema,
+  iconSchool,
+  iconHome,
+  iconKitchen,
+  iconAnimal,
+  iconBody,
+  iconSport,
 };
 
 export default IMAGES;
