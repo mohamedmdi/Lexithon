@@ -31,7 +31,8 @@ import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import NUMBER_OF_QUIZEZ from "../../util/numberOfQuiz";
 import { AnimatedCircularProgress } from "react-native-circular-progress";
 
-const Content = ({ quiz, sbj, timer, setTotalAnswers, totalAnswers }) => {
+const Content = ({ sbj, timer, setTotalAnswers, totalAnswers }) => {
+  const quiz = useSelector((state) => state.quiz);
   const [clickedAnswer, setClickedAnswer] = useState(null);
   const [isClicked, setIsClicked] = useState(null);
   const [isCorrect, setIsCorrect] = useState(null);
@@ -57,7 +58,7 @@ const Content = ({ quiz, sbj, timer, setTotalAnswers, totalAnswers }) => {
     navigate.pop();
   };
   //-----------------------------------COUNT--------------------------
-  const COUNT = 10;
+  const COUNT = 1;
   const isFocused = useIsFocused();
 
   const [count, setCount] = useState(COUNT);
@@ -72,19 +73,30 @@ const Content = ({ quiz, sbj, timer, setTotalAnswers, totalAnswers }) => {
   }, [isFocused]);
 
   useEffect(() => {
+    let interval;
     if (running) {
-      const interval = setInterval(() => {
+      interval = setInterval(() => {
         if (count > 0) {
           setCount(count - 1);
         } else {
           clearInterval(interval);
-          setRunning(false);
           // navigate.pop();
-          navigate.navigate("gameover", { sbj, timer: timer, totalAnswers });
+          // navigate.navigate("gameover", { sbj, timer: timer, totalAnswers });
+          // if (quiz.HP === 1) {
+          //   setRunning(false);
+          //   navigate.navigate("gameover", { sbj, timer: timer, totalAnswers });
+          //   return;
+          // }
+          // dispatch(decreaseHP());
+          // nextAnswerHandler();
+          // checkAnswerHandler();
+          dispatch(decreaseHP());
+          setIsCorrect(false);
+          // nextAnswerHandler();
         }
       }, 1000);
-      return () => clearInterval(interval);
     }
+    return () => clearInterval(interval);
   }, [count, running, navigate]);
 
   const resetCount = () => {
@@ -116,7 +128,9 @@ const Content = ({ quiz, sbj, timer, setTotalAnswers, totalAnswers }) => {
       playFailureSound();
       setIsCorrect(false);
       setIsClicked(true);
+      console.log("Before: ", quiz.HP);
       dispatch(decreaseHP());
+      console.log("After: ", quiz.HP);
       return;
     }
     playSuccessSound();
