@@ -63,29 +63,37 @@ const SettingPage = () => {
         <Appbar.Action icon="wrench" onPress={() => {}} />
       </Appbar.Header>
       <ReProfile edit={true} />
-      <View style={{ flex: 2 }}>
-        <ScrollView>
+      <View
+        style={{
+          flex: 2,
+          backgroundColor: "#7c3aed",
+          alignItems: "center",
+          justifyContent: "center",
+          paddingVertical: 15,
+          borderTopLeftRadius: 50,
+          borderTopRightRadius: 50,
+        }}
+      >
+        <ScrollView showsVerticalScrollIndicator={false}>
           {data.map((el, i) => (
             <View
               key={i}
               style={{
-                borderWidth: 0.5,
-                borderColor: "#666",
-                paddingVertical: 12,
-                paddingHorizontal: 18,
+                gap: 25,
+                borderBottomColor: "#fff",
+                borderBottomWidth: 0.5,
+                paddingVertical: 30,
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "space-between",
               }}
             >
-              <Image source={el.iconImg} style={{ height: 40, width: 40 }} />
-              <Text style={{ fontWeight: "bold", fontSize: 20 }}>
+              <Image source={el.iconImg} style={{ height: 50, width: 50 }} />
+              <Text style={{ fontWeight: "bold", fontSize: 25, color: "#fff" }}>
                 {el.slug}
               </Text>
-              <Text
-                style={{ color: "#7c3aed", fontWeight: "bold", fontSize: 32 }}
-              >
-                x{trophy[el.category]}
+              <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 32 }}>
+                {trophy[el.category]}
               </Text>
             </View>
           ))}

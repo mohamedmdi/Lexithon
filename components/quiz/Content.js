@@ -92,6 +92,7 @@ const Content = ({ sbj, timer, setTotalAnswers, totalAnswers }) => {
           // checkAnswerHandler();
           dispatch(decreaseHP());
           setIsCorrect(false);
+          setIsClicked(true);
           // nextAnswerHandler();
         }
       }, 1000);
@@ -120,9 +121,9 @@ const Content = ({ sbj, timer, setTotalAnswers, totalAnswers }) => {
   };
 
   const checkAnswerHandler = () => {
-    setRunning(false);
     if (isClicked) return;
     if (!clickedAnswer) return;
+    setRunning(false);
 
     if (clickedAnswer !== quiz.answer.word) {
       playFailureSound();

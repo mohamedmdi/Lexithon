@@ -12,7 +12,8 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import { useSelector } from "react-redux";
-import trophyImg from "../../assets/award.png";
+import schoolCard from "../../assets/schoolCard.png";
+import { ImageBackground } from "react-native";
 
 const Subject = (props) => {
   const navigation = useNavigation();
@@ -29,46 +30,53 @@ const Subject = (props) => {
       style={{
         borderColor: dark,
         backgroundColor: props.bgcolor,
+
         ...styles.container,
       }}
     >
-      <View
-        style={{
-          justifyContent: "center",
-          alignItems: "center",
-        }}
+      <ImageBackground
+        source={schoolCard}
+        resizeMode="cover"
+        style={{ height: "100%", width: "100%" }}
       >
-        <Image
-          style={{ height: 100, width: 100 }}
-          source={props.iconImg}
-        ></Image>
-      </View>
-      <View
-        style={{
-          width: "60%",
-        }}
-      >
-        <Text style={styles.subText}>{props.subject}</Text>
-      </View>
-      <TouchableOpacity
-        style={{
-          height: 45,
-          width: 100,
-          position: "absolute",
-          bottom: 20,
-          right: 20,
-          backgroundColor: "white",
-          alignItems: "center",
-          justifyContent: "center",
-          borderRadius: 50,
-        }}
-        onPress={() =>
-          // console.log(trophy[props.slug])
-          navigation.navigate("quiz", { id: props.slug })
-        }
-      >
-        <Text style={{ fontSize: 20, fontWeight: "900" }}>Start</Text>
-      </TouchableOpacity>
+        <View
+          style={{
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Image
+            style={{ height: 100, width: 100 }}
+            source={props.iconImg}
+          ></Image>
+        </View>
+        <View
+          style={{
+            width: "60%",
+          }}
+        >
+          <Text style={styles.subText}>{props.subject}</Text>
+        </View>
+        <TouchableOpacity
+          style={{
+            height: 45,
+            width: 100,
+            position: "absolute",
+            bottom: 20,
+            right: 20,
+            backgroundColor: "white",
+            alignItems: "center",
+            justifyContent: "center",
+            borderRadius: 50,
+          }}
+          onPress={() =>
+            // console.log(trophy[props.slug])
+            navigation.navigate("quiz", { id: props.slug })
+          }
+        >
+          <Text style={{ fontSize: 20, fontWeight: "900" }}>Start</Text>
+        </TouchableOpacity>
+      </ImageBackground>
     </View>
   );
 };
@@ -80,12 +88,12 @@ const styles = StyleSheet.create({
     justifyContent: "space-evenly",
     alignItems: "center",
     gap: 10,
-    padding: hp("1%"),
     width: "100%",
     height: hp("30%"),
     borderRadius: 8,
     borderBottomWidth: 5,
     flexDirection: "row",
+    aspectRatio: 3 / 2,
   },
 
   subText: {
