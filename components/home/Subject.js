@@ -14,7 +14,6 @@ import {
 import { useSelector } from "react-redux";
 import schoolCard from "../../assets/schoolCard.png";
 import { ImageBackground } from "react-native";
-
 const Subject = (props) => {
   const navigation = useNavigation();
 
@@ -37,6 +36,7 @@ const Subject = (props) => {
       <ImageBackground
         source={schoolCard}
         resizeMode="cover"
+        imageStyle={{ borderRadius: 8 }}
         style={{ height: "100%", width: "100%" }}
       >
         <View
@@ -46,28 +46,31 @@ const Subject = (props) => {
           }}
         >
           <Image
-            style={{ height: 100, width: 100 }}
+            style={{ height: 150, width: 150, position: "absolute", top: -50 }}
             source={props.iconImg}
           ></Image>
         </View>
         <View
           style={{
-            width: "60%",
+            width: "100%",
+            height: "100%",
+            justifyContent: "center",
+            marginTop: 15,
           }}
         >
           <Text style={styles.subText}>{props.subject}</Text>
         </View>
         <TouchableOpacity
           style={{
-            height: 45,
-            width: 100,
+            height: 70,
+            width: 140,
             position: "absolute",
-            bottom: 20,
-            right: 20,
+            bottom: 10,
+            right: 10,
             backgroundColor: "white",
             alignItems: "center",
             justifyContent: "center",
-            borderRadius: 50,
+            borderRadius: 15,
           }}
           onPress={() =>
             // console.log(trophy[props.slug])
@@ -91,14 +94,14 @@ const styles = StyleSheet.create({
     width: "100%",
     height: hp("30%"),
     borderRadius: 8,
-    borderBottomWidth: 5,
+    borderBottomWidth: 7,
     flexDirection: "row",
     aspectRatio: 3 / 2,
   },
 
   subText: {
+    position: "absolute",
     alignSelf: "center",
-    fontSize: 24,
     fontWeight: "900",
     textAlign: "center",
     fontSize: hp("3.6%"),

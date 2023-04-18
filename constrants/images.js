@@ -244,6 +244,12 @@ import iconAnimal from "../assets/imgs/veterinary.png";
 import iconBody from "../assets/imgs/physiology.png";
 import iconSport from "../assets/imgs/sports.png";
 
+// Stickers
+
+import studentSticker from '../assets/imgs/student.png'
+import familySticker from '../assets/imgs/family.png'
+import cookingSticker from '../assets/imgs/cooking.png'
+
 const IMAGES = {
   ecole,
   classe,
@@ -488,6 +494,9 @@ const IMAGES = {
   iconAnimal,
   iconBody,
   iconSport,
+  studentSticker,
+  familySticker,
+  cookingSticker,
 };
 
 export default IMAGES;
