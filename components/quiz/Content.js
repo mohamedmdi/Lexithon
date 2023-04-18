@@ -30,6 +30,7 @@ import brokenHeart from "../../assets/imgs/brokenHeart.png";
 import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 import NUMBER_OF_QUIZEZ from "../../util/numberOfQuiz";
 import { AnimatedCircularProgress } from "react-native-circular-progress";
+import imgSword from "../../assets/imgs/sword.png";
 
 const Content = ({ sbj, timer, setTotalAnswers, totalAnswers }) => {
   const quiz = useSelector((state) => state.quiz);
@@ -170,17 +171,31 @@ const Content = ({ sbj, timer, setTotalAnswers, totalAnswers }) => {
         animationType="fade"
         transparent={true}
         visible={modalVisible}
-        onRequestClose={() => {
-          console.log("Modal closed by onRequestClose function");
-          setModalVisible(false);
-        }}
+        onRequestClose={() => setModalVisible(false)}
       >
         <View style={styles.modalContainer}>
           <View style={styles.modalContent}>
-            <Text style={styles.modalText}>Are you sure you want to exit?</Text>
-            <View
-              style={{ flexDirection: "row", justifyContent: "space-evenly" }}
+            <Image
+              source={imgSword}
+              style={{ width: 170, height: 170, marginBottom: 8 }}
+            ></Image>
+            <Text
+              style={{
+                marginBottom: 16,
+                fontSize: 26,
+                fontWeight: "900",
+                color: "#7c3aed",
+              }}
             >
+              Give up 😓
+            </Text>
+            <View style={{ marginBottom: 30, gap: 5 }}>
+              <Text style={styles.modalText}>
+                Are you sure you want to exit?
+              </Text>
+              <Text style={styles.modalText}>You will lose your progress</Text>
+            </View>
+            <View style={{ width: "100%", gap: 14 }}>
               <TouchableOpacity
                 onPress={handleCancelPress}
                 style={styles.modalButton}
@@ -188,10 +203,10 @@ const Content = ({ sbj, timer, setTotalAnswers, totalAnswers }) => {
                 <Text style={styles.modalButtonText}>Cancel</Text>
               </TouchableOpacity>
               <TouchableOpacity
-                style={styles.modalButton}
+                style={styles.modalButtonConfirm}
                 onPress={handleConfirmPress}
               >
-                <Text style={styles.modalButtonText}>Confirm</Text>
+                <Text style={styles.modalButtonTextConfirm}>Confirm</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -366,25 +381,38 @@ const styles = StyleSheet.create({
   },
   modalContent: {
     backgroundColor: "#fff",
+    alignItems: "center",
     padding: 20,
-    borderRadius: 10,
+    borderRadius: 20,
+    width: "80%",
   },
   modalText: {
-    fontSize: 16,
-    marginBottom: 10,
+    fontSize: 15,
+    // marginBottom: 10,
     textAlign: "center",
+    color: "#777",
   },
   modalButton: {
-    padding: 5,
-    borderRadius: 5,
+    padding: 11,
+    borderRadius: 50,
     backgroundColor: "#7c3aed",
-    backgroundColor: "#7c3aed",
-    borderBottomWidth: 4,
-    borderColor: "#6d28d9",
   },
   modalButtonText: {
-    color: "#fff",
-    fontSize: 16,
+    color: "white",
+    fontSize: 18,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+
+  modalButtonConfirm: {
+    padding: 11,
+    borderRadius: 50,
+    backgroundColor: "transparent",
+  },
+
+  modalButtonTextConfirm: {
+    color: "#555",
+    fontSize: 18,
     fontWeight: "bold",
     textAlign: "center",
   },
