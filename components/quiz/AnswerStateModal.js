@@ -12,7 +12,11 @@ const AnswerStateModal = (props) => {
             : { ...styles.txt, color: "#dc2626" }
         }
       >
-        {props.isCorrect ? "Correct" : "Incorrect"}
+        {props.isCorrect
+          ? "Correct"
+          : !props.isCorrect && props.isOver
+          ? "timeout"
+          : "incorrect"}
       </Text>
       <Button
         style={{

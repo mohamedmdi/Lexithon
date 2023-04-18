@@ -23,7 +23,7 @@ export default UpperBar;
 const styles = StyleSheet.create({
   bar: {
     backgroundColor: "rgba(124,58,237, 0.3)",
-    height: 15,
+    height: 20,
     borderRadius: 50,
   },
 });
