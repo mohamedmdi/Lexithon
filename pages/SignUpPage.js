@@ -8,8 +8,8 @@ const SignUpPage = (props) => {
 
   return (
     <>
-      <Header />
-      <Body statusBarColor="#f5f3ff">
+      {/* <Header /> */}
+      <Body statusBarColor="#f5f3ff" style={{paddingVertical: 0}}>
         <SignUp navigation={props.navigation} />
       </Body>
     </>

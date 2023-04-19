@@ -79,6 +79,7 @@ const Content = ({ user }) => {
                 subject={sbj.slug}
                 iconImg={sbj.stickerImg}
                 bgcolor={sbj.bgcolor}
+                bgCard={sbj.bgCard}
               />
             ))}
           </View>

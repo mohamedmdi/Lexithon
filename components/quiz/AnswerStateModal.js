@@ -1,36 +1,84 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { Button } from "react-native-paper";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 
-const AnswerStateModal = (props) => {
+const AnswerStateModal = ({
+  clickedAnswer,
+  isCorrect,
+  checkAnswerHandler,
+  nextAnswerHandler,
+  isOver
+}) => {
   return (
-    <View style={styles.container}>
-      <Text
-        style={
-          props.isCorrect
-            ? { ...styles.txt, color: "#16a34a" }
-            : { ...styles.txt, color: "#dc2626" }
-        }
-      >
-        {props.isCorrect
-          ? "Correct"
-          : !props.isCorrect && props.isOver
-          ? "timeout"
-          : "incorrect"}
-      </Text>
-      <Button
-        style={{
-          backgroundColor: "#7c3aed",
-          backgroundColor: "#7c3aed",
-          borderBottomWidth: 4,
-          borderColor: "#6d28d9",
-        }}
-        mode="contained"
-        onPress={props.nextAnswerHandler}
-      >
-        Continue
-      </Button>
-    </View>
+    <>
+      {isCorrect === null && !isOver  ? (
+        <TouchableOpacity
+          disabled={clickedAnswer ? false : true}
+          style={{
+            position: "absolute",
+            backgroundColor: clickedAnswer ? "#7c3aed" : "#AFAFAF",
+            borderBottomWidth: clickedAnswer ? 4 : 0,
+            borderColor: "#6d28d9",
+            width: hp(40),
+            height: hp(8),
+            borderRadius: 50,
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+          onPress={checkAnswerHandler}
+        >
+          <Text style={{ color: clickedAnswer ? "#FFF" : "#fffffd", fontSize: hp(2.6), fontWeight: 700 }}>
+            VERIFIER
+          </Text>
+        </TouchableOpacity>
+      ) : (
+        <>
+          <View
+            style={{
+              position: "absolute",
+              bottom: 0,
+              left: 0,
+              right: 0,
+              margin: 0,
+              height: hp(20),
+              backgroundColor: isCorrect ? "#D7FFB8" : "#ffdfe0",
+              justifyContent: "flex-start",
+              padding: hp(2),
+              borderTopLeftRadius: 10,
+              borderTopRightRadius: 10,
+            }}
+          >
+            <Text
+              style={{
+                fontSize: hp(3),
+                fontWeight: "900",
+                letterSpacing: 0.8,
+                color: isCorrect ? "#57CC02" : "#FF4B4C",
+              }}
+            >
+              {isCorrect ? "Incroyable" : "Incorrecte"}
+            </Text>
+          </View>
+          <TouchableOpacity
+            style={{
+              backgroundColor: isCorrect ? "#57CC02" : "#FF4B4C",
+              borderBottomWidth: 4,
+              borderColor: isCorrect ? "#50BB02" : "#DB4B4C",
+              width: hp(40),
+              height: hp(8),
+              borderRadius: 50,
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+            onPress={nextAnswerHandler}
+          >
+            <Text style={{ color: "#fff", fontSize: hp(2.6), fontWeight: 700 }}>
+              CONTINUER
+            </Text>
+          </TouchableOpacity>
+        </>
+      )}
+    </>
   );
 };
 
@@ -45,7 +93,8 @@ const styles = StyleSheet.create({
     right: 0,
     paddingVertical: 30,
     paddingHorizontal: 20,
-    borderRadius: 10,
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
     gap: 20,
   },
 
