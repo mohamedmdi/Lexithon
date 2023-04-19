@@ -65,16 +65,27 @@ const GameOver = (props) => {
             }
           ></Image>
         </View>
-        <Text style={styles.h1}>
-          {props.route.params.totalAnswers === NUMBER_OF_QUIZEZ
-            ? "Congratulations 👏"
-            : "HardLuck 💔"}{" "}
-        </Text>
-        <Text style={styles.h2}>
-          {props.route.params.totalAnswers === NUMBER_OF_QUIZEZ
-            ? "Lesson Complete"
-            : "Lesson InComplete"}
-        </Text>
+        <View
+          style={{
+            gap: 10,
+          }}
+        >
+          <Text style={styles.h1}>
+            {props.route.params.totalAnswers === NUMBER_OF_QUIZEZ
+              ? "Lesson Complete Congratulations 👏"
+              : "Lesson InComplete HardLuck 😓"}{" "}
+          </Text>
+          {/* <Text style={styles.h2}>
+            {props.route.params.totalAnswers === NUMBER_OF_QUIZEZ
+              ? "Lesson Complete"
+              : "Lesson InComplete"}
+          </Text> */}
+          <Text style={styles.h2}>
+            {props.route.params.totalAnswers === NUMBER_OF_QUIZEZ
+              ? "You're a true vocabulary champ! Remember, learning is a continuous process, so keep practicing and improving."
+              : "Great effort! Every mistake is an opportunity to learn something new. Keep it up!"}
+          </Text>
+        </View>
         <View style={styles.stats}>
           <View style={styles.containerStat}>
             <View style={styles.con}>
@@ -185,7 +196,9 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   h2: {
-    fontSize: 25,
+    fontSize: 18,
+    fontWeight: "300",
+    paddingHorizontal: 20,
     textAlign: "center",
   },
 
