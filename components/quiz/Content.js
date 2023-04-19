@@ -83,6 +83,8 @@ const Content = ({ sbj, timer, setTotalAnswers, totalAnswers }) => {
 
   useEffect(() => {
     if (count === 0) playFailureSound();
+  }, [count]);
+  useEffect(() => {
     let interval;
     if (running) {
       interval = setInterval(() => {
