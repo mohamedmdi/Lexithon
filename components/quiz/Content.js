@@ -281,7 +281,7 @@ const Content = ({ sbj, timer, setTotalAnswers, totalAnswers }) => {
             justifyContent: "center",
           }}
         >
-          <Button
+          <TouchableOpacity
             style={{
               backgroundColor: "#7c3aed",
               borderBottomWidth: 4,
@@ -292,11 +292,10 @@ const Content = ({ sbj, timer, setTotalAnswers, totalAnswers }) => {
               alignItems: "center",
               justifyContent: "center",
             }}
-            mode="contained"
             onPress={checkAnswerHandler}
           >
-            Check{" "}
-          </Button>
+            <Text style={{ color: "#f5f3ff" }}>Check</Text>
+          </TouchableOpacity>
         </View>
       </View>
 
@@ -396,6 +395,8 @@ const styles = StyleSheet.create({
     padding: 11,
     borderRadius: 50,
     backgroundColor: "#7c3aed",
+    borderBottomWidth: 4,
+    borderColor: "#6d28d9",
   },
   modalButtonText: {
     color: "white",
