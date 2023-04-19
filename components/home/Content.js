@@ -60,7 +60,7 @@ const Content = ({ user }) => {
             ></Image>
           </TouchableOpacity>
           <View style={{ flexDirection: "column", marginRight: 30 }}>
-            <Text>Welcome Back</Text>
+            <Text>Bienvenue</Text>
             <Text style={styles.h1}>{user.username}</Text>
           </View>
         </View>

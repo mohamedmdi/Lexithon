@@ -90,7 +90,8 @@ const SignUp = (props) => {
 
         <Text style={styles.h1}>
           M<Text style={{ color: "#f3cf26" }}>o</Text>n Vo
-          <Text style={{ color: "#761cd4" }}>c</Text>abulai
+          <Text style={{ color: "#761cd4" }}>c</Text>ab
+          <Text style={{ color: "#ff8811" }}>u</Text>lai
           <Text style={{ color: "#d5297f" }}>r</Text>e
         </Text>
       </View>
@@ -108,12 +109,12 @@ const SignUp = (props) => {
             </Text>
           </View>
           <View style={{ gap: 3 }}>
-            <Text style={styles.label}>Name</Text>
+            <Text style={styles.label}>Nom</Text>
 
             <TextInput
               mode="outlined"
               // label="Name"
-              placeholder="Your Name"
+              placeholder="Entrez Votre Nom"
               onChangeText={(val) => {
                 setText(val);
                 setErrors((prev) => ({ ...prev, name: false }));
@@ -126,7 +127,7 @@ const SignUp = (props) => {
             </Text>
           </View>
           <View style={{ gap: 3 }}>
-            <Text style={styles.label}>Grade</Text>
+            <Text style={styles.label}>Niveau </Text>
             <DropDown addGrade={addGrade} setGradeError={setErrors} />
 
             <Text style={{ ...styles.label, ...styles.errorLabel }}>
@@ -152,7 +153,7 @@ const SignUp = (props) => {
               fontWeight: "bold",
             }}
           >
-            Let's Go
+            c'est partie
           </Text>
         </TouchableOpacity>
       </View>
@@ -197,6 +198,5 @@ const styles = StyleSheet.create({
 
   errorLabel: {
     color: "red",
-    
   },
 });

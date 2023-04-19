@@ -1,11 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import {
-  Image,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -76,7 +70,7 @@ const Subject = (props) => {
             navigation.navigate("quiz", { id: props.slug })
           }
         >
-          <Text style={{ fontSize: 20, fontWeight: "900" }}>Start</Text>
+          <Text style={{ fontSize: 20, fontWeight: "900" }}>Jouer</Text>
         </TouchableOpacity>
       </ImageBackground>
     </View>

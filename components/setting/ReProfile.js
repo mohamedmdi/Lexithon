@@ -28,7 +28,7 @@ const ReProfile = ({ edit }) => {
         style={{
           flexDirection: "column",
           gap: 5,
-          // alignItems: "center"
+          alignItems: "center",
         }}
       >
         <Avatar gender={gender} clickable={true} imgSize={80}></Avatar>
@@ -39,7 +39,7 @@ const ReProfile = ({ edit }) => {
       </View>
       {edit && (
         <Button mode="outlined" onPress={() => navigation.navigate("profile")}>
-          Edit Profile
+          Editer le profil
         </Button>
       )}
     </View>

@@ -59,7 +59,7 @@ const Setting = () => {
         </View>
         <View style={styles.form}>
           <TextInput
-            label="User Name"
+            label="Nom d'utilisateur"
             variant="outlined"
             leading={(props) => (
               <Icon name="account" {...props} onChangeText={setName} />
