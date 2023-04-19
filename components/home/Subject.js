@@ -1,14 +1,9 @@
 import { useNavigation } from "@react-navigation/native";
-import {
-  Image,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
+  widthPercentageToDP,
 } from "react-native-responsive-screen";
 import { useSelector } from "react-redux";
 import schoolCard from "../../assets/schoolCard.png";
@@ -51,33 +46,40 @@ const Subject = (props) => {
         </View>
         <View
           style={{
+            height: "65%",
             width: "100%",
-            height: "100%",
-            justifyContent: "center",
-            marginTop: 15,
           }}
         >
           <Text style={styles.subText}>{props.subject}</Text>
         </View>
-        <TouchableOpacity
+        <View
           style={{
-            height: 70,
-            width: 140,
-            position: "absolute",
-            bottom: 10,
-            right: 10,
-            backgroundColor: "white",
+            height: "35%",
+            width: "100%",
+            justifyContent: "space-evenly",
             alignItems: "center",
-            justifyContent: "center",
-            borderRadius: 15,
           }}
-          onPress={() =>
-            // console.log(trophy[props.slug])
-            navigation.navigate("quiz", { id: props.slug })
-          }
         >
-          <Text style={{ fontSize: 20, fontWeight: "900" }}>Start</Text>
-        </TouchableOpacity>
+          <TouchableOpacity
+            style={{
+              height: hp(8),
+              width: hp(30),
+              backgroundColor: "white",
+              alignItems: "center",
+              justifyContent: "center",
+              borderRadius: 15,
+              borderBottomWidth: 4,
+              borderColor: "#e3e3e3",
+              elevation: 10,
+              shadowColor: "black",
+              shadowOpacity: 1,
+              shadowRadius: 2,
+            }}
+            onPress={() => navigation.navigate("quiz", { id: props.slug })}
+          >
+            <Text style={{ fontSize: 20, fontWeight: "900" }}>Start</Text>
+          </TouchableOpacity>
+        </View>
       </ImageBackground>
     </View>
   );
@@ -105,6 +107,10 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: hp("3.6%"),
     color: "white",
+    paddingTop: hp("13%"),
+    textShadowColor: "rgba(0, 0, 0, 0.75)",
+    textShadowOffset: { width: -0.5, height:0.5 },
+    textShadowRadius: 1,
   },
 
   trophy: {
