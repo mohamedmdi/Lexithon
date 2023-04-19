@@ -16,7 +16,9 @@ const DropDown = (props) => {
     if (!value) return;
 
     props.addGrade(value);
-    props.setGradeError(prev => ({ ...prev, grade: false }))
+    console.log(Boolean(props.setGradeError));
+    Boolean(props.setGradeError) &&
+      props.setGradeError((prev) => ({ ...prev, grade: false }));
   }, [value]);
 
   return (

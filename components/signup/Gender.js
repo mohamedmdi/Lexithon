@@ -37,8 +37,9 @@ const Gender = (props) => {
   const changeGenderHandler = (val) => {
     return () => {
       props.setGender(val);
-      props.setGenderError(prev => ({ ...prev, gender: false }))
       setHighlighted(val);
+      Boolean(props.setGenderError) &&
+        props.setGenderError((prev) => ({ ...prev, gender: false }));
     };
   };
   useEffect(() => {
