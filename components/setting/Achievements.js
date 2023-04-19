@@ -9,7 +9,7 @@ const Achievements = () => {
 
   return (
     <View style={{ marginBottom: 40, gap: 15 }}>
-      <Text style={styles.subHeader}>Achievements</Text>
+      <Text style={styles.subHeader}>Trophées</Text>
       <View
         style={{
           flexDirection: "row",

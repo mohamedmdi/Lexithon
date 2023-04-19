@@ -23,10 +23,10 @@ const DangerZone = () => {
             ...{ color: "#c92a2a" },
           }}
         >
-          Danger Zone
+          Zone Dangereuse
         </Text>
         <Button
-          title="Delete Account"
+          title="Supprimer le Profil"
           loading={false}
           loadingProps={{ size: "large", color: "white" }}
           buttonStyle={{

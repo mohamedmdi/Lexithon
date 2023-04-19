@@ -77,7 +77,7 @@ const Subject = (props) => {
             }}
             onPress={() => navigation.navigate("quiz", { id: props.slug })}
           >
-            <Text style={{ fontSize: 20, fontWeight: "900" }}>Start</Text>
+            <Text style={{ fontSize: 20, fontWeight: "900" }}>Jouer</Text>
           </TouchableOpacity>
         </View>
       </ImageBackground>

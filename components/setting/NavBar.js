@@ -17,7 +17,7 @@ const NavBar = (props) => {
       <TouchableOpacity onPress={() => navigation.pop()}>
         <Ionicons name="close" size={35} color="#495057" />
       </TouchableOpacity>
-      <Text style={styles.p}>Profile</Text>
+      <Text style={styles.p}>Profil</Text>
       <TouchableOpacity onPress={editInfoHandler}>
         <Text style={styles.btn}>Save</Text>
       </TouchableOpacity>
