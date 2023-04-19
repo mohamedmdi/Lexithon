@@ -18,6 +18,11 @@ import { Button } from "react-native-paper";
 import trophy from "../assets/trophy.png";
 import panda from "../assets/panda.png";
 import NUMBER_OF_QUIZEZ from "../util/numberOfQuiz";
+import { heightPercentageToDP as hp } from "react-native-responsive-screen";
+import tr from "../assets/trophyjs.json";
+import cf from "../assets/126406-confetti.json";
+import cr from "../assets/crying.json";
+import pe from "../assets/pencil.json";
 
 const GameOver = (props) => {
   const timer = (Date.now() - props.route.params.timer) / 1000;
@@ -50,41 +55,85 @@ const GameOver = (props) => {
       }}
     >
       <View style={styles.top}>
-        <View
-          style={{
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <Image
-            style={{ resizeMode: "contain", width: 280, height: 280 }}
-            source={
-              props.route.params.totalAnswers === NUMBER_OF_QUIZEZ
-                ? trophy
-                : panda
-            }
-          ></Image>
-        </View>
-        <View
-          style={{
-            gap: 10,
-          }}
-        >
-          <Text style={styles.h1}>
-            {props.route.params.totalAnswers === NUMBER_OF_QUIZEZ
-              ? "Lesson Complete Congratulations 👏"
-              : "Lesson InComplete HardLuck 😓"}{" "}
-          </Text>
-          {/* <Text style={styles.h2}>
+        <View>
+          <View
+            style={{
+              alignItems: "center",
+              justifyContent: "center",
+              margin: 0,
+              padding: 0,
+            }}
+          >
+            <AnimatedLottieView
+              autoPlay={true}
+              loop={false}
+              hardwareAccelerationAndroid={true}
+              renderMode="HARDWARE"
+              speed={0.5}
+              autoSize={true}
+              style={{
+                // resizeMode: "contain",
+                position: "absolute",
+                width: 300,
+                height: 300,
+                // backgroundColor: "red",
+              }}
+              source={
+                props.route.params.totalAnswers === NUMBER_OF_QUIZEZ && cf
+              }
+            />
+            <AnimatedLottieView
+              autoPlay={true}
+              loop={
+                props.route.params.totalAnswers === NUMBER_OF_QUIZEZ
+                  ? false
+                  : true
+              }
+              hardwareAccelerationAndroid={true}
+              renderMode="HARDWARE"
+              speed={0.8}
+              autoSize={true}
+              style={{
+                // resizeMode: "contain",
+                width: 250,
+                height: 250,
+                // backgroundColor: "red",
+              }}
+              source={
+                props.route.params.totalAnswers === NUMBER_OF_QUIZEZ
+                  ? tr
+                  : props.route.params.totalAnswers >= 8
+                  ? pe
+                  : cr
+              }
+            />
+          </View>
+          <View
+            style={{
+              gap: 10,
+              // backgroundColor: "red",
+            }}
+          >
+            <Text style={styles.h1}>
+              {props.route.params.totalAnswers === NUMBER_OF_QUIZEZ
+                ? "Félicitations! 👏"
+                : props.route.params.totalAnswers >= 8
+                ? "Belle effort! 👍"
+                : "Pas de chance.. 😓"}
+            </Text>
+            {/* <Text style={styles.h2}>
             {props.route.params.totalAnswers === NUMBER_OF_QUIZEZ
               ? "Lesson Complete"
               : "Lesson InComplete"}
           </Text> */}
-          <Text style={styles.h2}>
-            {props.route.params.totalAnswers === NUMBER_OF_QUIZEZ
-              ? "You're a true vocabulary champ! Remember, learning is a continuous process, so keep practicing and improving."
-              : "Great effort! Every mistake is an opportunity to learn something new. Keep it up!"}
-          </Text>
+            <Text style={styles.h2}>
+              {props.route.params.totalAnswers === NUMBER_OF_QUIZEZ
+                ? "Vous êtes un vrai champion!l’apprentissage est un processus continu, alors continuez à pratiquer et à vous améliorer."
+                : props.route.params.totalAnswers >= 8
+                ? "Chaque erreur est une occasion d’apprendre quelque chose de nouveau. Continuez comme ça!"
+                : " Chaque erreur est une occasion d’apprendre quelque chose de nouveau. Continuez comme ça!"}
+            </Text>
+          </View>
         </View>
         <View style={styles.stats}>
           <View style={styles.containerStat}>
@@ -93,7 +142,7 @@ const GameOver = (props) => {
               <Text
                 style={{ ...styles.stat, fontWeight: "normal", fontSize: 15 }}
               >
-                Timer
+                minuteur
               </Text>
             </View>
             <Text style={{ ...styles.stat }}>
@@ -115,7 +164,7 @@ const GameOver = (props) => {
               <Text
                 style={{ ...styles.stat, fontWeight: "normal", fontSize: 15 }}
               >
-                Answer
+                Réponses
               </Text>
             </View>
             <Text style={{ ...styles.stat }}>
@@ -128,7 +177,7 @@ const GameOver = (props) => {
               <Text
                 style={{ ...styles.stat, fontWeight: "normal", fontSize: 15 }}
               >
-                Trophy
+                trophée
               </Text>
             </View>
             <Text style={{ ...styles.stat }}>
@@ -157,7 +206,7 @@ const GameOver = (props) => {
           mode="contained"
           onPress={() => props.navigation.navigate("home")}
         >
-          Return Home{" "}
+          Retour{" "}
         </Button>
         <Button
           style={{
@@ -170,7 +219,7 @@ const GameOver = (props) => {
             props.navigation.navigate("quiz", { id: props.route.params.sbj })
           }
         >
-          Play Again{" "}
+          Rejouer{" "}
         </Button>
       </View>
     </Body>
@@ -182,23 +231,24 @@ export default GameOver;
 const styles = StyleSheet.create({
   top: {
     backgroundColor: "#f5f3ff",
-    height: "80%",
     flex: 4,
     alignItems: "center",
-    justifyContent: "space-between",
     borderBottomLeftRadius: 30,
     borderBottomRightRadius: 30,
+    gap: hp("8%"),
+    paddingVertical: 25,
   },
   btn: {},
   h1: {
-    fontSize: 32,
+    fontSize: 30,
     fontWeight: "bold",
     textAlign: "center",
+    color: "#a55fef",
   },
   h2: {
-    fontSize: 18,
+    fontSize: 17,
     fontWeight: "300",
-    paddingHorizontal: 20,
+    paddingHorizontal: 45,
     textAlign: "center",
   },
 

@@ -13,6 +13,7 @@ import { useNavigation } from "@react-navigation/native";
 import { useWindowDimensions } from "react-native";
 import { TabView, SceneMap } from "react-native-tab-view";
 import ReProfile from "../components/setting/ReProfile";
+import award from "../assets/award.png";
 
 // const FirstRoute = () => {
 //   const { data } = useSelector((state) => state.quiz);
@@ -59,7 +60,6 @@ const SettingPage = () => {
             navigate.pop();
           }}
         />
-        <Appbar.Content title="Hello" />
       </Appbar.Header>
       <ReProfile edit={true} />
       <View
@@ -78,10 +78,11 @@ const SettingPage = () => {
             <View
               key={i}
               style={{
-                gap: 25,
+                gap: 15,
                 borderBottomColor: "#f5f3ff",
                 borderBottomWidth: 0.5,
                 paddingVertical: 30,
+
                 flexDirection: "row",
                 alignItems: "center",
                 justifyContent: "space-between",
@@ -93,11 +94,33 @@ const SettingPage = () => {
               >
                 {el.slug}
               </Text>
-              <Text
-                style={{ color: "#f5f3ff", fontWeight: "bold", fontSize: 32 }}
+              <View
+                style={{
+                  flexDirection: "row",
+                  gap: 5,
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  // backgroundColor: "red",
+                }}
               >
-                {trophy[el.category]}
-              </Text>
+                <Image
+                  source={award}
+                  style={{
+                    height: 35,
+                    width: 35,
+                  }}
+                />
+                <Text
+                  style={{
+                    color: "#f5f3ff",
+                    fontWeight: "bold",
+                    fontSize: 32,
+                    // backgroundColor: "red",
+                  }}
+                >
+                  {trophy[el.category]}
+                </Text>
+              </View>
             </View>
           ))}
         </ScrollView>
