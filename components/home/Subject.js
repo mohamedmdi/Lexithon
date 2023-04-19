@@ -33,7 +33,7 @@ const Subject = (props) => {
       }}
     >
       <ImageBackground
-        source={schoolCard}
+        source={props.bgCard}
         resizeMode="cover"
         imageStyle={{ borderRadius: 8 }}
         style={{ height: "100%", width: "100%" }}
