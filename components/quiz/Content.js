@@ -167,6 +167,7 @@ const Content = ({ sbj, timer, setTotalAnswers, totalAnswers }) => {
         dispatch(updateTrophy());
       }
       setRunning(false);
+      navigate.pop();
       navigate.navigate("gameover", { sbj, timer: timer, totalAnswers });
       return;
     }
@@ -413,7 +414,7 @@ const styles = StyleSheet.create({
   },
 
   modalButtonTextConfirm: {
-    color: "#555",
+    color: "#E55C5D",
     fontSize: 18,
     fontWeight: "bold",
     textAlign: "center",
