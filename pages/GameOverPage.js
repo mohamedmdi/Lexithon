@@ -29,6 +29,7 @@ import { useDispatch } from "react-redux";
 import { clearQuiz } from "../store/quizSlice";
 
 
+
 const GameOver = (props) => {
   const timer = (Date.now() - props.route.params.timer) / 1000;
   const playSuccessSound = useSound(success);
