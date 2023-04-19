@@ -15,7 +15,9 @@ const OneGender = (props) => {
       style={
         props.highlighted === props.gender
           ? { ...styles.imgFrame, ...styles.active }
-          : styles.imgFrame
+          : props.error
+          ? { ...styles.imgFrame, borderColor: "red" }
+          : { ...styles.imgFrame }
       }
     >
       <Image
@@ -36,6 +38,8 @@ const Gender = (props) => {
     return () => {
       props.setGender(val);
       setHighlighted(val);
+      Boolean(props.setGenderError) &&
+        props.setGenderError((prev) => ({ ...prev, gender: false }));
     };
   };
   useEffect(() => {
@@ -50,6 +54,7 @@ const Gender = (props) => {
           gender={el}
           onPress={changeGenderHandler(el)}
           highlighted={highlighted}
+          error={props.errorGender}
         />
       ))}
     </View>
@@ -68,8 +73,8 @@ const styles = StyleSheet.create({
   imgFrame: {
     padding: 15,
     borderColor: "black",
-    borderWidth: 0.5,
-    borderRadius: 10,
+    borderWidth: 1,
+    borderRadius: 1000,
   },
 
   active: {

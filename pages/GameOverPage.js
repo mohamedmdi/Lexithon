@@ -26,6 +26,7 @@ import pe from "../assets/pencil.json";
 import useSound from "../hooks/useSound";
 import success from "../assets/audios/CrowdCheer.mp3";
 
+
 const GameOver = (props) => {
   const timer = (Date.now() - props.route.params.timer) / 1000;
   const playSuccessSound = useSound(success);
