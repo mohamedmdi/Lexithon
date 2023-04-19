@@ -69,17 +69,19 @@ const Content = ({ user }) => {
           <Ionicons name="menu" size={40} color="#7c3aed" />
         </TouchableOpacity>
       </View>
-      <ScrollView>
-        <View style={styles.subjects}>
-          {data.map((sbj, i) => (
-            <Subject
-              key={i}
-              slug={sbj.category}
-              subject={sbj.slug}
-              iconImg={sbj.iconImg}
-              bgcolor={sbj.bgcolor}
-            />
-          ))}
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View style={{ paddingTop: 50 }}>
+          <View style={styles.subjects}>
+            {data.map((sbj, i) => (
+              <Subject
+                key={i}
+                slug={sbj.category}
+                subject={sbj.slug}
+                iconImg={sbj.stickerImg}
+                bgcolor={sbj.bgcolor}
+              />
+            ))}
+          </View>
         </View>
       </ScrollView>
     </>
@@ -91,7 +93,7 @@ export default Content;
 const styles = StyleSheet.create({
   subjects: {
     padding: hp("0.5%"),
-    gap: hp("3%"),
+    gap: hp("7%"),
     flex: 1,
     flexDirection: "row",
     flexWrap: "wrap",
