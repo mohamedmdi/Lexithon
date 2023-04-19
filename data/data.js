@@ -6,6 +6,7 @@ const data = [
     category: "school",
     slug: "L'école",
     iconImg: IMAGES.iconSchool,
+    stickerImg : IMAGES.studentSticker,
     bgcolor: "#f3cf26",
     data: [
       { word: "Ecole ", img: IMAGES.ecole, sound: AUDIOS.ecole },
@@ -67,6 +68,7 @@ const data = [
     category: "home",
     slug: "Maison et famille",
     iconImg: IMAGES.iconHome,
+    stickerImg : IMAGES.familySticker,
     bgcolor: "#2f7dd3",
     data: [
       { word: "Maison", img: IMAGES.maison, sound: AUDIOS.maison },
@@ -119,6 +121,7 @@ const data = [
     category: "kitchen",
     slug: "Cuisine et aliments",
     iconImg: IMAGES.iconKitchen,
+    stickerImg : IMAGES.cookingSticker,
     bgcolor: "#21c47b",
     data: [
       { word: "Cuisine", img: IMAGES.cuisine, sound: AUDIOS.cuisine },
@@ -175,6 +178,7 @@ const data = [
     category: "animals",
     slug: "Animaux",
     iconImg: IMAGES.iconAnimal,
+    stickerImg : IMAGES.studentSticker,
     bgcolor: "#ff7621",
     data: [
       { word: "Oiseau", img: IMAGES.oiseau, sound: AUDIOS.oiseau },
@@ -230,6 +234,7 @@ const data = [
     category: "body",
     slug: "Corps et habits",
     iconImg: IMAGES.iconBody,
+    stickerImg : IMAGES.studentSticker,
     bgcolor: "#761cd4",
     data: [
       { word: "Tête", img: IMAGES.tete, sound: AUDIOS.tete },
@@ -290,6 +295,7 @@ const data = [
     category: "sport",
     slug: "Sports et loisirs",
     iconImg: IMAGES.iconSport,
+    stickerImg : IMAGES.studentSticker,
     bgcolor: "#d5297f",
     data: [
       { word: "Ballon", img: IMAGES.ballon, sound: AUDIOS.ballon },
