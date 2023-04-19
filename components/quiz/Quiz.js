@@ -27,7 +27,14 @@ const Quiz = (props) => {
 
   return (
     <>
-      <Body statusBarColor="#f5f3ff">
+      <Body
+        statusBarColor="#f5f3ff"
+        style={{
+          paddingHorizontal: 5,
+          paddingVertical: 5,
+          gap: 0,
+        }}
+      >
         {!quiz.answer ? (
           <LoadingContent />
         ) : (

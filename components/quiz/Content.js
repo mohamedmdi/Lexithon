@@ -46,11 +46,20 @@ const Content = ({ sbj, timer, setTotalAnswers, totalAnswers }) => {
 
   const handleExitPress = () => {
     setModalVisible(true);
+    if (running) {
+      console.log("stop running");
+      setRunning(false);
+    }
+
     return true;
   };
 
   const handleCancelPress = () => {
     setModalVisible(false);
+    if (!running) {
+      console.log("start running");
+      setRunning(true);
+    }
   };
 
   const handleConfirmPress = () => {
@@ -59,11 +68,9 @@ const Content = ({ sbj, timer, setTotalAnswers, totalAnswers }) => {
     navigate.pop();
   };
   //-----------------------------------COUNT--------------------------
-  const COUNT = 1;
+  const COUNT = 10;
   const isFocused = useIsFocused();
-
   const [count, setCount] = useState(COUNT);
-
   const [running, setRunning] = useState(true);
 
   useEffect(() => {
@@ -81,20 +88,9 @@ const Content = ({ sbj, timer, setTotalAnswers, totalAnswers }) => {
           setCount(count - 1);
         } else {
           clearInterval(interval);
-          // navigate.pop();
-          // navigate.navigate("gameover", { sbj, timer: timer, totalAnswers });
-          // if (quiz.HP === 1) {
-          //   setRunning(false);
-          //   navigate.navigate("gameover", { sbj, timer: timer, totalAnswers });
-          //   return;
-          // }
-          // dispatch(decreaseHP());
-          // nextAnswerHandler();
-          // checkAnswerHandler();
           dispatch(decreaseHP());
           setIsCorrect(false);
           setIsClicked(true);
-          // nextAnswerHandler();
         }
       }, 1000);
     }
@@ -115,6 +111,11 @@ const Content = ({ sbj, timer, setTotalAnswers, totalAnswers }) => {
       BackHandler.removeEventListener("hardwareBackPress", handleExitPress);
     };
   }, []);
+
+  useEffect(() => {
+    if (modalVisible) return;
+    setRunning(true);
+  }, [modalVisible]);
   // useBlockButtonHandler(true);
 
   const clickedAnswerHandler = (id) => {
@@ -212,81 +213,97 @@ const Content = ({ sbj, timer, setTotalAnswers, totalAnswers }) => {
         </View>
       </Modal>
 
-      <View
-        style={{
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "space-between",
-          gap: 5,
-        }}
-      >
-        <AnimatedCircularProgress
-          size={40}
-          width={8}
-          fill={(count * 100) / COUNT}
-          tintColor="red"
-          backgroundColor="#ccc"
-          tintColorSecondary="#22c55e"
+      <View style={{ height: "100%", gap: hp("3%") }}>
+        <View
+          style={{
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: 5,
+          }}
         >
-          {() => <Text>{count}</Text>}
-        </AnimatedCircularProgress>
+          <AnimatedCircularProgress
+            size={40}
+            width={6}
+            fill={(count * 100) / COUNT}
+            tintColor="red"
+            backgroundColor="#ccc"
+            tintColorSecondary="#22c55e"
+          >
+            {() => <Text>{count}</Text>}
+          </AnimatedCircularProgress>
 
-        <View style={{ flex: 1 }}>
-          <UpperBar quiz={quiz} />
+          <View style={{ flex: 1 }}>
+            <UpperBar quiz={quiz} />
+          </View>
+          <TouchableOpacity onPress={handleExitPress}>
+            <Ionicons name="close" size={45} color="#666" />
+          </TouchableOpacity>
         </View>
-        <TouchableOpacity style={styles.exit} onPress={handleExitPress}>
-          <Ionicons name="close" size={35} color="#666" />
-        </TouchableOpacity>
-      </View>
 
-      <View style={styles.header}>
-        <TouchableOpacity onPress={playsound} style={styles.imgContainer}>
-          <Ionicons name="volume-medium" size={30} color="#f5f3ff" />
-        </TouchableOpacity>
-        <Text onPress={playsound} style={styles.word}>
-          {quiz.answer.word}
-        </Text>
-        <View style={{ display: "flex", flexDirection: "row", gap: 2 }}>
-          {[...Array(quiz.initialHP).keys()].map((el, i) => (
-            <Image
-              style={{ width: 30, height: 30, resizeMode: "contain" }}
+        <View style={styles.header}>
+          <TouchableOpacity onPress={playsound} style={styles.imgContainer}>
+            <Ionicons name="volume-medium" size={30} color="#f5f3ff" />
+          </TouchableOpacity>
+          <Text onPress={playsound} style={styles.word}>
+            {quiz.answer.word}
+          </Text>
+          <View style={{ display: "flex", flexDirection: "row", gap: 2 }}>
+            {[...Array(quiz.initialHP).keys()].map((el, i) => (
+              <Image
+                style={{ width: 30, height: 30, resizeMode: "contain" }}
+                key={i}
+                source={i + 1 <= quiz.HP ? heart : brokenHeart}
+              ></Image>
+            ))}
+          </View>
+        </View>
+        <View style={styles.body}>
+          {quiz.results.map((result, i) => (
+            <TouchableOpacity
               key={i}
-              source={i + 1 <= quiz.HP ? heart : brokenHeart}
-            ></Image>
+              disabled={isClicked && true}
+              onPress={clickedAnswerHandler(result.word)}
+              style={
+                clickedAnswer === result.word
+                  ? { ...styles.answer, ...styles.hover }
+                  : styles.answer
+              }
+            >
+              <Image style={styles.img} source={result.img}></Image>
+            </TouchableOpacity>
           ))}
         </View>
-      </View>
-      <View style={styles.body}>
-        {quiz.results.map((result, i) => (
-          <TouchableOpacity
-            key={i}
-            disabled={isClicked && true}
-            onPress={clickedAnswerHandler(result.word)}
-            style={
-              clickedAnswer === result.word
-                ? { ...styles.answer, ...styles.hover }
-                : styles.answer
-            }
+        <View
+          style={{
+            height: "10%",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Button
+            style={{
+              backgroundColor: "#7c3aed",
+              borderBottomWidth: 4,
+              borderColor: "#6d28d9",
+              width: "70%",
+              height: "70%",
+              borderRadius: 50,
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+            mode="contained"
+            onPress={checkAnswerHandler}
           >
-            <Image style={styles.img} source={result.img}></Image>
-          </TouchableOpacity>
-        ))}
+            Check{" "}
+          </Button>
+        </View>
       </View>
 
-      <Button
-        style={{
-          backgroundColor: "#7c3aed",
-          borderBottomWidth: 4,
-          borderColor: "#6d28d9",
-        }}
-        mode="contained"
-        onPress={checkAnswerHandler}
-      >
-        Check{" "}
-      </Button>
       {isCorrect === null ? null : (
         <AnswerStateModal
           isCorrect={isCorrect}
+          isOver={count === 0 ? true : false}
           nextAnswerHandler={nextAnswerHandler}
         />
       )}
@@ -314,10 +331,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     paddingVertical: 7,
   },
-  // exit: {
-  //   paddingHorizontal: 5,
-  //   paddingVertical: 5,
-  // },
 
   body: {
     flex: 1,

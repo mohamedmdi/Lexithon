@@ -18,13 +18,12 @@ const ReProfile = ({ edit }) => {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "space-evenly",
-        // backgroundColor: "red",
+        backgroundColor: "#f5f3ff",
         flex: 1,
         gap: 20,
         padding: 25,
       }}
     >
-      
       <View
         style={{
           flexDirection: "column",
