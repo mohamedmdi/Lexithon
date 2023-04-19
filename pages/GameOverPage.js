@@ -23,11 +23,16 @@ import tr from "../assets/trophyjs.json";
 import cf from "../assets/126406-confetti.json";
 import cr from "../assets/crying.json";
 import pe from "../assets/pencil.json";
+import useSound from "../hooks/useSound";
+import success from "../assets/audios/CrowdCheer.mp3";
 
 const GameOver = (props) => {
   const timer = (Date.now() - props.route.params.timer) / 1000;
+  const playSuccessSound = useSound(success);
   useFocusEffect(
     useCallback(() => {
+      if (props.route.params.totalAnswers === NUMBER_OF_QUIZEZ)
+        playSuccessSound();
       const handleBackPress = () => {
         props.navigation.navigate("home");
         return true;
@@ -128,10 +133,10 @@ const GameOver = (props) => {
           </Text> */}
             <Text style={styles.h2}>
               {props.route.params.totalAnswers === NUMBER_OF_QUIZEZ
-                ? "Vous êtes un vrai champion!l’apprentissage est un processus continu, alors continuez à pratiquer et à vous améliorer."
+                ? "Vous êtes un vrai champion!l'apprentissage est un processus continu, alors continuez à pratiquer et à vous améliorer."
                 : props.route.params.totalAnswers >= 8
-                ? "Chaque erreur est une occasion d’apprendre quelque chose de nouveau. Continuez comme ça!"
-                : " Chaque erreur est une occasion d’apprendre quelque chose de nouveau. Continuez comme ça!"}
+                ? "Chaque erreur est une occasion d'apprendre quelque chose de nouveau. Continuez comme ça!"
+                : " Chaque erreur est une occasion d'apprendre quelque chose de nouveau. Continuez comme ça!"}
             </Text>
           </View>
         </View>
@@ -142,7 +147,7 @@ const GameOver = (props) => {
               <Text
                 style={{ ...styles.stat, fontWeight: "normal", fontSize: 15 }}
               >
-                minuteur
+                Minuteur
               </Text>
             </View>
             <Text style={{ ...styles.stat }}>
@@ -177,7 +182,7 @@ const GameOver = (props) => {
               <Text
                 style={{ ...styles.stat, fontWeight: "normal", fontSize: 15 }}
               >
-                trophée
+                Trophée
               </Text>
             </View>
             <Text style={{ ...styles.stat }}>

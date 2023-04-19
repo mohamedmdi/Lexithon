@@ -21,7 +21,7 @@ import AnswerStateModal from "./AnswerStateModal";
 import { increaseTrophy, updateTrophies } from "../../store/userSlice";
 import UpperBar from "./UpperBar";
 import { Ionicons } from "@expo/vector-icons";
-import failure from "../../assets/audios/failure.mp3";
+import failure from "../../assets/audios/wrongAnswer.mp3";
 import success from "../../assets/audios/success_cut.mp3";
 import { updateTrophy } from "../../store/async-thunks";
 import { useBlockButtonHandler } from "../../hooks/useBlockBackHandler";
@@ -68,7 +68,7 @@ const Content = ({ sbj, timer, setTotalAnswers, totalAnswers }) => {
     navigate.pop();
   };
   //-----------------------------------COUNT--------------------------
-  const COUNT = 10;
+  const COUNT = 5;
   const isFocused = useIsFocused();
   const [count, setCount] = useState(COUNT);
   const [running, setRunning] = useState(true);
@@ -81,6 +81,7 @@ const Content = ({ sbj, timer, setTotalAnswers, totalAnswers }) => {
   }, [isFocused]);
 
   useEffect(() => {
+    if (count === 0) playFailureSound();
     let interval;
     if (running) {
       interval = setInterval(() => {
@@ -103,6 +104,12 @@ const Content = ({ sbj, timer, setTotalAnswers, totalAnswers }) => {
   };
 
   //------------------------------------------------------------------
+
+  useFocusEffect(
+    useCallback(() => {
+      playsound();
+    }, [quiz.answer.sound])
+  );
 
   useEffect(() => {
     BackHandler.addEventListener("hardwareBackPress", handleExitPress);
@@ -274,38 +281,30 @@ const Content = ({ sbj, timer, setTotalAnswers, totalAnswers }) => {
             </TouchableOpacity>
           ))}
         </View>
-        <View
-          style={{
-            height: "10%",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <TouchableOpacity
-            style={{
-              backgroundColor: "#7c3aed",
-              borderBottomWidth: 4,
-              borderColor: "#6d28d9",
-              width: "70%",
-              height: "70%",
-              borderRadius: 50,
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-            onPress={checkAnswerHandler}
-          >
-            <Text style={{ color: "#f5f3ff" }}>Check</Text>
-          </TouchableOpacity>
-        </View>
       </View>
-
-      {isCorrect === null ? null : (
+      <View
+        style={{
+          // height: "10%",
+          alignItems: "center",
+          justifyContent: "center",
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          paddingVertical: 30,
+          paddingHorizontal: 20,
+          margin: 0,
+          height: hp(14),
+        }}
+      >
         <AnswerStateModal
+          clickedAnswer={clickedAnswer}
           isCorrect={isCorrect}
           isOver={count === 0 ? true : false}
+          checkAnswerHandler={checkAnswerHandler}
           nextAnswerHandler={nextAnswerHandler}
         />
-      )}
+      </View>
     </>
   );
 };
@@ -337,6 +336,7 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     columnGap: 10,
     rowGap: 20,
+    marginBottom: hp(12),
   },
 
   answer: {
