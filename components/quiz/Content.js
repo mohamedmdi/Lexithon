@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { Button } from "react-native-paper";
 import useSound from "../../hooks/useSound";
-import { getQuizHandler, decreaseHP } from "../../store/quizSlice";
+import { getQuizHandler, decreaseHP, clearQuiz } from "../../store/quizSlice";
 import { useDispatch, useSelector } from "react-redux";
 import {
   useFocusEffect,
@@ -65,6 +65,7 @@ const Content = ({ sbj, timer, setTotalAnswers, totalAnswers }) => {
   const handleConfirmPress = () => {
     console.log("User confirmed exit");
     setModalVisible(false);
+    dispatch(clearQuiz());
     navigate.pop();
   };
   //-----------------------------------COUNT--------------------------
@@ -105,11 +106,9 @@ const Content = ({ sbj, timer, setTotalAnswers, totalAnswers }) => {
 
   //------------------------------------------------------------------
 
-  useFocusEffect(
-    useCallback(() => {
-      playsound();
-    }, [quiz.answer.sound])
-  );
+  useEffect(() => {
+    playsound();
+  }, [quiz.answer.sound]);
 
   useEffect(() => {
     BackHandler.addEventListener("hardwareBackPress", handleExitPress);

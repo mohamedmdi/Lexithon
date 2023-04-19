@@ -24,6 +24,7 @@ const AnswerStateModal = ({
             borderRadius: 50,
             alignItems: "center",
             justifyContent: "center",
+            
           }}
           onPress={checkAnswerHandler}
         >

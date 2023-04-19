@@ -48,10 +48,19 @@ export const quizSlice = createSlice({
       state.currentIteration = 0;
       state.HP = state.initialHP;
     },
-
-    getQuizHandler: (state, action) => {
-      state.results = [];
+    clearQuiz: (state, action) => {
+      state.answers = [];
+      state.data = data;
+      state.choices = [];
       state.answer = null;
+      state.isWrong = false;
+      state.results = [];
+      state.currentIteration = 0;
+      state.initialHP = 3;
+    },
+    getQuizHandler: (state, action) => {
+      state.answer = null;
+      state.results = [];
       state.currentIteration = state.currentIteration + 1;
       if (state.currentIteration > NUMBER_OF_QUIZEZ) return;
 
@@ -76,6 +85,6 @@ export const quizSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { init, getQuizHandler, decreaseHP } = quizSlice.actions;
+export const { init, getQuizHandler, decreaseHP, clearQuiz } = quizSlice.actions;
 
 export default quizSlice.reducer;

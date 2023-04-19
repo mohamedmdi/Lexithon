@@ -25,10 +25,14 @@ import cr from "../assets/crying.json";
 import pe from "../assets/pencil.json";
 import useSound from "../hooks/useSound";
 import success from "../assets/audios/CrowdCheer.mp3";
+import { useDispatch } from "react-redux";
+import { clearQuiz } from "../store/quizSlice";
+
 
 const GameOver = (props) => {
   const timer = (Date.now() - props.route.params.timer) / 1000;
   const playSuccessSound = useSound(success);
+  const dispatch = useDispatch();
   useFocusEffect(
     useCallback(() => {
       if (props.route.params.totalAnswers === NUMBER_OF_QUIZEZ)
@@ -209,7 +213,10 @@ const GameOver = (props) => {
             borderColor: "#287ab2",
           }}
           mode="contained"
-          onPress={() => props.navigation.navigate("home")}
+          onPress={() => {
+            dispatch(clearQuiz());
+            props.navigation.pop();
+          }}
         >
           Retour{" "}
         </Button>
@@ -220,9 +227,10 @@ const GameOver = (props) => {
             borderColor: "#b25f0b",
           }}
           mode="contained"
-          onPress={() =>
-            props.navigation.navigate("quiz", { id: props.route.params.sbj })
-          }
+          onPress={() => {
+            dispatch(clearQuiz());
+            props.navigation.navigate("quiz", { id: props.route.params.sbj });
+          }}
         >
           Rejouer{" "}
         </Button>
