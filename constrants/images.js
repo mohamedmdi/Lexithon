@@ -249,6 +249,18 @@ import iconSport from "../assets/imgs/sports.png";
 import studentSticker from '../assets/imgs/student.png'
 import familySticker from '../assets/imgs/family.png'
 import cookingSticker from '../assets/imgs/cooking.png'
+import animalSticker from '../assets/imgs/exploration.png'
+import bodySticker from '../assets/imgs/heartcar.png'
+import sportSticker from '../assets/imgs/winner.png'
+
+// BG Cards
+import schoolCard from '../assets/schoolCard.png'
+import familyCard from '../assets/stickerFamille.png'
+import KitchenCard from '../assets/kitchenCard.png'
+import animalCard from '../assets/animalCard.png'
+import bodyCard from '../assets/bodyCard.png'
+import SportCard from '../assets/stickerSport.png'
+
 
 const IMAGES = {
   ecole,
@@ -497,6 +509,15 @@ const IMAGES = {
   studentSticker,
   familySticker,
   cookingSticker,
+  schoolCard,
+  familyCard,
+  KitchenCard,
+  animalSticker,
+  animalCard,
+  bodySticker,
+  bodyCard,
+  sportSticker,
+  SportCard
 };
 
 export default IMAGES;

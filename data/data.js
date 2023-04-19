@@ -7,6 +7,7 @@ const data = [
     slug: "L'école",
     iconImg: IMAGES.iconSchool,
     stickerImg : IMAGES.studentSticker,
+    bgCard : IMAGES.schoolCard,
     bgcolor: "#f3cf26",
     data: [
       { word: "Ecole ", img: IMAGES.ecole, sound: AUDIOS.ecole },
@@ -69,7 +70,8 @@ const data = [
     slug: "Maison et famille",
     iconImg: IMAGES.iconHome,
     stickerImg : IMAGES.familySticker,
-    bgcolor: "#2f7dd3",
+    bgCard : IMAGES.familyCard,
+    bgcolor: "#2f7dd0",
     data: [
       { word: "Maison", img: IMAGES.maison, sound: AUDIOS.maison },
       { word: "Famille", img: IMAGES.famille, sound: AUDIOS.famille },
@@ -122,6 +124,7 @@ const data = [
     slug: "Cuisine et aliments",
     iconImg: IMAGES.iconKitchen,
     stickerImg : IMAGES.cookingSticker,
+    bgCard : IMAGES.KitchenCard,
     bgcolor: "#21c47b",
     data: [
       { word: "Cuisine", img: IMAGES.cuisine, sound: AUDIOS.cuisine },
@@ -178,8 +181,9 @@ const data = [
     category: "animals",
     slug: "Animaux",
     iconImg: IMAGES.iconAnimal,
-    stickerImg : IMAGES.studentSticker,
-    bgcolor: "#ff7621",
+    stickerImg : IMAGES.animalSticker,
+    bgCard : IMAGES.animalCard,
+    bgcolor: "#FFA93B",
     data: [
       { word: "Oiseau", img: IMAGES.oiseau, sound: AUDIOS.oiseau },
       { word: "Chat", img: IMAGES.chat, sound: AUDIOS.chat },
@@ -234,7 +238,8 @@ const data = [
     category: "body",
     slug: "Corps et habits",
     iconImg: IMAGES.iconBody,
-    stickerImg : IMAGES.studentSticker,
+    stickerImg : IMAGES.bodySticker,
+    bgCard : IMAGES.bodyCard,
     bgcolor: "#761cd4",
     data: [
       { word: "Tête", img: IMAGES.tete, sound: AUDIOS.tete },
@@ -295,8 +300,9 @@ const data = [
     category: "sport",
     slug: "Sports et loisirs",
     iconImg: IMAGES.iconSport,
-    stickerImg : IMAGES.studentSticker,
-    bgcolor: "#d5297f",
+    stickerImg : IMAGES.sportSticker,
+    bgCard : IMAGES.SportCard,
+    bgcolor: "#82B6FF",
     data: [
       { word: "Ballon", img: IMAGES.ballon, sound: AUDIOS.ballon },
       { word: "Course", img: IMAGES.course, sound: AUDIOS.course },

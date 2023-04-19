@@ -1,1 +1,1 @@
-export default NUMBER_OF_QUIZEZ = 10;
+export default NUMBER_OF_QUIZEZ = 2;
