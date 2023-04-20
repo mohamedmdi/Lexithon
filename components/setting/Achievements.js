@@ -6,10 +6,20 @@ import trophyImg from "../../assets/award.png";
 
 const Achievements = () => {
   const { trophy } = useSelector((state) => state.user);
+  let sum = 0;
+  for (let i in trophy) {
+    const element = trophy[i];
+    sum += element;
+  }
 
   return (
     <View style={{ marginBottom: 40, gap: 15 }}>
-      <Text style={styles.subHeader}>Trophées</Text>
+      <View>
+        <Text style={styles.Header}>Trophées</Text>
+        <Text style={styles.subHeader}>
+        La somme des trophées pour toutes les catégories
+        </Text>
+      </View>
       <View
         style={{
           flexDirection: "row",
@@ -18,7 +28,7 @@ const Achievements = () => {
           gap: 50,
         }}
       >
-        <Text style={styles.num}>x{trophy.school}</Text>
+        <Text style={styles.num}>x{sum}</Text>
         <Image style={styles.img} source={trophyImg}></Image>
       </View>
     </View>
@@ -28,10 +38,16 @@ const Achievements = () => {
 export default Achievements;
 
 const styles = StyleSheet.create({
-  subHeader: {
+  Header: {
     fontSize: 17,
     color: "#495057",
     fontWeight: "500",
+    letterSpacing: 0.8,
+  },
+  subHeader: {
+    fontSize: 15,
+    color: "#495057",
+    fontWeight: "300",
     letterSpacing: 0.8,
   },
 

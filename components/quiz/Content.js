@@ -414,7 +414,7 @@ const styles = StyleSheet.create({
   },
 
   modalButtonTextConfirm: {
-    color: "#E55C5D",
+    color: "#495057",
     fontSize: 18,
     fontWeight: "bold",
     textAlign: "center",
