@@ -229,6 +229,7 @@ const GameOver = (props) => {
           mode="contained"
           onPress={() => {
             dispatch(clearQuiz());
+            props.navigation.pop();
             props.navigation.navigate("quiz", { id: props.route.params.sbj });
           }}
         >
