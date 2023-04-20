@@ -71,9 +71,10 @@ const SignUp = (props) => {
     <View
       style={{
         height: "100%",
-        justifyContent: "space-between",
+        // justifyContent: "space-evenly",
         paddingVertical: 40,
         paddingTop: 10,
+        gap: 70,
       }}
     >
       <View>
@@ -95,7 +96,7 @@ const SignUp = (props) => {
           <Text style={{ color: "#d5297f" }}>r</Text>e
         </Text>
       </View>
-      <View>
+      <View style={{ gap: 100 }}>
         <View style={styles.form}>
           <View style={{ gap: 4 }}>
             <Gender
@@ -176,7 +177,6 @@ const styles = StyleSheet.create({
   form: {
     display: "flex",
     gap: 10,
-    marginBottom: 40,
   },
 
   h1: {

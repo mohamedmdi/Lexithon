@@ -7,11 +7,11 @@ const AnswerStateModal = ({
   isCorrect,
   checkAnswerHandler,
   nextAnswerHandler,
-  isOver
+  isOver,
 }) => {
   return (
     <>
-      {isCorrect === null && !isOver  ? (
+      {isCorrect === null && !isOver ? (
         <TouchableOpacity
           disabled={clickedAnswer ? false : true}
           style={{
@@ -24,11 +24,16 @@ const AnswerStateModal = ({
             borderRadius: 50,
             alignItems: "center",
             justifyContent: "center",
-            
           }}
           onPress={checkAnswerHandler}
         >
-          <Text style={{ color: clickedAnswer ? "#FFF" : "#fffffd", fontSize: hp(2.6), fontWeight: 700 }}>
+          <Text
+            style={{
+              color: clickedAnswer ? "#FFF" : "#fffffd",
+              fontSize: hp(2.6),
+              fontWeight: 700,
+            }}
+          >
             VERIFIER
           </Text>
         </TouchableOpacity>
@@ -54,10 +59,11 @@ const AnswerStateModal = ({
                 fontSize: hp(3),
                 fontWeight: "900",
                 letterSpacing: 0.8,
+                textAlign: "center",
                 color: isCorrect ? "#57CC02" : "#FF4B4C",
               }}
             >
-              {isCorrect ? "Incroyable" : "Incorrecte"}
+              {isCorrect ? "Correcte" : "Incorrecte"}
             </Text>
           </View>
           <TouchableOpacity

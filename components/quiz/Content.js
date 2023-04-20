@@ -196,26 +196,28 @@ const Content = ({ sbj, timer, setTotalAnswers, totalAnswers }) => {
                 color: "#7c3aed",
               }}
             >
-              Give up 😓
+              Quitter 😓
             </Text>
             <View style={{ marginBottom: 30, gap: 5 }}>
               <Text style={styles.modalText}>
-                Are you sure you want to exit?
+                Êtes-vous sûr de vouloir quitter?
               </Text>
-              <Text style={styles.modalText}>You will lose your progress</Text>
+              <Text style={styles.modalText}>
+                Vous perdrez votre progression
+              </Text>
             </View>
             <View style={{ width: "100%", gap: 14 }}>
               <TouchableOpacity
                 onPress={handleCancelPress}
                 style={styles.modalButton}
               >
-                <Text style={styles.modalButtonText}>Cancel</Text>
+                <Text style={styles.modalButtonText}>Annuler</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.modalButtonConfirm}
                 onPress={handleConfirmPress}
               >
-                <Text style={styles.modalButtonTextConfirm}>Confirm</Text>
+                <Text style={styles.modalButtonTextConfirm}>Confirmer</Text>
               </TouchableOpacity>
             </View>
           </View>
