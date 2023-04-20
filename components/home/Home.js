@@ -1,5 +1,4 @@
-import { useEffect } from "react";
-import { View, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import useBackHandler from "../../hooks/useBackHandler";
 import Body from "../layout/Body";
@@ -34,5 +33,3 @@ const Home = () => {
 };
 
 export default Home;
-
-const styles = StyleSheet.create({});

@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
-import { useDispatch } from "react-redux";
 import boy from "../../assets/boy.png";
 import girl from "../../assets/girl.png";
-import { useFocusEffect } from "@react-navigation/native";
-import { useCallback } from "react";
 
 const genders = ["male", "female"];
 

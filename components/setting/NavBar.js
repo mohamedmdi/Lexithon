@@ -1,9 +1,10 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 import React, { useEffect } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { updateUserInfo } from "../../store/userSlice";
 import { useDispatch, useSelector } from "react-redux";
+import save from "../../assets/save.png";
 
 const NavBar = (props) => {
   const navigation = useNavigation();
@@ -19,7 +20,7 @@ const NavBar = (props) => {
       </TouchableOpacity>
       <Text style={styles.p}>Profil</Text>
       <TouchableOpacity onPress={editInfoHandler}>
-        <Text style={styles.btn}>Save</Text>
+        <Image source={save} style={{ height: 35, width: 35 }} />
       </TouchableOpacity>
     </View>
   );

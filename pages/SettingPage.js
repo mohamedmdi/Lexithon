@@ -52,6 +52,7 @@ const SettingPage = () => {
   const handelPress = () => {
     dispatch(setIsActive());
   };
+  console.log(data.map((el) => ({ ...el, trophy: trophy[el.category] }))[0]);
   return (
     <>
       <Appbar.Header style={{ backgroundColor: "#f5f3ff" }}>
@@ -65,65 +66,111 @@ const SettingPage = () => {
       <View
         style={{
           flex: 2,
-          backgroundColor: "#7c3aed",
-          alignItems: "center",
-          justifyContent: "center",
-          paddingVertical: 15,
           borderTopLeftRadius: 30,
           borderTopRightRadius: 30,
+          backgroundColor: "#7c3aed",
         }}
       >
-        <ScrollView showsVerticalScrollIndicator={false}>
-          {data.map((el, i) => (
-            <View
-              key={i}
-              style={{
-                gap: 15,
-                borderBottomColor: "#f5f3ff",
-                borderBottomWidth: 0.5,
-                paddingVertical: 30,
-
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "space-between",
-              }}
-            >
-              <Image source={el.iconImg} style={{ height: 50, width: 50 }} />
-              <Text
-                style={{ fontWeight: "bold", fontSize: 25, color: "#f5f3ff" }}
-              >
-                {el.slug}
-              </Text>
-              <View
-                style={{
-                  flexDirection: "row",
-                  gap: 5,
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  // backgroundColor: "red",
-                }}
-              >
-                <Image
-                  source={award}
+        <View
+          style={{
+            gap: 10,
+            height: "15%",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+            paddingHorizontal: 30,
+          }}
+        >
+          <Text style={{ fontSize: 20, fontWeight: "500", color: "#f5f3ff" }}>
+            Classement
+          </Text>
+          <Text style={{ fontSize: 20, fontWeight: "500", color: "#f5f3ff" }}>
+            Trophees
+          </Text>
+        </View>
+        <View
+          style={{
+            height: "85%",
+            backgroundColor: "#f5f3ff",
+            alignItems: "center",
+            justifyContent: "center",
+            paddingVertical: 15,
+            borderTopLeftRadius: 30,
+            borderTopRightRadius: 30,
+          }}
+        >
+          <ScrollView showsVerticalScrollIndicator={false}>
+            {data
+              .map((el) => ({ ...el, trophy: trophy[el.category] }))
+              .sort((a, b) => b.trophy - a.trophy)
+              .map((el, i) => (
+                <View
+                  key={i}
                   style={{
-                    height: 35,
-                    width: 35,
-                  }}
-                />
-                <Text
-                  style={{
-                    color: "#f5f3ff",
-                    fontWeight: "bold",
-                    fontSize: 32,
-                    // backgroundColor: "red",
+                    gap: 10,
+                    borderBottomColor: "#7c3aed",
+                    borderBottomWidth: 0.5,
+                    paddingVertical: 25,
+                    flexDirection: "row",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    paddingHorizontal: 20,
                   }}
                 >
-                  {trophy[el.category]}
-                </Text>
-              </View>
-            </View>
-          ))}
-        </ScrollView>
+                  <View
+                    style={{
+                      width: "75%",
+                      gap: 10,
+                      flexDirection: "row",
+                      alignItems: "center",
+                      // justifyContent: "space-between",
+                    }}
+                  >
+                    <Image
+                      source={el.iconImg}
+                      style={{ height: 45, width: 45 }}
+                    />
+                    <Text
+                      style={{
+                        width: "80%",
+                        fontWeight: "400",
+                        fontSize: 20,
+                        color: "#575772",
+                        overflow: "hidden",
+                      }}
+                    >
+                      {el.slug}
+                    </Text>
+                  </View>
+                  <View
+                    style={{
+                      width: "25%",
+                      flexDirection: "row",
+                      gap: 5,
+                      alignItems: "center",
+                    }}
+                  >
+                    <Image
+                      source={award}
+                      style={{
+                        height: 35,
+                        width: 35,
+                      }}
+                    />
+                    <Text
+                      style={{
+                        color: "#575772",
+                        fontWeight: "bold",
+                        fontSize: 32,
+                      }}
+                    >
+                      {el.trophy}
+                    </Text>
+                  </View>
+                </View>
+              ))}
+          </ScrollView>
+        </View>
       </View>
     </>
   );

@@ -28,8 +28,6 @@ import success from "../assets/audios/CrowdCheer.mp3";
 import { useDispatch } from "react-redux";
 import { clearQuiz } from "../store/quizSlice";
 
-
-
 const GameOver = (props) => {
   const timer = (Date.now() - props.route.params.timer) / 1000;
   const playSuccessSound = useSound(success);
@@ -141,7 +139,7 @@ const GameOver = (props) => {
               {props.route.params.totalAnswers === NUMBER_OF_QUIZEZ
                 ? "Vous êtes un vrai champion!l'apprentissage est un processus continu, alors continuez à pratiquer et à vous améliorer."
                 : props.route.params.totalAnswers >= 8
-                ? "Chaque erreur est une occasion d'apprendre quelque chose de nouveau. Continuez comme ça!"
+                ? "Continue de pratiquer et tu verras que tu te rappelleras bientôt tous les mots."
                 : " Chaque erreur est une occasion d'apprendre quelque chose de nouveau. Continuez comme ça!"}
             </Text>
           </View>
@@ -250,7 +248,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderBottomLeftRadius: 30,
     borderBottomRightRadius: 30,
-    gap: hp("8%"),
+    justifyContent: "space-between",
     paddingVertical: 25,
   },
   btn: {},

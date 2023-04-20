@@ -1,25 +1,13 @@
 import { useCallback, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableWithoutFeedback,
-  Keyboard,
-  TouchableOpacity,
-  Touchable,
-  Pressable,
-  Image,
-} from "react-native";
+import { useSelector } from "react-redux";
+import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import logo from "../../assets/imgs/logo-maroc.png";
-import imgSignup from "../../assets/imgs/img-signup.png";
 
-import { TextInput, Button } from "react-native-paper";
+import { TextInput } from "react-native-paper";
 import DropDown from "./DropDown";
 import Gender from "./Gender";
 
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
-import { SelectList } from "react-native-dropdown-select-list";
 import storeData from "../../util/storeData";
 
 const SignUp = (props) => {
@@ -71,17 +59,17 @@ const SignUp = (props) => {
     <View
       style={{
         height: "100%",
-        // justifyContent: "space-evenly",
         paddingVertical: 40,
         paddingTop: 10,
         gap: 70,
       }}
     >
-      <View>
+      <View style={{ height: "30%" }}>
         <Image
           source={logo}
+          resizeMode="contain"
           style={{
-            width: 120,
+            width: "80%",
             height: 120,
             marginRight: "auto",
             marginLeft: "auto",
@@ -96,7 +84,7 @@ const SignUp = (props) => {
           <Text style={{ color: "#d5297f" }}>r</Text>e
         </Text>
       </View>
-      <View style={{ gap: 100 }}>
+      <View style={{ height: "70%", gap: 30 }}>
         <View style={styles.form}>
           <View style={{ gap: 4 }}>
             <Gender
@@ -158,15 +146,6 @@ const SignUp = (props) => {
           </Text>
         </TouchableOpacity>
       </View>
-      {/* <Image
-        source={imgSignup}
-        style={{
-          width: 120,
-          height: 120,
-          marginRight: "auto",
-          marginLeft: "auto",
-        }}
-      ></Image> */}
     </View>
   );
 };
@@ -184,7 +163,6 @@ const styles = StyleSheet.create({
     fontSize: 30,
     textAlign: "center",
     color: "#333",
-    // marginBottom: 50,
   },
 
   label: {

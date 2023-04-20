@@ -23,6 +23,10 @@ const Subject = (props) => {
       style={{
         borderColor: dark,
         backgroundColor: props.bgcolor,
+        elevation: 5,
+        shadowColor: "black",
+        shadowOpacity: 0.5,
+        shadowRadius: 0.5,
 
         ...styles.container,
       }}
@@ -109,7 +113,7 @@ const styles = StyleSheet.create({
     color: "white",
     paddingTop: hp("13%"),
     textShadowColor: "rgba(0, 0, 0, 0.75)",
-    textShadowOffset: { width: -0.5, height:0.5 },
+    textShadowOffset: { width: -0.5, height: 0.5 },
     textShadowRadius: 1,
   },
 

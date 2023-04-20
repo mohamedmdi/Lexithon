@@ -69,7 +69,7 @@ const Content = ({ sbj, timer, setTotalAnswers, totalAnswers }) => {
     navigate.pop();
   };
   //-----------------------------------COUNT--------------------------
-  const COUNT = 5;
+  const COUNT = 60;
   const isFocused = useIsFocused();
   const [count, setCount] = useState(COUNT);
   const [running, setRunning] = useState(true);
@@ -248,7 +248,7 @@ const Content = ({ sbj, timer, setTotalAnswers, totalAnswers }) => {
             <UpperBar quiz={quiz} />
           </View>
           <TouchableOpacity onPress={handleExitPress}>
-            <Ionicons name="close" size={45} color="#666" />
+            <Ionicons name="close" size={45} color="#d2d2d2" />
           </TouchableOpacity>
         </View>
 
@@ -288,7 +288,6 @@ const Content = ({ sbj, timer, setTotalAnswers, totalAnswers }) => {
       </View>
       <View
         style={{
-          // height: "10%",
           alignItems: "center",
           justifyContent: "center",
           position: "absolute",
@@ -341,6 +340,7 @@ const styles = StyleSheet.create({
     columnGap: 10,
     rowGap: 20,
     marginBottom: hp(12),
+    marginHorizontal: 8,
   },
 
   answer: {
@@ -348,8 +348,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "46.9%",
     borderRadius: 8,
-    borderColor: "#7c3aed",
-    borderWidth: 1,
+    borderColor: "#d2d2d2",
+    borderWidth: 2,
     borderBottomWidth: 4,
   },
 
@@ -360,7 +360,8 @@ const styles = StyleSheet.create({
   },
 
   hover: {
-    backgroundColor: "rgba(124,58,237, 0.3)",
+    backgroundColor: "rgba(149, 76, 224, 0.1)",
+    borderColor: "#7c3aed",
   },
 
   word: {
@@ -391,7 +392,6 @@ const styles = StyleSheet.create({
   },
   modalText: {
     fontSize: 15,
-    // marginBottom: 10,
     textAlign: "center",
     color: "#777",
   },
