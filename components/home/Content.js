@@ -32,45 +32,45 @@ const Content = ({ user }) => {
         style={{
           display: "flex",
           flexDirection: "row",
-          gap: 15,
+          gap: hp(2),
           alignItems: "center",
-          padding: 5,
+          padding: hp(1),
           justifyContent: "space-between",
         }}
       >
-        <View style={{ flexDirection: "row", gap: 15, alignItems: "center" }}>
+        <View style={{ flexDirection: "row", gap: hp(2), alignItems: "center" }}>
           <TouchableOpacity
             onPress={() => navigation.navigate("setting")}
             style={{
               borderColor: "black",
-              borderWidth: 1,
-              borderRadius: 10,
+              borderWidth: hp(0.2),
+              borderRadius: hp(1.2),
               alignItems: "center",
               justifyContent: "center",
-              padding: 8,
+              padding: hp(1.2),
               backgroundColor: "rgba(124, 58, 237, 0.8)",
             }}
           >
             <Image
               source={user.gender === "male" ? boy : girl}
               style={{
-                width: 45,
-                height: 45,
+                width: hp(4),
+                height: hp(4),
               }}
             ></Image>
           </TouchableOpacity>
-          <View style={{ flexDirection: "column", marginRight: 30 }}>
+          <View style={{ flexDirection: "column", marginRight: hp(2) }}>
             <Text>Bienvenue</Text>
             <Text style={styles.h1}>{user.username}</Text>
           </View>
         </View>
         <TouchableOpacity onPress={() => navigation.navigate("setting")}>
           {/* <Ionicons name="settings-outline" size={32} color="#7c3aed" /> */}
-          <Ionicons name="menu" size={40} color="#7c3aed" />
+          <Ionicons name="menu" size={hp(5)} color="#7c3aed" />
         </TouchableOpacity>
       </View>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={{ paddingTop: 50 }}>
+        <View style={{ paddingTop: hp(6) }}>
           <View style={styles.subjects}>
             {data.map((sbj, i) => (
               <Subject
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
 
   h1: {
     fontWeight: "bold",
-    fontSize: hp("3%"),
+    fontSize: hp("4"),
     color: "#7c3aed",
     marginRight: "auto",
   },

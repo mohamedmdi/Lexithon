@@ -7,6 +7,7 @@ import monVoc from "../../assets/monVoc.png";
 import { TextInput } from "react-native-paper";
 import DropDown from "./DropDown";
 import Gender from "./Gender";
+import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import storeData from "../../util/storeData";
@@ -60,10 +61,10 @@ const SignUp = (props) => {
     <View
       style={{
         height: "100%",
-        paddingVertical: 40,
-        paddingHorizontal : 10,
-        paddingTop: 10,
-        gap: 70,
+        paddingVertical: hp(8),
+        paddingHorizontal : hp(1.5),
+        paddingTop: hp(3),
+        gap: hp(10),
       }}
     >
       <View style={{ height: "30%" }}>
@@ -71,35 +72,27 @@ const SignUp = (props) => {
           source={logo}
           resizeMode="contain"
           style={{
-            width: "80%",
-            height: 120,
+            width: hp(30),
+            height: hp(10),
             marginRight: "auto",
             marginLeft: "auto",
-            marginBottom: 25,
+            marginBottom: hp(4),
           }}
         ></Image>
         <Image
           source={monVoc}
           resizeMode="contain"
           style={{
-            width: "80%",
-            height: 120,
+            width: hp(40),
+            height: hp(15),
             marginRight: "auto",
             marginLeft: "auto",
-            marginBottom: 25,
           }}
         ></Image>
-
-        {/* <Text style={styles.h1}>
-          M<Text style={{ color: "#f3cf26" }}>o</Text>n Vo
-          <Text style={{ color: "#761cd4" }}>c</Text>ab
-          <Text style={{ color: "#ff8811" }}>u</Text>lai
-          <Text style={{ color: "#d5297f" }}>r</Text>e
-        </Text> */}
       </View>
-      <View style={{ height: "70%", gap: 30 }}>
+      <View style={{ height: hp(40), gap: hp(2) }}>
         <View style={styles.form}>
-          <View style={{ gap: 4 }}>
+          <View style={{ gap: hp(1) }}>
             <Gender
               setGenderError={setErrors}
               setGender={setGender}
@@ -110,7 +103,7 @@ const SignUp = (props) => {
               {errors.gender ? "You must choose your gender" : null}
             </Text>
           </View>
-          <View style={{ gap: 3 }}>
+          <View style={{ gap: hp(0.5) }}>
             <Text style={styles.label}>Nom</Text>
 
             <TextInput
@@ -140,10 +133,10 @@ const SignUp = (props) => {
         <TouchableOpacity
           style={{
             backgroundColor: "#7c3aed",
-            borderBottomWidth: 6,
+            borderBottomWidth: hp(0.7),
             borderColor: "#7034d5",
-            paddingVertical: 16,
-            borderRadius: 50,
+            paddingVertical: hp(2),
+            borderRadius: hp(3),
           }}
           onPress={submitHandler}
         >
@@ -151,11 +144,11 @@ const SignUp = (props) => {
             style={{
               textAlign: "center",
               color: "white",
-              fontSize: 18,
+              fontSize: hp(2.2),
               fontWeight: "bold",
             }}
           >
-            c'est partie
+            C'est Partie
           </Text>
         </TouchableOpacity>
       </View>
@@ -168,18 +161,10 @@ export default SignUp;
 const styles = StyleSheet.create({
   form: {
     display: "flex",
-    gap: 10,
-  },
-
-  h1: {
-    fontWeight: "bold",
-    fontSize: 30,
-    textAlign: "center",
-    color: "#333",
   },
 
   label: {
-    fontSize: 16,
+    fontSize: hp(2.1),
     color: "#5b21b6",
   },
 

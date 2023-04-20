@@ -4,6 +4,7 @@ import { ProgressBar } from "react-native-paper";
 import heart from "../../assets/imgs/filledHeart.png";
 import brokenHeart from "../../assets/imgs/brokenHeart.png";
 import NUMBER_OF_QUIZEZ from "../../util/numberOfQuiz";
+import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 
 const UpperBar = ({ quiz }) => {
   return (
@@ -23,7 +24,7 @@ export default UpperBar;
 const styles = StyleSheet.create({
   bar: {
     backgroundColor: "rgba(124,58,237, 0.3)",
-    height: 20,
+    height: hp(2.5),
     borderRadius: 50,
   },
 });

@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 import boy from "../../assets/boy.png";
 import girl from "../../assets/girl.png";
+import { heightPercentageToDP as hp } from "react-native-responsive-screen";
+
 
 const genders = ["male", "female"];
 
@@ -20,8 +22,8 @@ const OneGender = (props) => {
       <Image
         source={props.gender === "male" ? boy : girl}
         style={{
-          width: 50,
-          height: 50,
+          width: hp(7),
+          height: hp(7),
         }}
       ></Image>
     </TouchableOpacity>

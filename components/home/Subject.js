@@ -34,7 +34,7 @@ const Subject = (props) => {
       <ImageBackground
         source={props.bgCard}
         resizeMode="cover"
-        imageStyle={{ borderRadius: 8 }}
+        imageStyle={{ borderRadius: hp(2) }}
         style={{ height: "100%", width: "100%" }}
       >
         <View
@@ -44,7 +44,12 @@ const Subject = (props) => {
           }}
         >
           <Image
-            style={{ height: 150, width: 150, position: "absolute", top: -50 }}
+            style={{
+              height: hp("20%"),
+              width: hp("20%"),
+              position: "absolute",
+              top: -50,
+            }}
             source={props.iconImg}
           ></Image>
         </View>
@@ -52,6 +57,9 @@ const Subject = (props) => {
           style={{
             height: "65%",
             width: "100%",
+            alignItems: "center",
+            justifyContent: "center",
+            // backgroundColor : "green"
           }}
         >
           <Text style={styles.subText}>{props.subject}</Text>
@@ -81,7 +89,7 @@ const Subject = (props) => {
             }}
             onPress={() => navigation.navigate("quiz", { id: props.slug })}
           >
-            <Text style={{ fontSize: 20, fontWeight: "900" }}>Jouer</Text>
+            <Text style={{ fontSize: hp(3), fontWeight: "900" }}>Jouer</Text>
           </TouchableOpacity>
         </View>
       </ImageBackground>
@@ -95,21 +103,18 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: "space-evenly",
     alignItems: "center",
-    gap: 10,
     width: "100%",
     height: hp("30%"),
     borderRadius: 8,
     borderBottomWidth: 7,
     flexDirection: "row",
-    aspectRatio: 3 / 2,
+    aspectRatio: hp(0.17),
   },
 
   subText: {
-    position: "absolute",
-    alignSelf: "center",
     fontWeight: "900",
     textAlign: "center",
-    fontSize: hp("3.6%"),
+    fontSize: hp("4"),
     color: "white",
     paddingTop: hp("13%"),
     textShadowColor: "rgba(0, 0, 0, 0.75)",

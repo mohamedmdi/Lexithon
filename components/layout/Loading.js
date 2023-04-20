@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 
 import getData from "../../util/getData";
 import Body from "./Body";
+import { heightPercentageToDP as hp } from "react-native-responsive-screen";
 
 const Loading = (props) => {
   const user = useSelector((state) => state.user);
@@ -21,7 +22,7 @@ const Loading = (props) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.h1}>Lexithon</Text>
+      <Text style={styles.h1}>Mon Vocabulaire</Text>
     </View>
   );
 };
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
   },
 
   h1: {
-    fontSize: 42,
+    fontSize: hp (5),
     fontWeight: "900",
     color: "#fff",
   },

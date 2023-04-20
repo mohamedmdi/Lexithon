@@ -234,8 +234,8 @@ const Content = ({ sbj, timer, setTotalAnswers, totalAnswers }) => {
           }}
         >
           <AnimatedCircularProgress
-            size={40}
-            width={6}
+            size={hp(4)}
+            width={hp(0.6)}
             fill={(count * 100) / COUNT}
             tintColor="red"
             backgroundColor="#ccc"
@@ -248,21 +248,21 @@ const Content = ({ sbj, timer, setTotalAnswers, totalAnswers }) => {
             <UpperBar quiz={quiz} />
           </View>
           <TouchableOpacity onPress={handleExitPress}>
-            <Ionicons name="close" size={45} color="#d2d2d2" />
+            <Ionicons name="close" size={hp(5)} color="#d2d2d2" />
           </TouchableOpacity>
         </View>
 
         <View style={styles.header}>
           <TouchableOpacity onPress={playsound} style={styles.imgContainer}>
-            <Ionicons name="volume-medium" size={30} color="#f5f3ff" />
+            <Ionicons name="volume-medium" size={hp(4.5)} color="#f5f3ff" />
           </TouchableOpacity>
           <Text onPress={playsound} style={styles.word}>
             {quiz.answer.word}
           </Text>
-          <View style={{ display: "flex", flexDirection: "row", gap: 2 }}>
+          <View style={{ display: "flex", flexDirection: "row", gap: hp(0.5) }}>
             {[...Array(quiz.initialHP).keys()].map((el, i) => (
               <Image
-                style={{ width: 30, height: 30, resizeMode: "contain" }}
+                style={{ width: hp(4), height: hp(4), resizeMode: "contain" }}
                 key={i}
                 source={i + 1 <= quiz.HP ? heart : brokenHeart}
               ></Image>
@@ -369,7 +369,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     borderColor: "#7c3aed",
     borderStyle: "dotted",
-    fontSize: 18,
+    fontSize: hp(2.5),
     fontWeight: "600",
     color: "#7c3aed",
     alignSelf: "center",
