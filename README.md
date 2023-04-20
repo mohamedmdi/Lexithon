@@ -6,8 +6,11 @@ Lexithon or "Mon Vocabulaire" is an Intern project to create a look-like Duoling
 
 
 ## Instllation
-Expo Go App needed to run the build
+Expo Go Android App needed to run the Developpement Build
 
+```sh
+git clone https://github.com/mohamedmdi/Lexithon.git
+```
 ```sh
 npm i
 ```
