@@ -39,7 +39,8 @@ const GameOver = (props) => {
       if (props.route.params.totalAnswers === NUMBER_OF_QUIZEZ)
         playSuccessSound();
       const handleBackPress = () => {
-        props.navigation.navigate("home");
+        navigate.pop();
+        // props.navigation.navigate("home");
         return true;
       };
 

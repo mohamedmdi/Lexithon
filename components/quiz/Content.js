@@ -156,6 +156,7 @@ const Content = ({ sbj, timer, setTotalAnswers, totalAnswers }) => {
     setIsClicked(null);
     if (quiz.HP === 0) {
       setRunning(false);
+      navigate.pop();
       navigate.navigate("gameover", { sbj, timer: timer, totalAnswers });
       return;
     }
@@ -163,7 +164,6 @@ const Content = ({ sbj, timer, setTotalAnswers, totalAnswers }) => {
     if (quiz.currentIteration === NUMBER_OF_QUIZEZ) {
       if (!quiz.isWrong) {
         dispatch(increaseTrophy(sbj));
-
         dispatch(updateTrophy());
       }
       setRunning(false);
