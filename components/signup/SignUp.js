@@ -2,6 +2,7 @@ import { useCallback, useState } from "react";
 import { useSelector } from "react-redux";
 import { StyleSheet, Text, View, TouchableOpacity, Image } from "react-native";
 import logo from "../../assets/imgs/logo-maroc.png";
+import monVoc from "../../assets/monVoc.png";
 
 import { TextInput } from "react-native-paper";
 import DropDown from "./DropDown";
@@ -60,6 +61,7 @@ const SignUp = (props) => {
       style={{
         height: "100%",
         paddingVertical: 40,
+        paddingHorizontal : 10,
         paddingTop: 10,
         gap: 70,
       }}
@@ -76,13 +78,24 @@ const SignUp = (props) => {
             marginBottom: 25,
           }}
         ></Image>
+        <Image
+          source={monVoc}
+          resizeMode="contain"
+          style={{
+            width: "80%",
+            height: 120,
+            marginRight: "auto",
+            marginLeft: "auto",
+            marginBottom: 25,
+          }}
+        ></Image>
 
-        <Text style={styles.h1}>
+        {/* <Text style={styles.h1}>
           M<Text style={{ color: "#f3cf26" }}>o</Text>n Vo
           <Text style={{ color: "#761cd4" }}>c</Text>ab
           <Text style={{ color: "#ff8811" }}>u</Text>lai
           <Text style={{ color: "#d5297f" }}>r</Text>e
-        </Text>
+        </Text> */}
       </View>
       <View style={{ height: "70%", gap: 30 }}>
         <View style={styles.form}>
