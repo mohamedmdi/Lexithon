@@ -2,11 +2,11 @@
 ## _The Duolingo Clone App_
 
 
-Lexithon or "Mon Vocabulaire" is an Intern project to create a look-like Duolingo QUIZ App in Android
+Lexithon, or "Mon Vocabulaire," is an intern project aimed at creating an Android app that closely resembles Duolingo's quiz-style learning platform.
 
 
-## Instllation
-Expo Go Android App needed to run the Developpement Build
+## Instllation of the Developpement environment
+Expo Go Android app is required to run the development build.
 
 ```sh
 git clone https://github.com/mohamedmdi/Lexithon.git
@@ -17,6 +17,18 @@ npm i
 ```sh
 npm start
 ```
+
+
+## Instllation of the APK
+```sh
+git clone https://github.com/mohamedmdi/Lexithon.git
+```
+```sh
+cd apk
+```
+
+Then run the Lexithon.apk on either a physical or virtual device.
+
 ✨Enjoy The App✨
 
 
