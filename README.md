@@ -33,7 +33,7 @@ Then run the Lexithon.apk on either a physical or virtual device.
 
 
 
-Made it with Love ❤ 
+Made with Love ❤ By:
 
 <a href="https://github.com/mohamedmdi/Lexithon/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=mohamedmdi/Lexithon" />
